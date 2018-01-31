@@ -12,12 +12,12 @@ class Navbar extends React.Component {
             <ul className="nav navbar-nav navbar-left">
               <li>
                 <Link to="/search">
-                  <a><span className="glyphicon glyphicon-cog"></span> Settings</a>
+                  <span className="glyphicon glyphicon-cog"></span> Settings
                 </Link>
               </li>
               <li>
                 <Link to="/restaurants">
-                  <a><span className="glyphicon glyphicon-cutlery"></span> Food</a>
+                  <span className="glyphicon glyphicon-cutlery"></span> All the Food
                 </Link>
               </li>
             </ul>
@@ -27,17 +27,17 @@ class Navbar extends React.Component {
             <div className="center-block">
 
               <Link to="/" className="navbar-brand ">
-                <a>Yumble</a>
+                Yumble
               </Link>
             </div>
           </div>
 
           <div className="col-xs-4">
             <ul className="nav navbar-nav navbar-right">
-              <li><a href=""><span className="glyphicon glyphicon-comment"></span> Messages</a></li>
+              <li><a><span className="glyphicon glyphicon-comment"></span> Messages</a></li>
               <li>
                 <Link to="/favorites">
-                  <a href=""><span className="glyphicon glyphicon-heart-empty"></span> Favorites</a>
+                  <span className="glyphicon glyphicon-heart-empty"></span> Favorites
                 </Link>
               </li>
             </ul>

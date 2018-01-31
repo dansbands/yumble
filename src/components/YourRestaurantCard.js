@@ -1,24 +1,23 @@
 import React from 'react';
 
 const YourRestaurantCard = (props) => {
-  console.log(props);
   return (
-    <div>
+    <div id={props.restaurant.id} onClick={props.handleClickSavedCard}>
       <div className="card item">
         <div className="image">
           <img src={props.restaurant.image_url} alt="" width="50px" />
         </div>
         <div className="content">
           <a className="header">{props.restaurant.name}</a>
+          <i className="glyphicon glyphicon-share-alt pull-right"></i>
           <div className="meta">
-            <span>Description</span>
           </div>
           <div className="description">
             <p>{props.restaurant.location.address1}<br></br>
             {props.restaurant.location.city}</p>
           </div>
           <div className="extra">
-            Additional Details
+            {props.restaurant.price}
           </div>
         </div>
       </div>

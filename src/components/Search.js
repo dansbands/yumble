@@ -1,36 +1,62 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Search extends React.Component {
+const Search = ({onChange, value, onSubmit}) => {
 
+  const onFormValueChange = (key, newVal) => {
+    onChange({
+      ...value,
+      [key]: newVal,
+    })
+  }
 
-  render() {
     return (
-      <div>
+      <div className="col-xs-3 left">
         <h3>Search Criteria</h3>
         <div className="form-group">
-          <h5 className="pull-right" >Use Location Services Instead <i class="material-icons">near_me</i></h5>
+          <i className="material-icons pull-right">near_me</i>
           <label htmlFor="location">Location</label>
-          <input className="form-control" type="text" id="location" placeholder="Location"></input>
+          <input
+            className="form-control"
+            id="location"
+            placeholder="Location"
+            value={value.location}
+            onChange={e => onFormValueChange(e.target.id, e.target.value)}></input>
         </div>
         <div className="form-group">
           <label htmlFor="distance">Distance</label>
-          <input className="form-control" type="text" id="distance" placeholder="Distance"></input>
+          <input
+            className="form-control"
+            id="distance"
+            placeholder="Distance"
+            value={value.distance}
+            onChange={e => onFormValueChange(e.target.id, e.target.value)}></input>
         </div>
         <div className="form-group">
-          <label htmlFor="cusine">Cuisine</label>
-          <input className="form-control" type="text" id="cusine" placeholder="Cuisine"></input>
+          <label htmlFor="cuisine">Cuisine</label>
+          <input
+            className="form-control"
+            id="cuisine"
+            placeholder="Cuisine"
+            value={value.cuisine}
+            onChange={e => onFormValueChange(e.target.id, e.target.value)}></input>
         </div>
         <div className="form-group">
           <label htmlFor="price">Price</label>
-          <input className="form-control" type="text" id="price" placeholder="Price"></input>
+          <input className="form-control"
+                 id="price"
+                 placeholder="Price"
+                 value={value.price}
+                 onChange={e => onFormValueChange(e.target.id, e.target.value)}></input>
         </div>
-        <Link to="/">
+        <Link
+          to="/"
+          onClick={onSubmit}>
           <input className="btn btn-default" type="submit" id="price" placeholder="Price"></input>
         </Link>
       </div>
     )
-  }
+
 }
 
 export default Search;

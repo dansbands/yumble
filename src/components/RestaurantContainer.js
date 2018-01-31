@@ -7,7 +7,7 @@ class RestaurantContainer extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-4 list">
+      <div className="col-xs-4 list center">
         {this.props.restaurant ? (
           <RestaurantShow
             handleRemove={this.props.handleRemove}

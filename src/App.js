@@ -16,16 +16,20 @@ class App extends Component {
     this.state = {
       restaurants: [],
       currentRestaurant: [],
-      yourRestaurants: []
+      yourRestaurants: [],
+      searchVal: {
+        location: '',
+        distance: '',
+        cuisine: '',
+        price: ''
+      }
     }
   }
 
   handleRemove = event => {
-    console.log('remove', event.target.id);
     let newRestaurants = this.state.restaurants.filter( r => {
       return r.id !== event.target.id
     })
-    console.log('newRestaurants', newRestaurants);
     this.setState({
       restaurants: newRestaurants,
       currentRestaurant: newRestaurants[0],
@@ -33,15 +37,12 @@ class App extends Component {
   }
 
   handleSelect = event => {
-    console.log('select', event.target.id);
     let newRestaurant = this.state.restaurants.find( r => {
       return r.id === event.target.id
     })
-    console.log('newRestaurant', newRestaurant);
     let newRestaurants = this.state.restaurants.filter( r => {
       return r.id !== event.target.id
     })
-    console.log('newRestaurants', newRestaurants);
     this.setState({
       restaurants: newRestaurants,
       currentRestaurant: newRestaurants[0],
@@ -50,6 +51,18 @@ class App extends Component {
         newRestaurant
       ]
     })
+  }
+
+  handleClickSavedCard = event => {
+    console.log('clicked saved card', event.target);
+  }
+
+  handleSearchChange = newVal => {
+    this.setState({ searchVal: newVal })
+  }
+
+  handleSubmitSearch = event => {
+    console.log('search value', this.state.searchVal);
   }
 
 
@@ -69,6 +82,7 @@ class App extends Component {
   render() {
     console.log('newRestaurants in state', this.state.restaurants);
     console.log('yourRestaurants in state', this.state.yourRestaurants);
+    console.log('state', this.state);
 
     return (
       <div className="App">
@@ -98,11 +112,30 @@ class App extends Component {
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
                         restaurant={this.state.currentRestaurant}/>
-                      <YourRestaurantList yourRestaurants={this.state.yourRestaurants}/>
+                      <YourRestaurantList
+                        yourRestaurants={this.state.yourRestaurants}
+                        handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
                 } />
-            <Route path="/search" component={Search} />
+              <Route path="/search" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <Search
+                        value={this.state.searchVal}
+                        onChange={this.handleSearchChange}
+                        onSubmit={this.handleSubmitSearch}/>
+                      <RestaurantContainer
+                        handleRemove={this.handleRemove}
+                        handleSelect={this.handleSelect}
+                        restaurant={this.state.currentRestaurant}/>
+                        <YourRestaurantList
+                          yourRestaurants={this.state.yourRestaurants}
+                          handleClickSavedCard={this.handleClickSavedCard}/>
+                    </div>
+                  )}
+                } />
             <Route path="/restaurants" render={
                 routerProps => {
                   return (
@@ -112,11 +145,12 @@ class App extends Component {
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
                         restaurant={this.state.currentRestaurant}/>
-                      <YourRestaurantList yourRestaurants={this.state.yourRestaurants}/>
+                        <YourRestaurantList
+                          yourRestaurants={this.state.yourRestaurants}
+                          handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
                 } />
-            <Route path="/search" component={Search} />
           </Switch>
 
         </div>

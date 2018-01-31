@@ -1,5 +1,5 @@
 import React from 'react';
-import YourRestaurantCard from './RestaurantCard'
+import YourRestaurantCard from './YourRestaurantCard'
 
 class YourRestaurantList extends React.Component {
 
@@ -8,7 +8,12 @@ class YourRestaurantList extends React.Component {
     let restaurants
     if (this.props.yourRestaurants) {
       restaurants = this.props.yourRestaurants.map( (restaurant, i) => {
-        return <YourRestaurantCard key={i} restaurant={restaurant} />
+        return (
+          <YourRestaurantCard
+            key={i}
+            restaurant={restaurant}
+            handleClickSavedCard={this.props.handleClickSavedCard} />
+        )
       })
     }
 

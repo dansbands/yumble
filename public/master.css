@@ -1,7 +1,6 @@
 .list {
   height: 700px;
   overflow: scroll;
-  border: 1px solid lightgrey;
 }
 
 .main {
@@ -27,13 +26,26 @@
 
 .card {
   border: 1px solid lightgrey;
+  border-radius: 5px;
   padding: 15px;
+  margin-bottom: 5px;
 }
 
 .right {
   position: fixed;
   right: 0;
 }
+
+.left {
+  position: fixed;
+  left: 0;
+}
+
+.center{
+  margin-left: 30%;
+}
+
+
 
 .navbar,
 .navbar-inverse,
