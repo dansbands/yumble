@@ -1,0 +1,42 @@
+.list {
+  max-height: 700px;
+  overflow: scroll;
+  border: 1px solid lightgrey;
+}
+
+.main {
+  margin-top: 80px;
+}
+
+.main-img {
+  height: 480px;
+  overflow: hidden;
+}
+
+.red {
+  color: red;
+}
+
+.grey {
+  color: grey;
+}
+
+.green {
+  color: green;
+}
+
+.card {
+  border: 1px solid lightgrey;
+}
+
+.navbar,
+.navbar-inverse,
+.navbar-brand,
+.navbar-header {
+  background-color: orange;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+}
