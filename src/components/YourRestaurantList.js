@@ -13,7 +13,7 @@ class YourRestaurantList extends React.Component {
     }
 
     return (
-      <div className="col-xs-3 list">
+      <div className="col-xs-3 list right">
         <h3>Your Restaurants</h3>
         {restaurants}
       </div>

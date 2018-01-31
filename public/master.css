@@ -1,5 +1,5 @@
 .list {
-  max-height: 700px;
+  height: 700px;
   overflow: scroll;
   border: 1px solid lightgrey;
 }
@@ -27,6 +27,12 @@
 
 .card {
   border: 1px solid lightgrey;
+  padding: 15px;
+}
+
+.right {
+  position: fixed;
+  right: 0;
 }
 
 .navbar,

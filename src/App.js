@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 // import './App.css';
-import RestaurantList from './components/RestaurantList'
-import YourRestaurantList from './components/YourRestaurantList'
-import RestaurantContainer from './components/RestaurantContainer'
-import data from './data'
+import RestaurantList from './components/RestaurantList';
+import YourRestaurantList from './components/YourRestaurantList';
+import RestaurantContainer from './components/RestaurantContainer';
+import Search from './components/Search';
+import Navbar from './components/Navbar';
+import data from './data';
+import { Route, Switch } from 'react-router-dom';
 
 
 class App extends Component {
@@ -69,41 +72,53 @@ class App extends Component {
 
     return (
       <div className="App">
-
-        <nav className="navbar navbar-inverse navbar-fixed-top">
-          <div className="container-fluid">
-            <div className="col-xs-5">
-              <ul className="nav navbar-nav navbar-left">
-                <li><a href=""><span className="glyphicon glyphicon-cog"></span> Settings</a></li>
-              </ul>
-            </div>
-
-            <div className="col-xs-3">
-              <div className="center-block">
-                <a className="navbar-brand " href="">Yumble</a>
-              </div>
-            </div>
-
-            <div className="col-xs-4">
-              <ul className="nav navbar-nav navbar-right">
-                <li><a href=""><span className="glyphicon glyphicon-cutlery"></span> Food</a></li>
-                <li><a href=""><span className="glyphicon glyphicon-heart-empty"></span> Favorites</a></li>
-                <li><a href=""><span className="glyphicon glyphicon-comment"></span> Messages</a></li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-
-
+        <Navbar />
         <div className="container main">
-          <div className="row">
-            <RestaurantList restaurants={this.state.restaurants}/>
-            <RestaurantContainer
-              handleRemove={this.handleRemove}
-              handleSelect={this.handleSelect}
-              restaurant={this.state.currentRestaurant}/>
-            <YourRestaurantList yourRestaurants={this.state.yourRestaurants}/>
-          </div>
+          <Switch>
+            <Route
+              path="/"
+              exact
+              render={
+                routerProps => {
+                  return (
+                      <div className="row">
+                        <RestaurantContainer
+                          handleRemove={this.handleRemove}
+                          handleSelect={this.handleSelect}
+                          restaurant={this.state.currentRestaurant}/>
+                      </div>
+                  )
+                }
+              } />
+            <Route path="/favorites" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <RestaurantContainer
+                        handleRemove={this.handleRemove}
+                        handleSelect={this.handleSelect}
+                        restaurant={this.state.currentRestaurant}/>
+                      <YourRestaurantList yourRestaurants={this.state.yourRestaurants}/>
+                    </div>
+                  )}
+                } />
+            <Route path="/search" component={Search} />
+            <Route path="/restaurants" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <RestaurantList restaurants={this.state.restaurants}/>
+                      <RestaurantContainer
+                        handleRemove={this.handleRemove}
+                        handleSelect={this.handleSelect}
+                        restaurant={this.state.currentRestaurant}/>
+                      <YourRestaurantList yourRestaurants={this.state.yourRestaurants}/>
+                    </div>
+                  )}
+                } />
+            <Route path="/search" component={Search} />
+          </Switch>
+
         </div>
       </div>
     );
@@ -111,3 +126,5 @@ class App extends Component {
 }
 
 export default App;
+
+// <Search />

@@ -10,6 +10,7 @@ const RestaurantCard = (props) => {
         </div>
         <div className="content">
           <a className="header">{props.restaurant.name}</a>
+          <i className="glyphicon glyphicon-share-alt pull-right"></i>
           <div className="meta">
           </div>
           <div className="description">
