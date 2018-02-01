@@ -7,7 +7,7 @@ const Search = ({onChange, value, onSubmit}) => {
     onChange({
       ...value,
       [key]: newVal,
-    })
+    }, 'searchVal')
   }
 
     return (
@@ -52,7 +52,7 @@ const Search = ({onChange, value, onSubmit}) => {
         <Link
           to="/"
           onClick={onSubmit}>
-          <input className="btn btn-default" type="submit" id="price" placeholder="Price"></input>
+          <input className="btn btn-default" type="submit"></input>
         </Link>
       </div>
     )

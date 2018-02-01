@@ -11,8 +11,13 @@ class Navbar extends React.Component {
           <div className="col-xs-5">
             <ul className="nav navbar-nav navbar-left">
               <li>
-                <Link to="/search">
+                <Link to="/settings">
                   <span className="glyphicon glyphicon-cog"></span> Settings
+                </Link>
+              </li>
+              <li>
+                <Link to="/signin">
+                  <span className="glyphicon glyphicon-user"></span> Sign In
                 </Link>
               </li>
               <li>

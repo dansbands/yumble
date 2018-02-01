@@ -3,8 +3,11 @@ import React, { Component } from 'react';
 import RestaurantList from './components/RestaurantList';
 import YourRestaurantList from './components/YourRestaurantList';
 import RestaurantContainer from './components/RestaurantContainer';
+import RestaurantDetail from './components/RestaurantDetail';
 import Search from './components/Search';
 import Navbar from './components/Navbar';
+import SignIn from './components/SignIn';
+import SignUp from './components/SignUp';
 import data from './data';
 import { Route, Switch } from 'react-router-dom';
 
@@ -16,13 +19,23 @@ class App extends Component {
     this.state = {
       restaurants: [],
       currentRestaurant: [],
+      displayRestaurant: [],
       yourRestaurants: [],
       searchVal: {
         location: '',
         distance: '',
         cuisine: '',
         price: ''
+      },
+      newUser: {
+        username: '',
+        password: '',
+      },
+      user: {
+        username: '',
+        password: '',
       }
+
     }
   }
 
@@ -53,12 +66,21 @@ class App extends Component {
     })
   }
 
-  handleClickSavedCard = event => {
-    console.log('clicked saved card', event.target);
+  handleClickSavedCard = (event, restaurant) => {
+    console.log('clicked saved card', event.currentTarget.id, restaurant );
+    this.setState({ displayRestaurant: restaurant })
+    // let id
+    // if (event.target.id) {
+    //   id = event.target.id
+    // } else {
+    //   id = event.target.parent.id
+    // }
+    // console.log('clicked id', id);
   }
 
-  handleSearchChange = newVal => {
-    this.setState({ searchVal: newVal })
+  handleFormChange = (newVal, formName) => {
+    this.setState({ [formName]: newVal})
+    console.log(newVal, formName);
   }
 
   handleSubmitSearch = event => {
@@ -99,7 +121,36 @@ class App extends Component {
                         <RestaurantContainer
                           handleRemove={this.handleRemove}
                           handleSelect={this.handleSelect}
-                          restaurant={this.state.currentRestaurant}/>
+                          restaurant={this.state.currentRestaurant}
+                          displayRestaurant={this.state.displayRestaurant}/>
+                      </div>
+                  )
+                }
+              } />
+            <Route
+              path="/signin"
+              exact
+              render={
+                routerProps => {
+                  return (
+                      <div className="row">
+                        <SignIn
+                          value={this.state.user}
+                          onChange={this.handleFormChange}/>
+                      </div>
+                  )
+                }
+              } />
+            <Route
+              path="/signup"
+              exact
+              render={
+                routerProps => {
+                  return (
+                      <div className="row">
+                        <SignUp
+                          value={this.state.newUser}
+                          onChange={this.handleFormChange} />
                       </div>
                   )
                 }
@@ -111,28 +162,42 @@ class App extends Component {
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}/>
+                        restaurant={this.state.currentRestaurant}
+                        displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
                 } />
-              <Route path="/search" render={
+              <Route path="/detail" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <RestaurantDetail
+                        restaurant={this.state.displayRestaurant}/>
+                      <YourRestaurantList
+                        yourRestaurants={this.state.yourRestaurants}
+                        handleClickSavedCard={this.handleClickSavedCard}/>
+                    </div>
+                  )}
+                } />
+              <Route path="/settings" render={
                 routerProps => {
                   return (
                     <div className="row">
                       <Search
                         value={this.state.searchVal}
-                        onChange={this.handleSearchChange}
+                        onChange={this.handleFormChange}
                         onSubmit={this.handleSubmitSearch}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}/>
-                        <YourRestaurantList
-                          yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}/>
+                        restaurant={this.state.currentRestaurant}
+                        displayRestaurant={this.state.displayRestaurant}/>
+                      <YourRestaurantList
+                        yourRestaurants={this.state.yourRestaurants}
+                        handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
                 } />
@@ -144,7 +209,8 @@ class App extends Component {
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}/>
+                        restaurant={this.state.currentRestaurant}
+                        displayRestaurant={this.state.displayRestaurant}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}
                           handleClickSavedCard={this.handleClickSavedCard}/>
