@@ -11,7 +11,9 @@ class Navbar extends React.Component {
           <div className="col-xs-5">
             <ul className="nav navbar-nav navbar-left">
               <li>
-                <Link to="/settings">
+                <Link
+                  to="/settings"
+                  className="navlink">
                   <span className="glyphicon glyphicon-cog"></span> Settings
                 </Link>
               </li>
@@ -31,7 +33,7 @@ class Navbar extends React.Component {
           <div className="col-xs-3">
             <div className="center-block">
 
-              <Link to="/" className="navbar-brand ">
+              <Link to="/" className="navlink navbar-brand ">
                 Yumble
               </Link>
             </div>

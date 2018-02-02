@@ -8,7 +8,7 @@ import Search from './components/Search';
 import Navbar from './components/Navbar';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
-import data from './data';
+// import data from './data';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -34,6 +34,7 @@ class App extends Component {
       user: {
         username: '',
         password: '',
+        id: 1
       }
 
     }
@@ -53,6 +54,18 @@ class App extends Component {
     let newRestaurant = this.state.restaurants.find( r => {
       return r.id === event.target.id
     })
+
+    fetch('http://localhost:3001/api/v1/saved_restaurants', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'Application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(newRestaurant, this.state.user.id)
+    }).then(resp => resp.json())
+      .then(console.log)
+
+
     let newRestaurants = this.state.restaurants.filter( r => {
       return r.id !== event.target.id
     })
@@ -69,13 +82,6 @@ class App extends Component {
   handleClickSavedCard = (event, restaurant) => {
     console.log('clicked saved card', event.currentTarget.id, restaurant );
     this.setState({ displayRestaurant: restaurant })
-    // let id
-    // if (event.target.id) {
-    //   id = event.target.id
-    // } else {
-    //   id = event.target.parent.id
-    // }
-    // console.log('clicked id', id);
   }
 
   handleFormChange = (newVal, formName) => {
@@ -89,15 +95,33 @@ class App extends Component {
 
 
   componentDidMount() {
-    // fetch('https://api.yelp.com/v3/businesses/search?term=restaurants&latitude=40.705353&longitude=-74.014003', {
-    //   headers: {
-    //     authorization: 'Bearer Wua9tvPsWwGGyMB-InHKZfE-ZkzjwGZu3zdtO_AwUvY-UEmT_hb774Fvd0h0W53u04Rhqt3ZqTwn-X5mip89zdh50gqcCDKvnUocoLcx3WzhIGNMd8jMKSJVuN9wWnYx'
-    //   }
-    // })
+    fetch('http://localhost:3001/api/v1/fetch_data')
+    .then(resp => resp.json())
     // .then(console.log)
-    this.setState({
-      restaurants: data.businesses,
-      currentRestaurant: data.businesses[0]
+    .then(data => {
+      this.setState({
+        restaurants: data.businesses,
+        currentRestaurant: data.businesses[0]
+      })
+    })
+
+    // fetch('http://localhost:3001/api/v1/restaurants')
+    // .then(resp => resp.json())
+    // .then(data => {
+    //   this.setState({
+    //     restaurants: data,
+    //     currentRestaurant: data[0]
+    //   })
+    // })
+
+
+
+    fetch('http://localhost:3001/api/v1/saved_restaurants')
+    .then(resp => resp.json())
+    .then(data => {
+      this.setState({
+        yourRestaurants: data
+      })
     })
   }
 

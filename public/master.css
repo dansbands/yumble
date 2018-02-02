@@ -59,6 +59,11 @@
   color: white;
 }
 
-.navbar a {
+.navlink {
   color: white;
+  text-decoration: none;
+}
+
+.navlink a:hover {
+  color: blue;
 }
