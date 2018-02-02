@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import RestaurantList from './components/RestaurantList';
 import YourRestaurantList from './components/YourRestaurantList';
 import RestaurantContainer from './components/RestaurantContainer';
-import RestaurantDetail from './components/RestaurantDetail';
+import YourRestaurantDetail from './components/YourRestaurantDetail';
 import Search from './components/Search';
 import Navbar from './components/Navbar';
 import SignIn from './components/SignIn';
@@ -24,6 +24,8 @@ class App extends Component {
       yourRestaurants: [],
       searchVal: {
         location: '',
+        latitude: 40.705353,
+        longitude: -74.014003,
         distance: '',
         cuisine: '',
         price: ''
@@ -99,8 +101,16 @@ class App extends Component {
 
 
   handleClickSavedCard = (event, restaurant) => {
-    console.log('clicked saved card', event.currentTarget.id, restaurant );
-    this.setState({ displayRestaurant: restaurant })
+    if (event.target.className.includes("trash")) {
+      console.log('delete', restaurant.id);
+      fetch(`http://localhost:3000/api/v1/saved_restaurants/${restaurant.id}`, {
+        method: 'DELETE'
+      }).then(resp => resp.json())
+      .then(() => this.getSavedRestaurants())
+    } else {
+      console.log('clicked saved card', event.currentTarget.id, restaurant );
+      this.setState({ displayRestaurant: restaurant })
+    }
   }
 
   handleFormChange = (newVal, formName) => {
@@ -110,8 +120,10 @@ class App extends Component {
 
   handleSubmitSearch = event => {
     console.log('search value', this.state.searchVal);
-    api.data.getFromYelp()
-    .then(() => this.getRestaurants())
+    //send this search value in the body of the request
+
+    // api.data.getFromYelp()
+    // .then(() => this.getRestaurants())
   }
 
   getRestaurants = () => {
@@ -213,7 +225,7 @@ class App extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <RestaurantDetail
+                      <YourRestaurantDetail
                         restaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}

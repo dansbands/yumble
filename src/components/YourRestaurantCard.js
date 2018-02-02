@@ -8,6 +8,7 @@ const YourRestaurantCard = (props) => {
 
         <div className="image">
           <img src={props.restaurant.image_url} alt="" width="50px" />
+          <i className="glyphicon glyphicon-trash pull-right" name="delete" onClick={e => props.handleClickSavedCard(e, props.restaurant)}></i>
         </div>
         <div className="content">
           <h5 className="header">{props.restaurant.name}</h5>

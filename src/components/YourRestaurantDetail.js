@@ -1,7 +1,8 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const RestaurantDetail = (props) => {
-  console.log('RestaurantDetail', props);
+const YourRestaurantDetail = (props) => {
+  console.log('YourRestaurantDetail', props);
 
   // const categories = props.restaurant.categories.map( (c, i) => {
   //   return <li key={i}>{c.title}</li>
@@ -11,6 +12,7 @@ const RestaurantDetail = (props) => {
   //   return <li key={i}>{t}</li>
   // })
 
+// Transactions:
 //   <ul>
 //     {transactions}
 //   </ul>
@@ -19,38 +21,49 @@ const RestaurantDetail = (props) => {
 //     {categories}
 //   </ul>
 
+// Distance: {distance} miles<br/>
+
+
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   let tel = "tel:" + props.restaurant.phone
 
   // return<div>under construction</div>
   return (
-    <div className="col-xs-4 list center">
-      <i className="glyphicon glyphicon-menu-left"></i>
-      <div>
-        <img src={props.restaurant.image_url} alt="" width="100%"/>
-      </div>
-      <div className="col-xs-9">
-        <h4>{props.restaurant.name}</h4>
-      </div>
-      <div className="col-xs-3">
-        <h4 className="pull-right">{distance} mi.</h4>
+    <div className="col-xs-4 list center panel panel-default card">
+      <Link to="/favorites">
+        <i className="glyphicon glyphicon-menu-left"></i>
+      </Link>
+
+      <div className="row">
+        <div>
+          <img src={props.restaurant.image_url} alt="" width="100%"/>
+        </div>
+        <div className="col-xs-9">
+          <h4>{props.restaurant.name}</h4>
+        </div>
+        <div className="col-xs-3">
+          <h4 className="pull-right">{distance} mi.</h4>
+        </div>
+
       </div>
 
       <div className="row">
-        <h5>Details:</h5>
-          <p>
-          {props.restaurant.display_address_1}<br/>
-          {props.restaurant.display_address_2}</p>
-          <p>
-        Phone: <a href={tel}>{props.restaurant.display_phone}</a><br/>
-        Distance: {distance} miles<br/>
-        {props.restaurant.is_closed &&
-          <h5>Permanently Closed</h5>
-        }
-        Price: {props.restaurant.price}<br/>
-        Rating: {props.restaurant.rating}<br/>
-        Transactions:</p>
+        <div className="col-xs-7">
+            <p>
+            {props.restaurant.display_address_1}<br/>
+            {props.restaurant.display_address_2}</p>
+            <p>
+          <a href={tel}>{props.restaurant.display_phone}</a><br/>
+          {props.restaurant.is_closed &&
+            <h5>Permanently Closed</h5>
+          }
+          </p>
+        </div>
 
+        <div className="col-xs-5">
+          <p className="pull-right">Price: {props.restaurant.price}<br/>
+          Rating: {props.restaurant.rating}<br/></p>
+        </div>
 
 
 
@@ -61,7 +74,7 @@ const RestaurantDetail = (props) => {
   )
 }
 
-export default RestaurantDetail;
+export default YourRestaurantDetail;
 
 // restaurant
 // :
