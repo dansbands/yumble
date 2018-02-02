@@ -1,5 +1,5 @@
 import React from 'react';
-import RestaurantCard from './RestaurantCard'
+import RestaurantListCard from './RestaurantListCard'
 
 class RestaurantList extends React.Component {
 
@@ -8,7 +8,7 @@ class RestaurantList extends React.Component {
     let restaurants
     if (this.props.restaurants) {
       restaurants = this.props.restaurants.map( (restaurant, i) => {
-        return <RestaurantCard key={i} restaurant={restaurant} />
+        return <RestaurantListCard key={i} restaurant={restaurant} />
       })
     }
 

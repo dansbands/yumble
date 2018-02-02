@@ -1,7 +1,8 @@
 import React from 'react';
 
 const RestaurantShow = (props) => {
-
+  console.log('RestaurantShow', props);
+  let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   return (
     <div>
       <div className="main-img">
@@ -11,7 +12,7 @@ const RestaurantShow = (props) => {
         <h4>{props.restaurant.name}</h4>
       </div>
       <div className="col-xs-3">
-        <h4 className="pull-right">0.2 mi.</h4>
+        <h4 className="pull-right">{distance} mi.</h4>
       </div>
       <div className="row">
         <div className="col-xs-5">

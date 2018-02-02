@@ -37,33 +37,30 @@ class App extends Component {
         password: '',
         id: 1
       }
-
     }
   }
 
   handleRemove = event => {
-    let newRestaurants = this.state.restaurants.filter( r => {
-      return r.id !== event.target.id
-    })
-    console.log('Removing', event.target.id);
-
+    // let newRestaurants = this.state.restaurants.filter( r => {
+    //   return r.id !== event.target.id
+    // })
+    //deleteRestaurant
     fetch(`http://localhost:3000/api/v1/restaurants/${event.target.id}`, {
       method: 'DELETE',
     }).then(resp => resp.json())
       .then(() => this.getRestaurants())
-
-
-    // this.setState({
-    //   restaurants: newRestaurants,
-    //   currentRestaurant: newRestaurants[0],
-    // })
   }
 
   handleSelect = event => {
+    console.log('handleSelect', event.target.id);
+    let eventId = parseInt(event.target.id, 10)
     let newRestaurant = this.state.restaurants.find( r => {
-      return r.id === event.target.id
+      return r.id === eventId
     })
+    console.log('newRestaurant', newRestaurant);
 
+
+    // postSavedRestaurant
     fetch('http://localhost:3000/api/v1/saved_restaurants', {
       method: 'POST',
       headers: {
@@ -72,22 +69,34 @@ class App extends Component {
       },
       body: JSON.stringify(newRestaurant, this.state.user.id)
     }).then(resp => resp.json())
-      .then(() => this.getRestaurants())
+      .then(() => {
+        //deleteRestaurant
+        fetch(`http://localhost:3000/api/v1/restaurants/${eventId}`, {
+          method: 'DELETE',
+        }).then(resp => resp.json())
+          .then(() => this.getRestaurants())
+      })
+    //
+      .then(() => this.getSavedRestaurants())
+    //   .then(() => this.getRestaurants())
 
 
 
-    let newRestaurants = this.state.restaurants.filter( r => {
-      return r.id !== event.target.id
-    })
-    this.setState({
-      restaurants: newRestaurants,
-      currentRestaurant: newRestaurants[0],
-      yourRestaurants: [
-        ...this.state.yourRestaurants,
-        newRestaurant
-      ]
-    })
+    // let newRestaurants = this.state.restaurants.filter( r => {
+    //   return r.id !== event.target.id
+
+      // console.log('newRestaurants', newRestaurants);
+    // })
+    // this.setState({
+    //   restaurants: newRestaurants,
+    //   currentRestaurant: newRestaurants[0],
+    //   yourRestaurants: [
+    //     ...this.state.yourRestaurants,
+    //     newRestaurant
+    //   ]
+    // })
   }
+
 
   handleClickSavedCard = (event, restaurant) => {
     console.log('clicked saved card', event.currentTarget.id, restaurant );
@@ -101,52 +110,38 @@ class App extends Component {
 
   handleSubmitSearch = event => {
     console.log('search value', this.state.searchVal);
+    api.data.getFromYelp()
+    .then(() => this.getRestaurants())
   }
 
   getRestaurants = () => {
-    return api.data.getRestaurants()
-        .then(data => {
-          this.setState({
-            restaurants: data,
-            currentRestaurant: data[0]
-          })
-        })
-  }
-
-
-  componentDidMount() {
-    api.data.getFromYelp()
-
-    // fetch('http://localhost:3000/api/v1/fetch_data')
-    // .then(resp => resp.json())
-    // .then(console.log)
-
-    // .then(data => {
-    //   this.setState({
-    //     restaurants: data.businesses,
-    //     currentRestaurant: data.businesses[0]
-    //   })
-    // })
-
-    // fetch('http://localhost:3000/api/v1/restaurants')
-    // .then(resp => resp.json())
-
-    this.getRestaurants()
-
-
-
-    // fetch('http://localhost:3000/api/v1/saved_restaurants')
-    // .then(resp => resp.json())
-    api.data.getSavedRestaurants()
+    api.data.getRestaurants()
     .then(data => {
       this.setState({
-        yourRestaurants: data
+        restaurants: data.reverse(),
+        currentRestaurant: data[0]
       })
     })
   }
 
+  getSavedRestaurants = () => {
+    api.data.getSavedRestaurants()
+    .then(data => {
+      this.setState({
+        yourRestaurants: data.reverse()
+      })
+    })
+  }
+
+
+  componentDidMount() {
+    // api.data.getFromYelp()
+    this.getRestaurants()
+    this.getSavedRestaurants()
+  }
+
   render() {
-    // console.log('newRestaurants in state', this.state.restaurants);
+    console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
     // console.log('state', this.state);
 

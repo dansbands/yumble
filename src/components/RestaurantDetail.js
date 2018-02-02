@@ -3,17 +3,25 @@ import React from 'react';
 const RestaurantDetail = (props) => {
   console.log('RestaurantDetail', props);
 
-  const categories = props.restaurant.categories.map( (c, i) => {
-    return <li key={i}>{c.title}</li>
-  })
+  // const categories = props.restaurant.categories.map( (c, i) => {
+  //   return <li key={i}>{c.title}</li>
+  // })
 
-  const transactions = props.restaurant.transactions.map( (t, i) => {
-    return <li key={i}>{t}</li>
-  })
+  // const transactions = props.restaurant.transactions.map( (t, i) => {
+  //   return <li key={i}>{t}</li>
+  // })
+
+//   <ul>
+//     {transactions}
+//   </ul>
+// <p>Categories:</p>
+//   <ul>
+//     {categories}
+//   </ul>
 
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
 
-
+  // return<div>under construction</div>
   return (
     <div className="col-xs-4 list center">
       <i className="glyphicon glyphicon-menu-left"></i>
@@ -24,14 +32,15 @@ const RestaurantDetail = (props) => {
         <h4>{props.restaurant.name}</h4>
       </div>
       <div className="col-xs-3">
-        <h4 className="pull-right">0.2 mi.</h4>
+        <h4 className="pull-right">{distance} mi.</h4>
       </div>
+
       <div className="row">
         <h5>Details:</h5>
-        <p>
-        {props.restaurant.location.display_address[0]}<br/>
-        {props.restaurant.location.display_address[1]}</p>
-        <p>
+          <p>
+          {props.restaurant.display_address_1}<br/>
+          {props.restaurant.display_address_2}</p>
+          <p>
         Phone: {props.restaurant.display_phone}<br/>
         Distance: {distance} miles<br/>
         {props.restaurant.is_closed &&
@@ -40,13 +49,8 @@ const RestaurantDetail = (props) => {
         Price: {props.restaurant.price}<br/>
         Rating: {props.restaurant.rating}<br/>
         Transactions:</p>
-          <ul>
-            {transactions}
-          </ul>
-        <p>Categories:</p>
-          <ul>
-            {categories}
-          </ul>
+
+
 
 
 

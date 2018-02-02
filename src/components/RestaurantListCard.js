@@ -1,7 +1,9 @@
 import React from 'react';
 
-const RestaurantCard = (props) => {
-  // console.log(props);
+const RestaurantListCard = (props) => {
+  // console.log('RestaurantCard', props);
+  let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
+
   return (
     <div>
       <div className="card item">
@@ -12,6 +14,7 @@ const RestaurantCard = (props) => {
           <a className="header">{props.restaurant.name}</a>
           <i className="glyphicon glyphicon-share-alt pull-right"></i>
           <div className="meta">
+            {distance} mi.
           </div>
           <div className="description">
             <p>{props.restaurant.location.address1}<br></br>
@@ -26,4 +29,4 @@ const RestaurantCard = (props) => {
   )
 }
 
-export default RestaurantCard;
+export default RestaurantListCard;
