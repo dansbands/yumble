@@ -20,6 +20,7 @@ const RestaurantDetail = (props) => {
 //   </ul>
 
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
+  let tel = "tel:" + props.restaurant.phone
 
   // return<div>under construction</div>
   return (
@@ -41,7 +42,7 @@ const RestaurantDetail = (props) => {
           {props.restaurant.display_address_1}<br/>
           {props.restaurant.display_address_2}</p>
           <p>
-        Phone: {props.restaurant.display_phone}<br/>
+        Phone: <a href={tel}>{props.restaurant.display_phone}</a><br/>
         Distance: {distance} miles<br/>
         {props.restaurant.is_closed &&
           <h5>Permanently Closed</h5>
