@@ -122,8 +122,8 @@ class App extends Component {
     console.log('search value', this.state.searchVal);
     //send this search value in the body of the request
 
-    // api.data.getFromYelp()
-    // .then(() => this.getRestaurants())
+    api.data.getFromYelp(this.state.searchVal)
+    .then(() => this.getRestaurants())
   }
 
   getRestaurants = () => {

@@ -5,8 +5,8 @@ const headers = {
   'Accept': 'application/json',
 }
 
-const getFromYelp = () => {
-  return fetch(`${API_ROOT}/fetch_data`)
+const getFromYelp = data => {
+  return fetch(`${API_ROOT}/fetch_data?distance=${data.distance}`)
           .then(resp => resp.json())
           // .then(console.log)
           // .then(data => {
