@@ -7,7 +7,7 @@ class RestaurantContainer extends React.Component {
 
 
   render() {
-    console.log('RestaurantContainer', this.props);
+    // console.log('RestaurantContainer', this.props);
     return (
       <div className="col-md-4 list center">
         {this.props.restaurant ? (
