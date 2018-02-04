@@ -24,21 +24,21 @@ const Search = ({onChange, value, onSubmit}) => {
             onChange={e => onFormValueChange(e.target.id, e.target.value)}></input>
         </div>
         <div className="form-group">
-          <label htmlFor="cuisine">Cuisine</label>
+          <label htmlFor="term">Cuisine</label>
           <input
             className="form-control"
-            id="cuisine"
+            id="term"
             placeholder="Cuisine"
-            value={value.cuisine}
+            value={value.term}
             onChange={e => onFormValueChange(e.target.id, e.target.value)}></input>
         </div>
         <div className="form-group">
-          <label htmlFor="distance">Distance</label>
+          <label htmlFor="radius">Distance</label>
           <select
             className="form-control"
-            id="distance"
+            id="radius"
             placeholder="Distance"
-            value={value.distance}
+            value={value.radius}
             onChange={e => onFormValueChange(e.target.id, e.target.value)}>
               <option className="form-control" value="">any</option>
               <option className="form-control" value="161">0.1 mi</option>

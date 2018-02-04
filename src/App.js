@@ -26,9 +26,9 @@ class App extends Component {
         location: '',
         latitude: 40.705353,
         longitude: -74.014003,
-        distance: '',
-        cuisine: '',
-        price: ''
+        radius: '',
+        term: '',
+        price: '',
       },
       newUser: {
         username: '',

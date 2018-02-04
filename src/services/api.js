@@ -6,8 +6,18 @@ const headers = {
 }
 
 const getFromYelp = data => {
-  return fetch(`${API_ROOT}/fetch_data?distance=${data.distance}`)
+  console.log(data);
+  // let mapped = data.map( d => {
+  //   console.log('key', d.key);
+  //   console.log('value', d.value);
+  //   return d.key=d.value
+  // })
+  let params = `?radius=${data.radius}&price=${data.price}`
+
+  return fetch(`${API_ROOT}/fetch_data${params}`)
           .then(resp => resp.json())
+
+
           // .then(console.log)
           // .then(data => {
           //   this.setState({
