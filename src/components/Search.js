@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Search = ({onChange, value, onSubmit}) => {
-
+  console.log('Search Value', value);
   const onFormValueChange = (key, newVal) => {
     onChange({
       ...value,
@@ -10,9 +10,37 @@ const Search = ({onChange, value, onSubmit}) => {
     }, 'searchVal')
   }
 
+  const onSavedLocationChange = (newVal) => {
+    console.log('newVal', newVal);
+    console.log('newVal', value["savedLocations"][newVal]["latitude"]);
+    console.log('newVal', value["savedLocations"][newVal]["longitude"]);
+    console.log('newVal', value["savedLocations"][newVal]);
+    onChange({
+      ...value,
+      latitude: value["savedLocations"][newVal]["latitude"],
+      longitude: value["savedLocations"][newVal]["longitude"],
+      currentLocation: newVal,
+    }, 'searchVal')
+  }
+
     return (
       <div className="col-xs-3 left">
         <h3>Search Criteria</h3>
+
+          <div className="form-group">
+            <label htmlFor="price">Saved Locations</label>
+            <select className="form-control"
+                   id="coordinates"
+                   placeholder="Choose a saved location..."
+                   value={value.currentLocation}
+                   onChange={e => onSavedLocationChange(e.target.value)}>
+                   <option className="form-control" value="defaultLoc">Choose a saved location...</option>
+                   <option className="form-control" value="flatironSchool">Flatiron School</option>
+                   <option className="form-control" value="home">Home</option>
+                 </select>
+          </div>
+
+
         <div className="form-group">
           <i className="material-icons pull-right">near_me</i>
           <label htmlFor="location">Location</label>

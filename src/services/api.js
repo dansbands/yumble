@@ -12,7 +12,7 @@ const getFromYelp = data => {
   //   console.log('value', d.value);
   //   return d.key=d.value
   // })
-  let params = `?radius=${data.radius}&price=${data.price}`
+  let params = `?latitude=${data.latitude}&longitude=${data.longitude}&radius=${data.radius}&term=${data.term}&price=${data.price}`
 
   return fetch(`${API_ROOT}/fetch_data${params}`)
           .then(resp => resp.json())

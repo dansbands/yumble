@@ -22,13 +22,28 @@ class App extends Component {
       currentRestaurant: [],
       displayRestaurant: [],
       yourRestaurants: [],
+      currentLocation: "",
       searchVal: {
         location: '',
-        latitude: 40.705353,
-        longitude: -74.014003,
+        latitude: 0,
+        longitude: 0,
         radius: '',
         term: '',
         price: '',
+        savedLocations: {
+          defaultLoc: {
+            latitude: 40.705353,
+            longitude: -74.014003,
+          },
+          flatironSchool: {
+            latitude: 40.705353,
+            longitude: -74.014003,
+          },
+          home: {
+            latitude: 40.719657,
+            longitude: -74.039520,
+          },
+        }
       },
       newUser: {
         username: '',
@@ -78,25 +93,7 @@ class App extends Component {
         }).then(resp => resp.json())
           .then(() => this.getRestaurants())
       })
-    //
       .then(() => this.getSavedRestaurants())
-    //   .then(() => this.getRestaurants())
-
-
-
-    // let newRestaurants = this.state.restaurants.filter( r => {
-    //   return r.id !== event.target.id
-
-      // console.log('newRestaurants', newRestaurants);
-    // })
-    // this.setState({
-    //   restaurants: newRestaurants,
-    //   currentRestaurant: newRestaurants[0],
-    //   yourRestaurants: [
-    //     ...this.state.yourRestaurants,
-    //     newRestaurant
-    //   ]
-    // })
   }
 
 
@@ -115,7 +112,7 @@ class App extends Component {
 
   handleFormChange = (newVal, formName) => {
     this.setState({ [formName]: newVal})
-    console.log(newVal, formName);
+    console.log("Handle Form Change", newVal, formName);
   }
 
   handleSubmitSearch = event => {
@@ -153,9 +150,9 @@ class App extends Component {
   }
 
   render() {
-    console.log('newRestaurants in state', this.state.restaurants);
+    // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
-    // console.log('state', this.state);
+    console.log('state', this.state);
 
     return (
       <div className="App">
