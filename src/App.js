@@ -9,9 +9,9 @@ import { Route, Switch } from 'react-router-dom';
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
 
-  handleLogin = user => {
-    localStorage.setItem('token', user.token)
-  }
+  // handleLogin = user => {
+  //   localStorage.setItem('token', user.token)
+  // }
 
   render() {
     return (
