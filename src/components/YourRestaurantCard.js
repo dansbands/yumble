@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 
 const YourRestaurantCard = (props) => {
   return (
-    <Link to="/detail">
+    <Link
+      to="/detail"
+      className="link">
       <div id={props.restaurant.id} className="panel panel-default card" onClick={e => props.handleClickSavedCard(e, props.restaurant)}>
 
         <div className="image">

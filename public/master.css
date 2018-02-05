@@ -1,3 +1,7 @@
+body {
+ font-family: 'Roboto', sans-serif;
+}
+
 .list {
   height: 700px;
   overflow: scroll;
@@ -29,7 +33,32 @@
   border-radius: 5px;
   padding: 15px;
   margin-bottom: 5px;
+  box-shadow: 3px 3px rgba(0,0,0,0.1);
 }
+
+.card:hover {
+  box-shadow: 5px 5px rgba(0,0,0,0.5);
+}
+
+.card:active {
+  box-shadow: 5px 5px rgba(0,0,0,0.5);
+  border: 3px solid orange;
+}
+
+.card a {
+  color: grey;
+}
+
+.link {
+  color: grey;
+}
+
+.link:hover {
+  color: grey;
+  text-decoration: none;
+}
+
+
 
 .right {
   position: fixed;
@@ -53,17 +82,48 @@
 
 .navbar,
 .navbar-inverse,
-.navbar-brand,
 .navbar-header {
   background-color: orange;
   color: white;
+  font-family: 'Permanent Marker', cursive;
+  /* font-family: 'Boogaloo', cursive; */
+  /* font-family: 'Luckiest Guy', cursive; */
 }
 
-.navlink {
+.navbar-brand {
+  font-size: 24px;
+  color: orange;
+  text-shadow:
+   -1px -1px 0 white,
+    1px -1px 0 white,
+    -1px 1px 0 white,
+     1px 1px 0 white;
+}
+
+.navbar {
+  box-shadow: 0px 3px rgba(0,0,0,0.2);
+}
+
+.nav-link {
   color: white;
   text-decoration: none;
 }
 
-.navlink a:hover {
-  color: blue;
+.nav>li>a:focus,
+.nav>li>a:hover,
+.navbar-nav li,
+.nav-link:hover
+{
+  color: white;
+  background-color: orange;
+}
+
+.nav-link:hover {
+  color: white;
+  background-color: orange;
+  text-shadow:
+  -1px -1px 0 red,
+  1px -1px 0 red,
+  -1px 1px 0 red,
+  1px 1px 0 red;
 }
