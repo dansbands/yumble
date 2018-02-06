@@ -52,22 +52,30 @@ class AppContainer extends Component {
     }
   }
 
-  componentDidMount() {
-    api.auth.getCurrentUser()
-      .then(data => {
-        console.log('GetUser AppContainer', data);
-        this.setState(prevState => ({
-          user: {
-            ...this.state.user,
-            id: data.id,
-            username: data.username,
-          }
-        }), () => {
-          this.getUser(data.id)
-          this.getRestaurants()
-        })
-      })
+  componentWillReceiveProps(nextProps) {
+    console.log('AC Props are', this.props);
+    console.log('AC nextProps are', nextProps);
+    this.getUser(nextProps.currentUser.id)
+    this.getRestaurants()
+
   }
+
+  // componentDidMount() {
+  //   api.auth.getCurrentUser()
+  //     .then(data => {
+  //       console.log('GetUser AppContainer', data);
+  //       this.setState(prevState => ({
+  //         user: {
+  //           ...this.state.user,
+  //           id: data.id,
+  //           username: data.username,
+  //         }
+  //       }), () => {
+  //         this.getUser()
+  //         this.getRestaurants()
+  //       })
+  //     })
+  // }
 
   getRestaurants = () => {
     api.data.getRestaurants()
@@ -80,7 +88,7 @@ class AppContainer extends Component {
   }
 
   getUser = id => {
-    let userId = this.state.user.id
+    let userId = id ? id : this.state.user.id
     // if (id) {
     //   console.log("got id", id);
     //   userId = id
