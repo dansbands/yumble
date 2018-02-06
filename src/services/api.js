@@ -8,30 +8,22 @@ const headers = {
 }
 
 const getFromYelp = data => {
-  console.log(data);
-  // let mapped = data.map( d => {
-  //   console.log('key', d.key);
-  //   console.log('value', d.value);
-  //   return d.key=d.value
-  // })
+  // console.log(data);
   let params = `?latitude=${data.latitude}&longitude=${data.longitude}&radius=${data.radius}&term=${data.term}&price=${data.price}`
 
   return fetch(`${API_ROOT}/fetch_data${params}`)
           .then(resp => resp.json())
-
-
-          // .then(console.log)
-          // .then(data => {
-          //   this.setState({
-          //     restaurants: data.businesses,
-          //     currentRestaurant: data.businesses[0]
-          //   })
-          // })
 }
 
 const getRestaurants = () => {
   return fetch(`${API_ROOT}/restaurants`)
           .then(resp => resp.json())
+}
+
+const deleteRestaurant = id => {
+  return fetch(`http://localhost:3000/api/v1/restaurants/${id}`, {
+    method: 'DELETE',
+  }).then(resp => resp.json())
 }
 
 const getSavedRestaurants = () => {
@@ -44,6 +36,24 @@ const getUser = id => {
     .then(resp => resp.json())
 }
 
+const signIn = fields => {
+  return fetch('http://localhost:3000/api/v1/auth', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(fields)
+  }).then(resp => resp.json())
+}
+
+const getCurrentUser = () => {
+  return fetch('http://localhost:3000/api/v1/current_user', {
+    headers: {
+      Authorization: token
+    }
+  }).then(res => res.json())
+}
 
 export default {
   data: {
@@ -51,5 +61,10 @@ export default {
     getRestaurants,
     getSavedRestaurants,
     getUser,
+    deleteRestaurant,
+  },
+  auth: {
+    signIn,
+    getCurrentUser,
   }
 }

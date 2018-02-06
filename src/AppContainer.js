@@ -52,10 +52,51 @@ class AppContainer extends Component {
     }
   }
 
+  componentDidMount() {
+    api.auth.getCurrentUser()
+      .then(data => {
+        console.log('GetUser AppContainer', data);
+        this.setState(prevState => ({
+          user: {
+            ...this.state.user,
+            id: data.id,
+            username: data.username,
+          }
+        }), () => {
+          this.getUser(data.id)
+          this.getRestaurants()
+        })
+      })
+  }
+
+  getRestaurants = () => {
+    api.data.getRestaurants()
+    .then(data => {
+      this.setState({
+        restaurants: data.reverse(),
+        currentRestaurant: data[0]
+      })
+    })
+  }
+
+  getUser = id => {
+    let userId = this.state.user.id
+    // if (id) {
+    //   console.log("got id", id);
+    //   userId = id
+    // }
+    api.data.getUser(userId)
+    .then(user => {
+      console.log('got user', user);
+      console.log('got users restaurants', user.saved_restaurants);
+      if (user.saved_restaurants) {
+        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
+      }
+    })
+  }
+
   handleRemove = event => {
-    fetch(`http://localhost:3000/api/v1/restaurants/${event.target.id}`, {
-      method: 'DELETE',
-    }).then(resp => resp.json())
+    api.data.deleteRestaurant(event.target.id)
       .then(() => this.getRestaurants())
   }
 
@@ -90,7 +131,6 @@ class AppContainer extends Component {
       .then(() => this.getUser())
   }
 
-
   handleClickSavedCard = (event, restaurant) => {
     if (event.target.className.includes("trash")) {
       console.log('delete', restaurant);
@@ -115,86 +155,11 @@ class AppContainer extends Component {
     .then(() => this.getRestaurants())
   }
 
-  getRestaurants = () => {
-    api.data.getRestaurants()
-    .then(data => {
-      this.setState({
-        restaurants: data.reverse(),
-        currentRestaurant: data[0]
-      })
-    })
-  }
-
-  getSavedRestaurants = () => {
-    api.data.getSavedRestaurants()
-    .then(data => {
-      this.setState({
-        yourRestaurants: data.reverse()
-      })
-    })
-  }
-
-  handleAuth = () => {
-    console.log('handling Auth');
-    // fetch('http://localhost:3000/api/v1/auth', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //   },
-    //   body: JSON.stringify(this.state.user)
-    // }).then(console.log)
-  }
-
-  handleNewUser = () => {
-    console.log('handling Auth');
-    // fetch('http://localhost:3000/api/v1/users', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //     'Accept': 'application/json',
-    //   },
-    //   body: JSON.stringify(this.state.newUser)
-    // }).then(console.log)
-  }
-
-  getUser = () => {
-    console.log('currentUser in props', this.props.currentUser);
-    api.data.getUser(this.state.user.id)
-    .then(user => {
-        console.log('got user', user)
-        this.setState({
-          ...this.state.user.username,
-          username: user.username
-        })
-        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
-      })
-  }
-
-
-  componentDidMount() {
-    this.setState({
-      ...this.state.user.id,
-        id: this.props.currentUser.id,
-    },() => this.getUser())
-
-
-
-    this.getRestaurants()
-    // this.getSavedRestaurants()
-    const token = localStorage.getItem('token');
-
-    if (token) {
-    } else {
-      this.props.history.push('/login');
-    }
-  }
-
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
     console.log('AppContainer state', this.state);
-    console.log('AppContainer props', this.props.currentUser.id);
+    console.log('AppContainer props', this.props);
 
     return (
       <div>

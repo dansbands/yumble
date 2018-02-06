@@ -4,25 +4,22 @@ import AppContainer from './AppContainer';
 import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { Route, Switch } from 'react-router-dom';
+import api from './services/api';
 
 
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
 
   componentDidMount() {
-    let token = localStorage.getItem('token')
-
-    if (token) {
-      return fetch('http://localhost:3000/api/v1/current_user', {
-        headers: {
-          Authorization: token
-        }
-      }).then(res => res.json())
+    if (localStorage.getItem('token')) {
+      // localStorage.removeItem('token')
+      api.auth.getCurrentUser()
       .then(user => {
+        console.log('Got User', user);
         if(!user.error) {
           this.setState({ auth: { currentUser: user } });
         }
-      })
+      });
     }
   }
 
@@ -38,7 +35,7 @@ class App extends React.Component {
   }
 
   render() {
-    // console.log('App State', this.state);
+    console.log('App State', this.state);
     return (
       <div className="App">
         <div className="container main">
@@ -80,7 +77,7 @@ class App extends React.Component {
                 routerProps => {
                   return (
                     <AppContainer
-                      {...routerProps}
+
                       currentUser={this.state.auth.currentUser}/>
                   )
                 }

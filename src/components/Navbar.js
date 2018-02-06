@@ -1,13 +1,39 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-class Navbar extends React.Component {
+let user = "User"
 
-  componentDidMount() {
-    // console.log("Navbar User", this.props.currentUser);
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      user: ''
+    }
+
+  }
+
+  componentWillReceiveProps() {
+    // console.log("Navbar User", this.props.currentUser.user);
+    // this.setState({ user: this.props.currentUser.user }, () => console.log("Mounted Navbar", this.state))
+
+    if (this.props.currentUser.user) {
+      // console.log('Navbar Receiving Props', this.props);
+      user = this.props.currentUser.user.firstname
+    } else {
+      user = "User"
+    }
+  }
+
+  handleLogout = () => {
+    console.log('Handling Logout');
+    // this.state = {}
+    this.props.handleLogout()
   }
 
   render() {
+    // console.log('Navbar State', this.state);
+    const loggedIn = !!this.props.currentUser.id;
     return (
       <nav className="navbar navbar-fixed-top">
         <div className="container-fluid">
@@ -21,12 +47,23 @@ class Navbar extends React.Component {
                 </Link>
               </li>
               <li>
+                {loggedIn ? (
                 <Link
                   to="/signin"
-                  onClick={this.props.handleLogout}
+                  onClick={this.handleLogout}
                   className="nav-link">
-                  <span className="glyphicon glyphicon-user"></span> Sign Out
+                    <span className="glyphicon glyphicon-user"></span>
+                      Sign Out {user}
                 </Link>
+                  ) : (
+                <Link
+                  to="/signin"
+                  onClick={this.handleLogout}
+                  className="nav-link">
+                    <span className="glyphicon glyphicon-user"></span>
+                    Sign In
+                </Link>
+                  )}
               </li>
               <li>
                 <Link

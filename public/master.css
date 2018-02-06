@@ -127,3 +127,7 @@ body {
   -1px 1px 0 red,
   1px 1px 0 red;
 }
+
+.trash {
+  font-size: 24px;
+}

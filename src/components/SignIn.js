@@ -44,13 +44,6 @@ class SignIn extends React.Component {
     });
   }
 
-  // const onFormValueChange = (key, newVal) => {
-  //   onChange({
-  //     ...value,
-  //     [key]: newVal,
-  //   }, 'user')
-  // }
-
   render() {
     return (
       <div className="col-xs-4 center-block">
