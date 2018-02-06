@@ -23,7 +23,7 @@ class SignIn extends React.Component {
   }
 
   handleSubmit = e => {
-    e.preventDefault()
+    // e.preventDefault()
     console.log('submit signin');
     fetch('http://localhost:3000/api/v1/auth', {
       method: 'POST',
@@ -32,10 +32,14 @@ class SignIn extends React.Component {
         'Accept': 'application/json',
       },
       body: JSON.stringify(this.state.fields)
-    }).then(data => {
+    }).then(resp => resp.json())
+    .then(data => {
       console.log('response is', data);
       if (data.error) {
         this.setState({ error: true });
+      } else {
+        this.props.handleLogin(data);
+        this.props.history.push('/settings')
       }
     });
   }
@@ -74,7 +78,8 @@ class SignIn extends React.Component {
 
           <Link
             to="/settings"
-            onClick={this.handleSubmit}>
+            onClick={this.handleSubmit}
+            >
             <input className="btn btn-default" type="submit"></input>
           </Link>
           <br></br>

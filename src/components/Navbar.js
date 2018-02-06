@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 
 class Navbar extends React.Component {
 
+  componentDidMount() {
+    console.log("Navbar", this.props.currentUser);
+  }
 
   render() {
     return (
@@ -20,8 +23,9 @@ class Navbar extends React.Component {
               <li>
                 <Link
                   to="/signin"
+                  onClick={this.props.handleLogout}
                   className="nav-link">
-                  <span className="glyphicon glyphicon-user"></span> Sign In
+                  <span className="glyphicon glyphicon-user"></span> Sign Out
                 </Link>
               </li>
               <li>

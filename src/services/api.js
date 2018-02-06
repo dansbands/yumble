@@ -1,5 +1,7 @@
 const API_ROOT = `http://localhost:3000/api/v1`
 
+const token = localStorage.getItem('token')
+
 const headers = {
   'Content-Type': 'application/json',
   'Accept': 'application/json',
@@ -37,10 +39,16 @@ const getSavedRestaurants = () => {
           .then(resp => resp.json())
 }
 
+const getUser = () => {
+  console.log(token);
+  // return fetch(`${API_ROOT}/`)
+}
+
 export default {
   data: {
     getFromYelp,
     getRestaurants,
     getSavedRestaurants,
+    getUser,
   }
 }

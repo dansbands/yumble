@@ -9,15 +9,41 @@ import { Route, Switch } from 'react-router-dom';
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
 
-  // handleLogin = user => {
-  //   localStorage.setItem('token', user.token)
-  // }
+  componentDidMount() {
+    let token = localStorage.getItem('token')
+
+    if (token) {
+      return fetch('http://localhost:3000/api/v1/current_user', {
+        headers: {
+          Authorization: token
+        }
+      }).then(res => res.json())
+      .then(user => {
+        if(!user.error) {
+          this.setState({ auth: { currentUser: user } });
+        }
+      })
+    }
+  }
+
+  handleLogin = user => {
+    localStorage.setItem('token', user.token);
+    this.setState({ auth: { currentUser: user } });
+  }
+
+  handleLogout = () => {
+    localStorage.removeItem('token');
+    this.setState({ auth: { currentUser: {} } });
+  }
 
   render() {
+    console.log('App State', this.state);
     return (
       <div className="App">
         <div className="container main">
-          <Navbar />
+          <Navbar
+            handleLogout={this.handleLogout}
+            currentUser={this.state.auth.currentUser}/>
           <Switch>
             <Route
               path="/signin"
@@ -26,11 +52,8 @@ class App extends React.Component {
                 routerProps => {
                   return (
                       <div className="row">
-                        <SignIn
-
-                          onChange={this.handleFormChange}
-                          onSubmit={this.handleAuth}
-                          />
+                        <SignIn {...routerProps}
+                          handleLogin={this.handleLogin} />
                       </div>
                   )
                 }
@@ -51,8 +74,16 @@ class App extends React.Component {
                   )
                 }
               } />
+            <Route
+              path="/"
+              render={
+                routerProps => {
+                  return (
+                    <AppContainer {...routerProps} />
+                  )
+                }
+              } />
           </Switch>
-          <AppContainer />
         </div>
       </div>
     )

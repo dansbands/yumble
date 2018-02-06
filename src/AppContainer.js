@@ -1,15 +1,10 @@
 import React, { Component } from 'react';
-// import './App.css';
 import RestaurantList from './components/RestaurantList';
 import YourRestaurantList from './components/YourRestaurantList';
 import RestaurantContainer from './components/RestaurantContainer';
 import YourRestaurantDetail from './components/YourRestaurantDetail';
 import Search from './components/Search';
-import Navbar from './components/Navbar';
-import SignIn from './components/SignIn';
-import SignUp from './components/SignUp';
 import api from './services/api'
-// import data from './data';
 import { Route, Switch } from 'react-router-dom';
 
 
@@ -168,9 +163,15 @@ class AppContainer extends Component {
 
 
   componentDidMount() {
-    // api.data.getFromYelp()
+    api.data.getUser()
     this.getRestaurants()
     this.getSavedRestaurants()
+    const token = localStorage.getItem('token');
+
+    if (token) {
+    } else {
+      this.props.history.push('/login');
+    }
   }
 
   render() {
@@ -180,7 +181,7 @@ class AppContainer extends Component {
 
     return (
       <div>
-
+        {localStorage.getItem('token') &&
           <Switch>
             <Route
               path="/"
@@ -262,7 +263,7 @@ class AppContainer extends Component {
                   )}
                 } />
           </Switch>
-
+        }
         </div>
 
     );
