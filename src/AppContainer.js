@@ -57,7 +57,6 @@ class AppContainer extends Component {
     console.log('AC nextProps are', nextProps);
     this.getUser(nextProps.currentUser.id)
     this.getRestaurants()
-
   }
 
   // componentDidMount() {
@@ -97,6 +96,13 @@ class AppContainer extends Component {
     .then(user => {
       console.log('got user', user);
       console.log('got users restaurants', user.saved_restaurants);
+      this.setState(prevState => ({
+        user: {
+          ...this.state.user,
+          id: user.id,
+          username: user.username,
+        }
+      }))
       if (user.saved_restaurants) {
         this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
       }

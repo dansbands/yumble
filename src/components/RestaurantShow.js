@@ -1,11 +1,20 @@
 import React from 'react';
+import img from '../img/food_placeholder.jpg';
 
 const RestaurantShow = (props) => {
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
+  let image_url = img
+
+  if (props.restaurant.image_url !== "") {
+    image_url = props.restaurant.image_url
+  }
+  // console.log('image url', image_url);
+
+  // console.log('RestaurantShow', props.restaurant);
   return (
     <div>
       <div className="main-img">
-        <img src={props.restaurant.image_url} alt="" width="100%"/>
+        <img src={image_url} alt="" width="100%"/>
       </div>
       <div className="col-xs-9">
         <h4>{props.restaurant.name}</h4>

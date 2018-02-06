@@ -15,13 +15,15 @@ class Navbar extends React.Component {
   componentWillReceiveProps(nextProps) {
     // THINK ABOUT NEXTPROPS AND WHAT IT LOOKS LIKE
     // MAYBE PULL INFO FROM NEXT PROPS
-    console.log('Navbar Props', this.props);
-    console.log('Navbar nextProps', nextProps);
+
+    // console.log('Navbar Props', this.props);
+    // console.log('Navbar nextProps', nextProps);
+
     // console.log("Navbar User", this.props.currentUser.user);
     // this.setState({ user: this.props.currentUser.user }, () => console.log("Mounted Navbar", this.state))
 
     if (nextProps.currentUser.user) {
-      console.log('Navbar Receiving Props', nextProps.currentUser);
+      // console.log('Navbar Receiving Props', nextProps.currentUser);
       user = nextProps.currentUser.user.firstname
     } else {
       user = "User"

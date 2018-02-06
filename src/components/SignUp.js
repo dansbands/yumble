@@ -26,7 +26,7 @@ class SignUp extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault()
-    console.log('submit SignUp');
+    // console.log('submit SignUp');
     fetch('http://localhost:3000/api/v1/users', {
       method: 'POST',
       headers: {
@@ -34,7 +34,8 @@ class SignUp extends React.Component {
         'Accept': 'application/json',
       },
       body: JSON.stringify(this.state.fields)
-    }).then( data => {
+    }).then(resp => resp.json())
+    .then( data => {
       console.log('the response is', data);
       if (data.error) {
         this.setState({ error: true });

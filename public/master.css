@@ -42,7 +42,7 @@ body {
 
 .card:active {
   box-shadow: 5px 5px rgba(0,0,0,0.5);
-  border: 3px solid orange;
+  border: 3px solid rgb(218, 106, 43);
 }
 
 .card a {
@@ -83,7 +83,7 @@ body {
 .navbar,
 .navbar-inverse,
 .navbar-header {
-  background-color: orange;
+  background-color: rgb(219, 105, 44);
   color: white;
   font-family: 'Permanent Marker', cursive;
   /* font-family: 'Boogaloo', cursive; */
@@ -92,7 +92,7 @@ body {
 
 .navbar-brand {
   font-size: 24px;
-  color: orange;
+  color: rgb(219, 105, 44);
   text-shadow:
    -1px -1px 0 white,
     1px -1px 0 white,
@@ -115,12 +115,12 @@ body {
 .nav-link:hover
 {
   color: white;
-  background-color: orange;
+  background-color: rgb(219, 105, 44);
 }
 
 .nav-link:hover {
   color: white;
-  background-color: orange;
+  background-color: rgb(219, 105, 44);
   text-shadow:
   -1px -1px 0 red,
   1px -1px 0 red,
