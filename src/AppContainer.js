@@ -116,7 +116,7 @@ class AppContainer extends Component {
   handleClickSavedCard = (event, restaurant) => {
     if (event.target.className.includes("trash")) {
       console.log('delete', restaurant);
-      api.data.deleteRestaurant(restaurant.id)
+      api.data.deleteSavedRestaurant(restaurant.id)
       .then(() => this.getUser())
     } else {
       console.log('clicked saved card', event.currentTarget.id, restaurant );

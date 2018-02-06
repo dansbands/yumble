@@ -42,6 +42,12 @@ const postSavedRestaurant = newRestaurant => {
   }).then(resp => resp.json())
 }
 
+const deleteSavedRestaurant = id => {
+  return fetch(`http://localhost:3000/api/v1/saved_restaurants/${id}`, {
+    method: 'DELETE',
+  }).then(resp => resp.json())
+}
+
 const getUser = id => {
   return fetch(`${API_ROOT}/users/${id}`)
     .then(resp => resp.json())
@@ -76,6 +82,7 @@ export default {
     getUser,
     deleteRestaurant,
     postSavedRestaurant,
+    deleteSavedRestaurant,
   },
   auth: {
     signIn,
