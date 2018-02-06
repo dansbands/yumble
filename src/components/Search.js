@@ -20,11 +20,13 @@ const Search = ({onChange, value, onSubmit}) => {
 
     return (
       <div className="col-xs-3 left">
-        <h3>Search Criteria</h3>
+        <div className="list-heading">
+          <h3>Search Criteria</h3>
+        </div>
 
           <div className="form-group">
             <label htmlFor="price">Saved Locations</label>
-            <select className="form-control"
+            <select className="rounded form-control"
                    id="coordinates"
                    placeholder="Choose a saved location..."
                    value={value.currentLocation}

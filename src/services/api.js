@@ -20,15 +20,26 @@ const getRestaurants = () => {
           .then(resp => resp.json())
 }
 
+const getSavedRestaurants = () => {
+  return fetch(`${API_ROOT}/saved_restaurants`)
+          .then(resp => resp.json())
+}
+
 const deleteRestaurant = id => {
   return fetch(`http://localhost:3000/api/v1/restaurants/${id}`, {
     method: 'DELETE',
   }).then(resp => resp.json())
 }
 
-const getSavedRestaurants = () => {
-  return fetch(`${API_ROOT}/saved_restaurants`)
-          .then(resp => resp.json())
+const postSavedRestaurant = newRestaurant => {
+  return fetch('http://localhost:3000/api/v1/saved_restaurants', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'Application/json',
+      'Accept': 'application/json'
+    },
+    body: JSON.stringify(newRestaurant)
+  }).then(resp => resp.json())
 }
 
 const getUser = id => {
@@ -55,6 +66,8 @@ const getCurrentUser = () => {
   }).then(res => res.json())
 }
 
+
+
 export default {
   data: {
     getFromYelp,
@@ -62,6 +75,7 @@ export default {
     getSavedRestaurants,
     getUser,
     deleteRestaurant,
+    postSavedRestaurant,
   },
   auth: {
     signIn,

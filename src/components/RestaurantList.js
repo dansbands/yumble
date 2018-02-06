@@ -14,7 +14,9 @@ class RestaurantList extends React.Component {
 
     return (
       <div className="col-xs-3 list left">
-        <h3>All Restaurants</h3>
+        <div className="list-heading">
+          <h3>All Restaurants</h3>
+        </div>
         {restaurants}
       </div>
     )

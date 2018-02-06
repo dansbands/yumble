@@ -41,7 +41,7 @@ class Navbar extends React.Component {
     const loggedIn = !!this.props.currentUser.id;
     return (
       <nav className="navbar navbar-fixed-top">
-        <div className="container-fluid">
+        <div className="container-fluid nav-container">
           <div className="col-xs-5">
             <ul className="nav navbar-nav navbar-left">
               <li>

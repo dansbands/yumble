@@ -7,8 +7,13 @@ body {
   overflow: scroll;
 }
 
+.list-heading {
+  border-bottom: 2px solid rgb(218, 106, 43);
+  margin-bottom: 10px;
+}
+
 .main {
-  margin-top: 80px;
+  margin-top: 100px;
 }
 
 .main-img {
@@ -33,15 +38,15 @@ body {
   border-radius: 5px;
   padding: 15px;
   margin-bottom: 5px;
-  box-shadow: 3px 3px rgba(0,0,0,0.1);
+  box-shadow: 2px 2px rgba(0,0,0,0.1);
 }
 
 .card:hover {
-  box-shadow: 5px 5px rgba(0,0,0,0.5);
+  box-shadow: 4px 4px rgba(0,0,0,0.07);
 }
 
 .card:active {
-  box-shadow: 5px 5px rgba(0,0,0,0.5);
+  box-shadow: 7px 7px rgba(0,0,0,0.5);
   border: 3px solid rgb(218, 106, 43);
 }
 
@@ -58,7 +63,34 @@ body {
   text-decoration: none;
 }
 
+.form-control,
+.rounded {
+  border-radius: 25px;
+}
 
+.form-control:hover {
+  border: 2px solid rgba(218, 106, 43, 0.5);
+}
+
+.form-control:active,
+.form-control:focus {
+  border: 1px solid rgba(218, 106, 43, 0.5);
+  box-shadow:
+  -3px -3px 0 rgba(218, 106, 43, 0.1),
+   3px -3px 0 rgba(218, 106, 43, 0.1),
+   -3px 3px 0 rgba(218, 106, 43, 0.1),
+    3px 3px 0 rgba(218, 106, 43, 0.1);
+}
+
+.btn-default {
+  border-radius: 25px;
+}
+
+.btn-default:hover {
+  border: 1px solid rgb(218, 106, 43);
+  color: rgb(218, 106, 43);
+  background-color: white;
+}
 
 .right {
   position: fixed;
@@ -78,7 +110,9 @@ body {
   float: none;
 }
 
-
+.nav-container {
+  margin-top: 10px;
+}
 
 .navbar,
 .navbar-inverse,
@@ -100,8 +134,14 @@ body {
      1px 1px 0 white;
 }
 
+.navbar-brand:hover {
+  color: rgb(255, 112, 35);
+}
+
 .navbar {
-  box-shadow: 0px 3px rgba(0,0,0,0.2);
+  box-shadow: 0px 8px rgba(0,0,0,0.05);
+  border-bottom: 2px solid white;
+  height: 70px;
 }
 
 .nav-link {
@@ -122,10 +162,10 @@ body {
   color: white;
   background-color: rgb(219, 105, 44);
   text-shadow:
-  -1px -1px 0 red,
-  1px -1px 0 red,
-  -1px 1px 0 red,
-  1px 1px 0 red;
+  -2px -2px 0 rgb(255, 112, 35),
+  2px -2px 0 rgb(255, 112, 35),
+  -2px 2px 0 rgb(255, 112, 35),
+  2px 2px 0 rgb(255, 112, 35);
 }
 
 .trash {

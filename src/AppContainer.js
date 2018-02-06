@@ -40,10 +40,10 @@ class AppContainer extends Component {
           },
         }
       },
-      newUser: {
-        username: '',
-        password: '',
-      },
+      // newUser: {
+      //   username: '',
+      //   password: '',
+      // },
       user: {
         username: '',
         password: '',
@@ -59,23 +59,6 @@ class AppContainer extends Component {
     this.getRestaurants()
   }
 
-  // componentDidMount() {
-  //   api.auth.getCurrentUser()
-  //     .then(data => {
-  //       console.log('GetUser AppContainer', data);
-  //       this.setState(prevState => ({
-  //         user: {
-  //           ...this.state.user,
-  //           id: data.id,
-  //           username: data.username,
-  //         }
-  //       }), () => {
-  //         this.getUser()
-  //         this.getRestaurants()
-  //       })
-  //     })
-  // }
-
   getRestaurants = () => {
     api.data.getRestaurants()
     .then(data => {
@@ -88,10 +71,6 @@ class AppContainer extends Component {
 
   getUser = id => {
     let userId = id ? id : this.state.user.id
-    // if (id) {
-    //   console.log("got id", id);
-    //   userId = id
-    // }
     api.data.getUser(userId)
     .then(user => {
       console.log('got user', user);
@@ -104,7 +83,7 @@ class AppContainer extends Component {
         }
       }))
       if (user.saved_restaurants) {
-        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
+        this.setState({ yourRestaurants: user.saved_restaurants })
       }
     })
   }
@@ -125,33 +104,19 @@ class AppContainer extends Component {
     console.log('newRestaurantUser', this.state.user.id);
 
 
-    // postSavedRestaurant
-    fetch('http://localhost:3000/api/v1/saved_restaurants', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'Application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify(newRestaurant)
-    }).then(resp => resp.json())
+    api.data.postSavedRestaurant(newRestaurant)
       .then(() => {
-        //deleteRestaurant
-        fetch(`http://localhost:3000/api/v1/restaurants/${eventId}`, {
-          method: 'DELETE',
-        }).then(resp => resp.json())
+        //deleteRestaurant from list of all
+        api.data.deleteRestaurant(eventId)
           .then(() => this.getRestaurants())
       })
-      // .then(() => this.getSavedRestaurants())
       .then(() => this.getUser())
   }
 
   handleClickSavedCard = (event, restaurant) => {
     if (event.target.className.includes("trash")) {
       console.log('delete', restaurant);
-      fetch(`http://localhost:3000/api/v1/saved_restaurants/${restaurant.id}`, {
-        method: 'DELETE'
-      }).then(resp => resp.json())
-      // .then(() => this.getSavedRestaurants())
+      api.data.deleteRestaurant(restaurant.id)
       .then(() => this.getUser())
     } else {
       console.log('clicked saved card', event.currentTarget.id, restaurant );
