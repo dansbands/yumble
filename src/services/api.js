@@ -39,10 +39,11 @@ const getSavedRestaurants = () => {
           .then(resp => resp.json())
 }
 
-const getUser = () => {
-  console.log(token);
-  // return fetch(`${API_ROOT}/`)
+const getUser = id => {
+  return fetch(`${API_ROOT}/users/${id}`)
+    .then(resp => resp.json())
 }
+
 
 export default {
   data: {

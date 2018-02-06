@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 class Navbar extends React.Component {
 
   componentDidMount() {
-    console.log("Navbar", this.props.currentUser);
+    // console.log("Navbar User", this.props.currentUser);
   }
 
   render() {

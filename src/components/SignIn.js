@@ -34,7 +34,7 @@ class SignIn extends React.Component {
       body: JSON.stringify(this.state.fields)
     }).then(resp => resp.json())
     .then(data => {
-      console.log('response is', data);
+      console.log('Sign In response is', data);
       if (data.error) {
         this.setState({ error: true });
       } else {

@@ -53,10 +53,6 @@ class AppContainer extends Component {
   }
 
   handleRemove = event => {
-    // let newRestaurants = this.state.restaurants.filter( r => {
-    //   return r.id !== event.target.id
-    // })
-    //deleteRestaurant
     fetch(`http://localhost:3000/api/v1/restaurants/${event.target.id}`, {
       method: 'DELETE',
     }).then(resp => resp.json())
@@ -69,7 +65,9 @@ class AppContainer extends Component {
     let newRestaurant = this.state.restaurants.find( r => {
       return r.id === eventId
     })
+    newRestaurant.user_id = this.state.user.id
     console.log('newRestaurant', newRestaurant);
+    console.log('newRestaurantUser', this.state.user.id);
 
 
     // postSavedRestaurant
@@ -79,7 +77,7 @@ class AppContainer extends Component {
         'Content-Type': 'Application/json',
         'Accept': 'application/json'
       },
-      body: JSON.stringify(newRestaurant, this.state.user.id)
+      body: JSON.stringify(newRestaurant)
     }).then(resp => resp.json())
       .then(() => {
         //deleteRestaurant
@@ -88,17 +86,19 @@ class AppContainer extends Component {
         }).then(resp => resp.json())
           .then(() => this.getRestaurants())
       })
-      .then(() => this.getSavedRestaurants())
+      // .then(() => this.getSavedRestaurants())
+      .then(() => this.getUser())
   }
 
 
   handleClickSavedCard = (event, restaurant) => {
     if (event.target.className.includes("trash")) {
-      console.log('delete', restaurant.id);
+      console.log('delete', restaurant);
       fetch(`http://localhost:3000/api/v1/saved_restaurants/${restaurant.id}`, {
         method: 'DELETE'
       }).then(resp => resp.json())
-      .then(() => this.getSavedRestaurants())
+      // .then(() => this.getSavedRestaurants())
+      .then(() => this.getUser())
     } else {
       console.log('clicked saved card', event.currentTarget.id, restaurant );
       this.setState({ displayRestaurant: restaurant })
@@ -111,9 +111,6 @@ class AppContainer extends Component {
   }
 
   handleSubmitSearch = event => {
-    console.log('search value', this.state.searchVal);
-    //send this search value in the body of the request
-
     api.data.getFromYelp(this.state.searchVal)
     .then(() => this.getRestaurants())
   }
@@ -161,11 +158,30 @@ class AppContainer extends Component {
     // }).then(console.log)
   }
 
+  getUser = () => {
+    console.log('currentUser in props', this.props.currentUser);
+    api.data.getUser(this.state.user.id)
+    .then(user => {
+        console.log('got user', user)
+        this.setState({
+          ...this.state.user.username,
+          username: user.username
+        })
+        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
+      })
+  }
+
 
   componentDidMount() {
-    api.data.getUser()
+    this.setState({
+      ...this.state.user.id,
+        id: this.props.currentUser.id,
+    },() => this.getUser())
+
+
+
     this.getRestaurants()
-    this.getSavedRestaurants()
+    // this.getSavedRestaurants()
     const token = localStorage.getItem('token');
 
     if (token) {
@@ -177,7 +193,8 @@ class AppContainer extends Component {
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
-    console.log('state', this.state);
+    console.log('AppContainer state', this.state);
+    console.log('AppContainer props', this.props.currentUser.id);
 
     return (
       <div>

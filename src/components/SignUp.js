@@ -37,7 +37,8 @@ class SignUp extends React.Component {
       if (data.error) {
         this.setState({ error: true });
       } else {
-         console.log('hey');
+        this.props.handleLogin(data);
+        this.props.history.push('/settings')
       }
     });
   }

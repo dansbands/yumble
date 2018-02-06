@@ -2,7 +2,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Search = ({onChange, value, onSubmit}) => {
-  console.log('Search Value', value);
   const onFormValueChange = (key, newVal) => {
     onChange({
       ...value,
@@ -11,10 +10,6 @@ const Search = ({onChange, value, onSubmit}) => {
   }
 
   const onSavedLocationChange = (newVal) => {
-    console.log('newVal', newVal);
-    console.log('newVal', value["savedLocations"][newVal]["latitude"]);
-    console.log('newVal', value["savedLocations"][newVal]["longitude"]);
-    console.log('newVal', value["savedLocations"][newVal]);
     onChange({
       ...value,
       latitude: value["savedLocations"][newVal]["latitude"],

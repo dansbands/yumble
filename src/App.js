@@ -27,6 +27,7 @@ class App extends React.Component {
   }
 
   handleLogin = user => {
+    // console.log('handle login', user);
     localStorage.setItem('token', user.token);
     this.setState({ auth: { currentUser: user } });
   }
@@ -37,7 +38,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('App State', this.state);
+    // console.log('App State', this.state);
     return (
       <div className="App">
         <div className="container main">
@@ -66,9 +67,8 @@ class App extends React.Component {
                   return (
                       <div className="row">
                         <SignUp
-                          value={this.state.newUser}
-                          onChange={this.handleFormChange}
-                          onSubmit={this.handleNewUser}
+                          {...routerProps}
+                            handleLogin={this.handleLogin}
                           />
                       </div>
                   )
@@ -79,7 +79,9 @@ class App extends React.Component {
               render={
                 routerProps => {
                   return (
-                    <AppContainer {...routerProps} />
+                    <AppContainer
+                      {...routerProps}
+                      currentUser={this.state.auth.currentUser}/>
                   )
                 }
               } />

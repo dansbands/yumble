@@ -1,7 +1,6 @@
 import React from 'react';
 
 const RestaurantShow = (props) => {
-  console.log('RestaurantShow', props);
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   return (
     <div>
