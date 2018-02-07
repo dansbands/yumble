@@ -83,7 +83,7 @@ class AppContainer extends Component {
         }
       }))
       if (user.saved_restaurants) {
-        this.setState({ yourRestaurants: user.saved_restaurants })
+        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
       }
     })
   }
@@ -130,6 +130,8 @@ class AppContainer extends Component {
   }
 
   handleSubmitSearch = event => {
+    let data = this.state.searchVal
+    data.userId = this.state.user.id
     api.data.getFromYelp(this.state.searchVal)
     .then(() => this.getRestaurants())
   }

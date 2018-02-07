@@ -9,7 +9,7 @@ const headers = {
 
 const getFromYelp = data => {
   // console.log(data);
-  let params = `?latitude=${data.latitude}&longitude=${data.longitude}&radius=${data.radius}&term=${data.term}&price=${data.price}`
+  let params = `?latitude=${data.latitude}&longitude=${data.longitude}&radius=${data.radius}&term=${data.term}&price=${data.price}&user=${data.userId}`
 
   return fetch(`${API_ROOT}/fetch_data${params}`)
           .then(resp => resp.json())
