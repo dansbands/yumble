@@ -6,6 +6,8 @@ import YourRestaurantDetail from './components/YourRestaurantDetail';
 import Search from './components/Search';
 import api from './services/api'
 import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from './actions';
 
 
 class AppContainer extends Component {
@@ -137,8 +139,8 @@ class AppContainer extends Component {
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
-    console.log('AppContainer state', this.state);
-    console.log('AppContainer props', this.props);
+    // console.log('AppContainer state', this.state);
+    // console.log('AppContainer props', this.props);
 
     return (
       <div>
@@ -231,6 +233,12 @@ class AppContainer extends Component {
   }
 }
 
-export default AppContainer;
+const mapStateToProps = state => {
+  return {
+    currentRestaurant: state.currentRestaurant,
+  }
+}
+
+export default connect(mapStateToProps, actions)(AppContainer);
 
 // <Search />

@@ -1,5 +1,7 @@
 import React from 'react';
 import img from '../img/food_placeholder.jpg';
+import * as actions from '../actions';
+import { connect } from 'react-redux';
 
 const RestaurantShow = (props) => {
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
@@ -49,4 +51,4 @@ const RestaurantShow = (props) => {
   )
 }
 
-export default RestaurantShow;
+export default connect(null, actions)(RestaurantShow);

@@ -1,5 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 const YourRestaurantCard = (props) => {
   // console.log('YourRestaurantCard', props);
@@ -7,7 +9,7 @@ const YourRestaurantCard = (props) => {
     <Link
       to="/detail"
       className="link">
-      <div id={props.restaurant.id} className="panel panel-default card" onClick={e => props.handleClickSavedCard(e, props.restaurant)}>
+      <div id={props.restaurant.id} className="panel panel-default card" onClick={() => props.selectSavedRestaurant(props.restaurant)}>
 
         <div className="image">
           <img src={props.restaurant.image_url} alt="" width="50px" />
@@ -33,4 +35,4 @@ const YourRestaurantCard = (props) => {
   )
 }
 
-export default YourRestaurantCard;
+export default connect(null, actions)(YourRestaurantCard);

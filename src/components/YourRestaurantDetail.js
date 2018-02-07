@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const YourRestaurantDetail = (props) => {
   console.log('YourRestaurantDetail', props);
@@ -74,7 +75,13 @@ const YourRestaurantDetail = (props) => {
   )
 }
 
-export default YourRestaurantDetail;
+const mapStateToProps = state => {
+  return {
+    restaurant: state.yourRestaurants,
+  }
+}
+
+export default connect(mapStateToProps)(YourRestaurantDetail);
 
 // restaurant
 // :
