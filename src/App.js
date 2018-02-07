@@ -77,7 +77,7 @@ class App extends React.Component {
                 routerProps => {
                   return (
                     <AppContainer
-
+                      {...routerProps}
                       currentUser={this.state.auth.currentUser}/>
                   )
                 }
