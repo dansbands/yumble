@@ -137,6 +137,8 @@ class AppContainer extends Component {
   }
 
   handleSubmitSearch = event => {
+    let data = this.state.searchVal
+    data.userId = this.props.user.id
     api.data.getFromYelp(this.state.searchVal)
     .then(() => this.getRestaurants())
   }
