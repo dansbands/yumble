@@ -10,7 +10,8 @@ class YourRestaurantList extends React.Component {
   render() {
     let restaurants
     if (this.props.yourRestaurants) {
-      restaurants = this.props.yourRestaurants.map(restaurant => {
+      restaurants = this.props.yourRestaurants.reverse()
+      restaurants = restaurants.map(restaurant => {
         return (
           <YourRestaurantCard
             key={restaurant.id}
@@ -33,7 +34,7 @@ class YourRestaurantList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    yourRestaurants: state.user.saved_restaurants.reverse()
+    yourRestaurants: state.user.saved_restaurants
   }
 }
 

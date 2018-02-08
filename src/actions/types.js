@@ -4,3 +4,4 @@ export const DELETE_SAVED_RESTAURANT = 'DELETE_SAVED_RESTAURANT';
 export const GET_RESTAURANTS = 'GET_RESTAURANTS';
 export const GET_USER = 'GET_USER';
 export const POST_TO_YELP = 'POST_TO_YELP';
+export const LOG_OUT = 'LOG_OUT';

@@ -6,6 +6,8 @@ import {
   GET_RESTAURANTS,
   GET_USER,
   POST_TO_YELP,
+  LOG_OUT,
+
 } from './actions/types';
 
 
@@ -14,6 +16,8 @@ const usersReducer = (state = [], action) => {
     case GET_USER:
     console.log('getUser reducer', action);
       return action.payload
+    case 'LOGOUT_USER':
+      return { ...state, currentUser: {} };
     default:
       return state;
   }

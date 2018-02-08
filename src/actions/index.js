@@ -6,7 +6,8 @@ import {
   // DELETE_SAVED_RESTAURANT,
   GET_RESTAURANTS,
   GET_USER,
-  POST_TO_YELP
+  POST_TO_YELP,
+  LOG_OUT
 } from './types';
 
 // export function setCurrentRestaurant() {
@@ -68,11 +69,16 @@ export function deleteSavedRestaurant(id) {
   }
 }
 
-export function postSearchRequest(data){
+export function postSearchRequest(fields){
   return dispatch => {
-    api.data.getFromYelp(data)
-    .then(data => {
-      dispatch({ type: POST_TO_YELP, payload: data })
-    })
+    api.data.getFromYelp(fields)
   }
 }
+
+export const logoutUser = () => {
+  localStorage.removeItem('token');
+  return { type: 'LOGOUT_USER' };
+};
+// .then(data => {
+//   dispatch({ type: POST_TO_YELP, payload: data })
+// })

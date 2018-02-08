@@ -34,8 +34,9 @@ class App extends React.Component {
   }
 
   handleLogout = () => {
-    localStorage.removeItem('token');
+    // localStorage.removeItem('token');
     this.setState({ auth: { currentUser: {} } });
+    this.props.logoutUser()
   }
 
   render() {
@@ -76,7 +77,7 @@ class App extends React.Component {
                   )
                 }
               } />
-            {this.state.auth.currentUser.id &&
+            {this.props.user.id &&
                 <Route
                   path="/"
                   render={

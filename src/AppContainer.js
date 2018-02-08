@@ -14,86 +14,47 @@ class AppContainer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      // restaurants: [],
-      // currentRestaurant: [],
-      // displayRestaurant: [],
-      // yourRestaurants: [],
-      // currentLocation: "",
-      searchVal: {
-        location: '',
-        latitude: 0,
-        longitude: 0,
-        radius: '',
-        term: '',
-        price: '',
-        savedLocations: {
-          defaultLoc: {
-            latitude: 40.705353,
-            longitude: -74.014003,
-          },
-          flatironSchool: {
-            latitude: 40.705353,
-            longitude: -74.014003,
-          },
-          home: {
-            latitude: 40.719657,
-            longitude: -74.039520,
-          },
-        }
-      },
-      // newUser: {
-      //   username: '',
-      //   password: '',
-      // },
-      // user: {
-      //   username: '',
-      //   password: '',
-      //   id: 2
-      // }
-    }
+    // this.state = {
+    //   // restaurants: [],
+    //   // currentRestaurant: [],
+    //   // displayRestaurant: [],
+    //   // yourRestaurants: [],
+    //   // currentLocation: "",
+    //   searchVal: {
+    //     location: '',
+    //     latitude: 0,
+    //     longitude: 0,
+    //     radius: '',
+    //     term: '',
+    //     price: '',
+    //     savedLocations: {
+    //       defaultLoc: {
+    //         latitude: 40.705353,
+    //         longitude: -74.014003,
+    //       },
+    //       flatironSchool: {
+    //         latitude: 40.705353,
+    //         longitude: -74.014003,
+    //       },
+    //       home: {
+    //         latitude: 40.719657,
+    //         longitude: -74.039520,
+    //       },
+    //     }
+    //   },
+    //   // newUser: {
+    //   //   username: '',
+    //   //   password: '',
+    //   // },
+    //   // user: {
+    //   //   username: '',
+    //   //   password: '',
+    //   //   id: 2
+    //   // }
+    // }
   }
 
-  componentDidMount() {
-    // console.log('AC Updating', nextProps);
-    // this.props.getUser(this.props.currentUser.id)
-  }
 
-  componentWillReceiveProps(nextProps) {
-    // console.log('AC Props are', this.props);
-    // console.log('AC nextProps are', nextProps);
-    // this.getUser(nextProps.currentUser.id)
-    // this.getRestaurants()
-  }
-
-  // getRestaurants = () => {
-  //   api.data.getRestaurants()
-  //   .then(data => {
-  //     this.setState({
-  //       restaurants: data.reverse(),
-  //       currentRestaurant: data[0]
-  //     })
-  //   })
-  // }
-
-  getUser = id => {
-    let userId = id ? id : this.state.user.id
-    api.data.getUser(userId)
-    .then(user => {
-      console.log('got user', user);
-      console.log('got users restaurants', user.saved_restaurants);
-      this.setState(prevState => ({
-        user: {
-          ...this.state.user,
-          id: user.id,
-          username: user.username,
-        }
-      }))
-      if (user.saved_restaurants) {
-        this.setState({ yourRestaurants: user.saved_restaurants })
-      }
-    })
-  }
 
   handleRemove = event => {
     api.data.deleteRestaurant(event.target.id)
@@ -116,30 +77,51 @@ class AppContainer extends Component {
       .then(() => this.props.getUser(this.props.user.id))
   }
 
-  handleClickSavedCard = (event, restaurant) => {
-    if (event.target.className.includes("trash")) {
-      console.log('delete', restaurant);
-      api.data.deleteSavedRestaurant(restaurant.id)
-      .then(() => this.getUser())
-    } else {
-      console.log('clicked saved card', event.currentTarget.id, restaurant );
-      this.setState({ displayRestaurant: restaurant })
-    }
-  }
-
   handleFormChange = (newVal, formName) => {
     this.setState({ [formName]: newVal})
     console.log("Handle Form Change", newVal, formName);
   }
 
-  handleSubmitSearch = event => {
+  handleSubmitSearch = (event, data) => {
+    console.log('App handleSubmitSearch event', event);
+    console.log('App handleSubmitSearch data', data);
     event.preventDefault()
-    let data = this.state.searchVal
     let id = this.props.user.id
     data.userId = id
-    this.props.postSearchRequest(data)
-    .then(this.props.getUser(id))
+    api.data.getFromYelp(data)
+    // this.props.postSearchRequest(data)
+    .then(() => this.props.getUser(id))
   }
+
+  // getUser = id => {
+  //   let userId = id ? id : this.state.user.id
+  //   api.data.getUser(userId)
+  //   .then(user => {
+  //     console.log('got user', user);
+  //     console.log('got users restaurants', user.saved_restaurants);
+  //     this.setState(prevState => ({
+  //       user: {
+  //         ...this.state.user,
+  //         id: user.id,
+  //         username: user.username,
+  //       }
+  //     }))
+  //     if (user.saved_restaurants) {
+  //       this.setState({ yourRestaurants: user.saved_restaurants })
+  //     }
+  //   })
+  // }
+
+  // handleClickSavedCard = (event, restaurant) => {
+  //   if (event.target.className.includes("trash")) {
+  //     console.log('delete', restaurant);
+  //     api.data.deleteSavedRestaurant(restaurant.id)
+  //     .then(() => this.getUser())
+  //   } else {
+  //     console.log('clicked saved card', event.currentTarget.id, restaurant );
+  //     this.setState({ displayRestaurant: restaurant })
+  //   }
+  // }
 
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
@@ -160,9 +142,7 @@ class AppContainer extends Component {
                       <div className="row">
                         <RestaurantContainer
                           handleRemove={this.handleRemove}
-                          handleSelect={this.handleSelect}
-                          restaurant={this.state.currentRestaurant}
-                          displayRestaurant={this.state.displayRestaurant}/>
+                          handleSelect={this.handleSelect}/>
                       </div>
                   )
                 }
@@ -174,11 +154,8 @@ class AppContainer extends Component {
                     <div className="row">
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
+                        handleSelect={this.handleSelect}/>
                       <YourRestaurantList
-
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -187,10 +164,8 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <YourRestaurantDetail
-                        restaurant={this.state.displayRestaurant}/>
+                      <YourRestaurantDetail />
                       <YourRestaurantList
-
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -199,17 +174,11 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <Search
-                        value={this.state.searchVal}
-                        onChange={this.handleFormChange}
-                        onSubmit={this.handleSubmitSearch}/>
+                      <Search onSubmit={this.handleSubmitSearch}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
+                        handleSelect={this.handleSelect}/>
                       <YourRestaurantList
-
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -218,14 +187,11 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <RestaurantList restaurants={this.state.restaurants}/>
+                      <RestaurantList />
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
+                        handleSelect={this.handleSelect} />
                         <YourRestaurantList
-
                           handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
