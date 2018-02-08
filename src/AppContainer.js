@@ -56,11 +56,11 @@ class AppContainer extends Component {
     console.log('AC Props are', this.props);
     console.log('AC nextProps are', nextProps);
     this.getUser(nextProps.currentUser.id)
-    this.getRestaurants()
+    // this.getUserRestaurants(nextProps.currentUser.id)
   }
 
-  getRestaurants = () => {
-    api.data.getRestaurants()
+  getUserRestaurants = userId => {
+    api.data.getUserRestaurants(userId)
     .then(data => {
       this.setState({
         restaurants: data.reverse(),
@@ -68,6 +68,15 @@ class AppContainer extends Component {
       })
     })
   }
+  // getRestaurants = () => {
+  //   api.data.getRestaurants()
+  //   .then(data => {
+  //     this.setState({
+  //       restaurants: data.reverse(),
+  //       currentRestaurant: data[0]
+  //     })
+  //   })
+  // }
 
   getUser = id => {
     let userId = id ? id : this.state.user.id
@@ -76,6 +85,8 @@ class AppContainer extends Component {
       console.log('got user', user);
       console.log('got users restaurants', user.saved_restaurants);
       this.setState(prevState => ({
+        restaurants: user.restaurants.reverse(),
+        currentRestaurant: user.restaurants[0],
         user: {
           ...this.state.user,
           id: user.id,
@@ -90,7 +101,7 @@ class AppContainer extends Component {
 
   handleRemove = event => {
     api.data.deleteRestaurant(event.target.id)
-      .then(() => this.getRestaurants())
+      .then(() => this.getUser())
   }
 
   handleSelect = event => {
@@ -108,7 +119,7 @@ class AppContainer extends Component {
       .then(() => {
         //deleteRestaurant from list of all
         api.data.deleteRestaurant(eventId)
-          .then(() => this.getRestaurants())
+          .then(() => this.getUser())
       })
       .then(() => this.getUser())
   }
@@ -133,7 +144,7 @@ class AppContainer extends Component {
     let data = this.state.searchVal
     data.userId = this.state.user.id
     api.data.getFromYelp(this.state.searchVal)
-    .then(() => this.getRestaurants())
+    .then(() => this.getUser())
   }
 
   render() {

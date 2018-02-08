@@ -15,10 +15,15 @@ const getFromYelp = data => {
           .then(resp => resp.json())
 }
 
-const getRestaurants = () => {
-  return fetch(`${API_ROOT}/restaurants`)
+const getUserRestaurants = userId => {
+  return fetch(`${API_ROOT}/users/${userId}/restaurants`)
           .then(resp => resp.json())
 }
+
+// const getRestaurants = () => {
+//   return fetch(`${API_ROOT}/restaurants`)
+//           .then(resp => resp.json())
+// }
 
 const getSavedRestaurants = () => {
   return fetch(`${API_ROOT}/saved_restaurants`)
@@ -77,7 +82,8 @@ const getCurrentUser = () => {
 export default {
   data: {
     getFromYelp,
-    getRestaurants,
+    // getRestaurants,
+    getUserRestaurants,
     getSavedRestaurants,
     getUser,
     deleteRestaurant,

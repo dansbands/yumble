@@ -117,12 +117,22 @@ body {
 .navbar,
 .navbar-inverse,
 .navbar-header {
-  background-color: rgb(219, 105, 44);
+  background-color: darkblue;
   color: white;
   font-family: 'Permanent Marker', cursive;
   /* font-family: 'Boogaloo', cursive; */
   /* font-family: 'Luckiest Guy', cursive; */
 }
+
+/* .navbar,
+.navbar-inverse,
+.navbar-header {
+  background-color: rgb(219, 105, 44);
+  color: white;
+  font-family: 'Permanent Marker', cursive;
+  /* font-family: 'Boogaloo', cursive; */
+  /* font-family: 'Luckiest Guy', cursive; */
+} */
 
 .navbar-brand {
   font-size: 24px;
