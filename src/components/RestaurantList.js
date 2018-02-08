@@ -1,8 +1,12 @@
 import React from 'react';
-import RestaurantListCard from './RestaurantListCard'
+import RestaurantListCard from './RestaurantListCard';
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 
 class RestaurantList extends React.Component {
-
+  componentDidMount() {
+    this.props.getRestaurants();
+  }
 
   render() {
     let restaurants
@@ -23,4 +27,10 @@ class RestaurantList extends React.Component {
   }
 }
 
-export default RestaurantList;
+const mapStateToProps = state => {
+  return {
+    restaurants: state.restaurants.reverse()
+  }
+}
+
+export default connect(mapStateToProps, actions)(RestaurantList);

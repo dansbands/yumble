@@ -49,6 +49,8 @@ const deleteSavedRestaurant = id => {
 }
 
 const getUser = id => {
+  console.log('api get user', id);
+
   return fetch(`${API_ROOT}/users/${id}`)
     .then(resp => resp.json())
 }

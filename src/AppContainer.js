@@ -18,7 +18,7 @@ class AppContainer extends Component {
       restaurants: [],
       currentRestaurant: [],
       displayRestaurant: [],
-      yourRestaurants: [],
+      // yourRestaurants: [],
       currentLocation: "",
       searchVal: {
         location: '',
@@ -54,10 +54,15 @@ class AppContainer extends Component {
     }
   }
 
+  componentDidMount() {
+    // console.log('AC Updating', nextProps);
+    // this.props.getUser(this.props.currentUser.id)
+  }
+
   componentWillReceiveProps(nextProps) {
-    console.log('AC Props are', this.props);
-    console.log('AC nextProps are', nextProps);
-    this.getUser(nextProps.currentUser.id)
+    // console.log('AC Props are', this.props);
+    // console.log('AC nextProps are', nextProps);
+    // this.getUser(nextProps.currentUser.id)
     this.getRestaurants()
   }
 
@@ -139,8 +144,8 @@ class AppContainer extends Component {
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
-    // console.log('AppContainer state', this.state);
-    // console.log('AppContainer props', this.props);
+    console.log('AppContainer state', this.state);
+    console.log('AppContainer props', this.props);
 
     return (
       <div>
@@ -234,8 +239,9 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = state => {
+  console.log('AppContainer mSTP', state);
   return {
-    currentRestaurant: state.currentRestaurant,
+    user: state.users
   }
 }
 

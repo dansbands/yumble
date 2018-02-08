@@ -1,16 +1,19 @@
 import React from 'react';
-import YourRestaurantCard from './YourRestaurantCard'
+import YourRestaurantCard from './YourRestaurantCard';
+import { connect } from 'react-redux';
 
 class YourRestaurantList extends React.Component {
-
+  componentDidMount() {
+    console.log('YourRestaurantList', this.props);
+  }
 
   render() {
     let restaurants
     if (this.props.yourRestaurants) {
-      restaurants = this.props.yourRestaurants.map( (restaurant, i) => {
+      restaurants = this.props.yourRestaurants.map(restaurant => {
         return (
           <YourRestaurantCard
-            key={i}
+            key={restaurant.id}
             restaurant={restaurant}
             handleClickSavedCard={this.props.handleClickSavedCard} />
         )
@@ -28,4 +31,10 @@ class YourRestaurantList extends React.Component {
   }
 }
 
-export default YourRestaurantList;
+const mapStateToProps = state => {
+  return {
+    yourRestaurants: state.users.saved_restaurants
+  }
+}
+
+export default connect(mapStateToProps)(YourRestaurantList);

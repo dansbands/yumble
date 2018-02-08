@@ -5,30 +5,10 @@ import { connect } from 'react-redux';
 const YourRestaurantDetail = (props) => {
   console.log('YourRestaurantDetail', props);
 
-  // const categories = props.restaurant.categories.map( (c, i) => {
-  //   return <li key={i}>{c.title}</li>
-  // })
-
-  // const transactions = props.restaurant.transactions.map( (t, i) => {
-  //   return <li key={i}>{t}</li>
-  // })
-
-// Transactions:
-//   <ul>
-//     {transactions}
-//   </ul>
-// <p>Categories:</p>
-//   <ul>
-//     {categories}
-//   </ul>
-
-// Distance: {distance} miles<br/>
-
 
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   let tel = "tel:" + props.restaurant.phone
 
-  // return<div>under construction</div>
   return (
     <div className="col-xs-4 list center panel panel-default card">
       <Link to="/favorites">
@@ -65,11 +45,6 @@ const YourRestaurantDetail = (props) => {
           <p className="pull-right">Price: {props.restaurant.price}<br/>
           Rating: {props.restaurant.rating}<br/></p>
         </div>
-
-
-
-
-
       </div>
     </div>
   )
@@ -82,6 +57,25 @@ const mapStateToProps = state => {
 }
 
 export default connect(mapStateToProps)(YourRestaurantDetail);
+
+// const categories = props.restaurant.categories.map( (c, i) => {
+//   return <li key={i}>{c.title}</li>
+// })
+
+// const transactions = props.restaurant.transactions.map( (t, i) => {
+//   return <li key={i}>{t}</li>
+// })
+
+// Transactions:
+//   <ul>
+//     {transactions}
+//   </ul>
+// <p>Categories:</p>
+//   <ul>
+//     {categories}
+//   </ul>
+
+// Distance: {distance} miles<br/>
 
 // restaurant
 // :

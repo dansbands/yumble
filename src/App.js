@@ -5,7 +5,9 @@ import SignIn from './components/SignIn';
 import SignUp from './components/SignUp';
 import { Route, Switch } from 'react-router-dom';
 import api from './services/api';
-
+import { connect } from 'react-redux';
+import * as actions from './actions';
+import { withRouter } from 'react-router';
 
 class App extends React.Component {
   state = { auth: { currentUser: {} } };
@@ -16,6 +18,8 @@ class App extends React.Component {
       api.auth.getCurrentUser()
       .then(user => {
         console.log('Got User', user);
+        console.log('App Props', this.props);
+        this.props.getUser(user.id)
         if(!user.error) {
           this.setState({ auth: { currentUser: user } });
         }
@@ -35,7 +39,8 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('App State', this.state);
+    // console.log('App State', this.state);
+    console.log('App Props', this.props);
     return (
       <div className="App">
         <div className="container main">
@@ -71,17 +76,19 @@ class App extends React.Component {
                   )
                 }
               } />
-            <Route
-              path="/"
-              render={
-                routerProps => {
-                  return (
-                    <AppContainer
-
-                      currentUser={this.state.auth.currentUser}/>
-                  )
-                }
-              } />
+              {localStorage.getItem('token') &&
+                <Route
+                  path="/"
+                  render={
+                    routerProps => {
+                      return (
+                        <AppContainer
+                          {...routerProps}
+                          currentUser={this.state.auth.currentUser}/>
+                      )
+                    }
+                  } />
+              }
           </Switch>
         </div>
       </div>
@@ -89,4 +96,12 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = state => {
+
+  return {
+    user: state.users,
+  }
+}
+
+// export default App;
+export default withRouter(connect(mapStateToProps, actions)(App))
