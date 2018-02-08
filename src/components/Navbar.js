@@ -40,71 +40,92 @@ class Navbar extends React.Component {
     // console.log('Navbar State', this.state);
     const loggedIn = !!this.props.currentUser.id;
     return (
-      <nav className="navbar navbar-fixed-top">
-        <div className="container-fluid nav-container">
-          <div className="col-xs-5">
-            <ul className="nav navbar-nav navbar-left">
-              <li>
-                <Link
-                  to="/settings"
-                  className="nav-link">
-                  <span className="glyphicon glyphicon-cog"></span> Settings
-                </Link>
-              </li>
-              <li>
-                {loggedIn ? (
-                <Link
-                  to="/signin"
-                  onClick={this.handleLogout}
-                  className="nav-link">
-                    <span className="glyphicon glyphicon-user"></span>
-                      Sign Out {user}
-                </Link>
-                  ) : (
-                <Link
-                  to="/signin"
-                  onClick={this.handleLogout}
-                  className="nav-link">
-                    <span className="glyphicon glyphicon-user"></span>
-                    Sign In
-                </Link>
-                  )}
-              </li>
-              <li>
-                <Link
-                  to="/restaurants"
-                  className="nav-link">
-                  <span className="glyphicon glyphicon-cutlery"></span> All the Food
-                </Link>
-              </li>
-            </ul>
-          </div>
+      <div>
+        <nav className="navbar navbar-fixed-top">
+          <div className="container-fluid nav-container">
+            <div className="col-xs-4">
+              <ul className="nav navbar-nav navbar-left">
+                <li>
+                  <Link
+                    to="/settings"
+                    className="nav-link">
+                    <span className="glyphicon glyphicon-cog"></span> Settings
+                  </Link>
+                </li>
 
-          <div className="col-xs-3">
-            <div className="center-block">
 
-              <Link to="/" className="navbar-brand ">
-                Yumble
-              </Link>
+
+              </ul>
+            </div>
+
+            <div className="col-xs-4">
+              <div className="center-block">
+
+                <Link to="/" className="navbar-brand ">
+                  Yumble
+                </Link>
+              </div>
+            </div>
+
+            <div className="col-xs-4">
+              <ul className="nav navbar-nav navbar-right">
+
+                <li>
+                  <Link
+                    to="/favorites"
+                    className="nav-link">
+                    <span className="glyphicon glyphicon-heart-empty"></span> Favorites
+                  </Link>
+                </li>
+              </ul>
             </div>
           </div>
+        </nav>
 
-          <div className="col-xs-4">
-            <ul className="nav navbar-nav navbar-right">
-              <li><a className="nav-link"><span className="glyphicon glyphicon-comment"></span> Messages</a></li>
-              <li>
-                <Link
-                  to="/favorites"
-                  className="nav-link">
-                  <span className="glyphicon glyphicon-heart-empty"></span> Favorites
-                </Link>
-              </li>
+        <nav className="navbar navbar-inverse navbar-fixed-bottom">
+          <div className="container-fluid">
+            <ul className="nav navbar-nav">
+              <div className="col-xs-6">
+                <li>
+                  {loggedIn ? (
+                    <Link
+                      to="/signin"
+                      onClick={this.handleLogout}
+                      className="nav-link">
+                      <span className="glyphicon glyphicon-user"></span>
+                      Sign Out {user}
+                    </Link>
+                  ) : (
+                    <Link
+                      to="/signin"
+                      onClick={this.handleLogout}
+                      className="nav-link">
+                      <span className="glyphicon glyphicon-user"></span>
+                      Sign In
+                    </Link>
+                  )}
+                </li>
+              </div>
+              <div className="col-xs-6">
+                <li>
+                  <Link
+                    to="/restaurants"
+                    className="nav-link pull-right">
+                    <span className="glyphicon glyphicon-cutlery"></span> All the Food
+                    </Link>
+                  </li>
+              </div>
             </ul>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
     )
   }
 }
 
 export default Navbar;
+
+
+
+
+// <li><a className="nav-link"><span className="glyphicon glyphicon-comment"></span> Messages</a></li>

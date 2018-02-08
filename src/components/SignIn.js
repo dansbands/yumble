@@ -46,7 +46,7 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-4 center-block">
+      <div className="col-xs-12 center-block">
         {this.state.error ? <h1>Try Again</h1> : null}
         <h3>Sign In</h3>
           <div className="form-group">

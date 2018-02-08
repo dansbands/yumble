@@ -19,7 +19,7 @@ const Search = ({onChange, value, onSubmit}) => {
   }
 
     return (
-      <div className="col-xs-3 left">
+      <div className="col-xs-12">
         <div className="list-heading">
           <h3>Search Criteria</h3>
         </div>

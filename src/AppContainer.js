@@ -178,11 +178,6 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <RestaurantContainer
-                        handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
                         handleClickSavedCard={this.handleClickSavedCard}/>
@@ -195,9 +190,6 @@ class AppContainer extends Component {
                     <div className="row">
                       <YourRestaurantDetail
                         restaurant={this.state.displayRestaurant}/>
-                      <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
                 } />
@@ -209,14 +201,6 @@ class AppContainer extends Component {
                         value={this.state.searchVal}
                         onChange={this.handleFormChange}
                         onSubmit={this.handleSubmitSearch}/>
-                      <RestaurantContainer
-                        handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
-                      <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
                 } />
@@ -224,7 +208,6 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <RestaurantList restaurants={this.state.restaurants}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}

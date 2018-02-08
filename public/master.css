@@ -3,7 +3,7 @@ body {
 }
 
 .list {
-  height: 700px;
+  height: 500px;
   overflow: scroll;
 }
 
@@ -17,7 +17,7 @@ body {
 }
 
 .main-img {
-  height: 480px;
+  height: 300px;
   overflow: hidden;
 }
 
@@ -114,11 +114,13 @@ body {
   margin-top: 10px;
 }
 
+
+/* part of navbar style  */
 .navbar,
 .navbar-inverse,
 .navbar-header {
-  background-color: darkblue;
-  color: white;
+  background-color: white;
+  color: rgb(219, 105, 44);
   font-family: 'Permanent Marker', cursive;
   /* font-family: 'Boogaloo', cursive; */
   /* font-family: 'Luckiest Guy', cursive; */
@@ -130,18 +132,20 @@ body {
   background-color: rgb(219, 105, 44);
   color: white;
   font-family: 'Permanent Marker', cursive;
-  /* font-family: 'Boogaloo', cursive; */
-  /* font-family: 'Luckiest Guy', cursive; */
+  font-family: 'Boogaloo', cursive; */
+  /* font-family: 'Luckiest Guy', cursive;
 } */
 
 .navbar-brand {
+  text-align: left;
   font-size: 24px;
-  color: rgb(219, 105, 44);
+  color: white;
+  padding-left: 0;
   text-shadow:
-   -1px -1px 0 white,
-    1px -1px 0 white,
-    -1px 1px 0 white,
-     1px 1px 0 white;
+   -2px -2px 0 rgb(219, 105, 44),
+    2px -2px 0 rgb(219, 105, 44),
+    -2px 2px 0 rgb(219, 105, 44),
+     2px 2px 0 rgb(219, 105, 44);
 }
 
 .navbar-brand:hover {
@@ -150,12 +154,12 @@ body {
 
 .navbar {
   box-shadow: 0px 8px rgba(0,0,0,0.05);
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid rgb(219, 105, 44);
   height: 70px;
 }
 
 .nav-link {
-  color: white;
+  color: rgb(219, 105, 44);
   text-decoration: none;
 }
 
@@ -164,11 +168,29 @@ body {
 .navbar-nav li,
 .nav-link:hover
 {
-  color: white;
-  background-color: rgb(219, 105, 44);
+
+  background-color: white;
 }
 
+/* .nav>li>a:focus,
+.nav>li>a:hover,
+.navbar-nav li,
+.nav-link:hover
+{
+  color: white;
+  background-color: rgb(219, 105, 44);
+} */
+
 .nav-link:hover {
+  color: white;
+  background-color: white;
+  text-shadow:
+  -2px -2px 0 rgb(255, 112, 35),
+  2px -2px 0 rgb(255, 112, 35),
+  -2px 2px 0 rgb(255, 112, 35),
+  2px 2px 0 rgb(255, 112, 35);
+}
+/* .nav-link:hover {
   color: white;
   background-color: rgb(219, 105, 44);
   text-shadow:
@@ -176,7 +198,7 @@ body {
   2px -2px 0 rgb(255, 112, 35),
   -2px 2px 0 rgb(255, 112, 35),
   2px 2px 0 rgb(255, 112, 35);
-}
+} */
 
 .trash {
   font-size: 24px;

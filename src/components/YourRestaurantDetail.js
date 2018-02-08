@@ -29,14 +29,14 @@ const YourRestaurantDetail = (props) => {
 
   // return<div>under construction</div>
   return (
-    <div className="col-xs-4 list center panel panel-default card">
+    <div className="col-xs-12 list">
       <Link to="/favorites">
         <i className="glyphicon glyphicon-menu-left"></i>
       </Link>
 
       <div className="row">
         <div>
-          <img src={props.restaurant.image_url} alt="" width="100%"/>
+          <img className="main-img" src={props.restaurant.image_url} alt="" width="100%"/>
         </div>
         <div className="col-xs-9">
           <h4>{props.restaurant.name}</h4>
