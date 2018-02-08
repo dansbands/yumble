@@ -33,7 +33,7 @@ class YourRestaurantList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    yourRestaurants: state.users.saved_restaurants
+    yourRestaurants: state.user.saved_restaurants.reverse()
   }
 }
 

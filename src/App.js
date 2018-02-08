@@ -40,7 +40,7 @@ class App extends React.Component {
 
   render() {
     // console.log('App State', this.state);
-    console.log('App Props', this.props);
+    console.log('App Props User', this.props.user.id ? "we have a user" : "no user", this.props.user);
     return (
       <div className="App">
         <div className="container main">
@@ -76,7 +76,7 @@ class App extends React.Component {
                   )
                 }
               } />
-              {localStorage.getItem('token') &&
+            {this.state.auth.currentUser.id &&
                 <Route
                   path="/"
                   render={
@@ -97,9 +97,9 @@ class App extends React.Component {
 }
 
 const mapStateToProps = state => {
-
+  // console.log('App mSTP', state);
   return {
-    user: state.users,
+    user: state.user,
   }
 }
 

@@ -5,6 +5,7 @@ import {
   DELETE_SAVED_RESTAURANT,
   GET_RESTAURANTS,
   GET_USER,
+  POST_TO_YELP,
 } from './actions/types';
 
 
@@ -22,7 +23,8 @@ const restaurantsReducer = (state = [], action) => {
   switch (action.type) {
     case GET_RESTAURANTS:
       return [...action.payload]
-
+    case POST_TO_YELP:
+      return action.payload
     default:
       return state;
   }
@@ -44,7 +46,7 @@ const yourRestaurantsReducer = (state = [], action) => {
 const rootReducer = combineReducers({
   yourRestaurants: yourRestaurantsReducer,
   restaurants: restaurantsReducer,
-  users: usersReducer,
+  user: usersReducer,
 });
 
 export default rootReducer;

@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 
 class RestaurantList extends React.Component {
-  componentDidMount() {
-    this.props.getRestaurants();
-  }
+  // componentDidMount() {
+  //   this.props.getUser();
+  // }
 
   render() {
     let restaurants
@@ -29,7 +29,7 @@ class RestaurantList extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    restaurants: state.restaurants.reverse()
+    restaurants: state.user.restaurants
   }
 }
 

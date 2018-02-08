@@ -5,7 +5,8 @@ import {
   DELETE_RESTAURANT,
   // DELETE_SAVED_RESTAURANT,
   GET_RESTAURANTS,
-  GET_USER
+  GET_USER,
+  POST_TO_YELP
 } from './types';
 
 // export function setCurrentRestaurant() {
@@ -64,5 +65,14 @@ export function deleteSavedRestaurant(id) {
 
     // .then(data => {
     // })
+  }
+}
+
+export function postSearchRequest(data){
+  return dispatch => {
+    api.data.getFromYelp(data)
+    .then(data => {
+      dispatch({ type: POST_TO_YELP, payload: data })
+    })
   }
 }

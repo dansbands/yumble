@@ -15,11 +15,11 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
-      restaurants: [],
-      currentRestaurant: [],
-      displayRestaurant: [],
+      // restaurants: [],
+      // currentRestaurant: [],
+      // displayRestaurant: [],
       // yourRestaurants: [],
-      currentLocation: "",
+      // currentLocation: "",
       searchVal: {
         location: '',
         latitude: 0,
@@ -46,11 +46,11 @@ class AppContainer extends Component {
       //   username: '',
       //   password: '',
       // },
-      user: {
-        username: '',
-        password: '',
-        id: 2
-      }
+      // user: {
+      //   username: '',
+      //   password: '',
+      //   id: 2
+      // }
     }
   }
 
@@ -63,18 +63,18 @@ class AppContainer extends Component {
     // console.log('AC Props are', this.props);
     // console.log('AC nextProps are', nextProps);
     // this.getUser(nextProps.currentUser.id)
-    this.getRestaurants()
+    // this.getRestaurants()
   }
 
-  getRestaurants = () => {
-    api.data.getRestaurants()
-    .then(data => {
-      this.setState({
-        restaurants: data.reverse(),
-        currentRestaurant: data[0]
-      })
-    })
-  }
+  // getRestaurants = () => {
+  //   api.data.getRestaurants()
+  //   .then(data => {
+  //     this.setState({
+  //       restaurants: data.reverse(),
+  //       currentRestaurant: data[0]
+  //     })
+  //   })
+  // }
 
   getUser = id => {
     let userId = id ? id : this.state.user.id
@@ -97,27 +97,23 @@ class AppContainer extends Component {
 
   handleRemove = event => {
     api.data.deleteRestaurant(event.target.id)
-      .then(() => this.getRestaurants())
+      .then(() => this.props.getUser(this.props.user.id))
   }
 
   handleSelect = event => {
     console.log('handleSelect', event.target.id);
     let eventId = parseInt(event.target.id, 10)
-    let newRestaurant = this.state.restaurants.find( r => {
+    let newRestaurant = this.props.restaurants.find( r => {
       return r.id === eventId
     })
-    newRestaurant.user_id = this.state.user.id
+    newRestaurant.user_id = this.props.user.id
     console.log('newRestaurant', newRestaurant);
-    console.log('newRestaurantUser', this.state.user.id);
+    console.log('newRestaurantUser', this.props.user.id);
 
 
     api.data.postSavedRestaurant(newRestaurant)
-      .then(() => {
-        //deleteRestaurant from list of all
-        api.data.deleteRestaurant(eventId)
-          .then(() => this.getRestaurants())
-      })
-      .then(() => this.getUser())
+      .then(() => api.data.deleteRestaurant(eventId))
+      .then(() => this.props.getUser(this.props.user.id))
   }
 
   handleClickSavedCard = (event, restaurant) => {
@@ -137,21 +133,23 @@ class AppContainer extends Component {
   }
 
   handleSubmitSearch = event => {
+    event.preventDefault()
     let data = this.state.searchVal
-    data.userId = this.props.user.id
-    api.data.getFromYelp(this.state.searchVal)
-    .then(() => this.getRestaurants())
+    let id = this.props.user.id
+    data.userId = id
+    this.props.postSearchRequest(data)
+    .then(this.props.getUser(id))
   }
 
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
-    console.log('AppContainer state', this.state);
-    console.log('AppContainer props', this.props);
+    // console.log('AppContainer state', this.state);
+    // console.log('AppContainer props', this.props);
 
     return (
       <div>
-        {localStorage.getItem('token') &&
+        {this.props.user.id &&
           <Switch>
             <Route
               path="/"
@@ -180,7 +178,7 @@ class AppContainer extends Component {
                         restaurant={this.state.currentRestaurant}
                         displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
+
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -192,7 +190,7 @@ class AppContainer extends Component {
                       <YourRestaurantDetail
                         restaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
+
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -211,7 +209,7 @@ class AppContainer extends Component {
                         restaurant={this.state.currentRestaurant}
                         displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
+
                         handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -227,7 +225,7 @@ class AppContainer extends Component {
                         restaurant={this.state.currentRestaurant}
                         displayRestaurant={this.state.displayRestaurant}/>
                         <YourRestaurantList
-                          yourRestaurants={this.state.yourRestaurants}
+
                           handleClickSavedCard={this.handleClickSavedCard}/>
                     </div>
                   )}
@@ -241,9 +239,10 @@ class AppContainer extends Component {
 }
 
 const mapStateToProps = state => {
-  console.log('AppContainer mSTP', state);
+  // console.log('AppContainer mSTP', state);
   return {
-    user: state.users
+    user: state.user,
+    restaurants: state.user.restaurants
   }
 }
 
