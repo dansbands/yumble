@@ -105,3 +105,51 @@ const Search = ({onChange, value, onSubmit}) => {
 }
 
 export default Search;
+
+
+// <input
+//   id="radius"
+//   type="range"
+//   min="0.1"
+//   max="100"
+//   step="0.1"
+//   onChange={e => onFormValueChange(e.target.id, e.target.value)}
+//   >
+// </input>
+// <h5>Radius: {value.radius} mi.</h5>
+
+
+
+
+  // if (newVal > 10 && newVal <= 20) {
+       //   // 1-5
+       //   newVal = Math.ceil(((Math.ceil(newVal)) -10)/2)
+       // }
+       // if (newVal > 20 && newVal < 29) {
+       //   // 5-10
+       //   newVal = Math.ceil(((Math.ceil(newVal)) -9)/2)
+       // }
+       // if (newVal >= 29 && newVal <= 37) {
+       //   newVal = 15
+       // }
+       // if (newVal > 37 && newVal <= 42) {
+       //   newVal = 20
+       // }
+       // if (newVal > 42) {
+       //   newVal = 25
+       // }
+       // if (newVal > 2) {
+       //   newVal = 0.2
+       // }
+       // if (newVal > 3) {
+       //   newVal = 0.3
+       // }
+       // if (newVal > 4) {
+       //   newVal = 0.5
+       // }
+       // if (newVal > 1) {
+       //   newVal = Math.round(newVal)
+       // }
+       // if (newVal > 1) {
+       //   newVal = Math.round(newVal)
+       // }
