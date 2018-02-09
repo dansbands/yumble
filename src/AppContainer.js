@@ -15,6 +15,7 @@ class AppContainer extends Component {
     this.state = {
       restaurants: [],
       currentRestaurant: [],
+      nextRestaurant: [],
       displayRestaurant: [],
       yourRestaurants: [],
       currentLocation: "",
@@ -62,9 +63,11 @@ class AppContainer extends Component {
   getUserRestaurants = userId => {
     api.data.getUserRestaurants(userId)
     .then(data => {
+      console.log('getUserRestaurants', data);
       this.setState({
         restaurants: data.reverse(),
-        currentRestaurant: data[0]
+        currentRestaurant: data[0],
+        nextRestaurant: data[1]
       })
     })
   }
@@ -87,6 +90,7 @@ class AppContainer extends Component {
       this.setState(prevState => ({
         restaurants: user.restaurants.reverse(),
         currentRestaurant: user.restaurants[0],
+        nextRestaurant: user.restaurants[1],
         user: {
           ...this.state.user,
           id: user.id,
@@ -168,6 +172,7 @@ class AppContainer extends Component {
                           handleRemove={this.handleRemove}
                           handleSelect={this.handleSelect}
                           restaurant={this.state.currentRestaurant}
+                          nextRestaurant={this.state.nextRestaurant}
                           displayRestaurant={this.state.displayRestaurant}/>
                       </div>
                   )
@@ -212,6 +217,7 @@ class AppContainer extends Component {
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
                         restaurant={this.state.currentRestaurant}
+                        nextRestaurant={this.state.nextRestaurant}
                         displayRestaurant={this.state.displayRestaurant}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}

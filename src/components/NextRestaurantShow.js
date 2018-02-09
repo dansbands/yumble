@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../img/food_placeholder.jpg';
 
-const RestaurantShow = (props) => {
+const NextRestaurantShow = (props) => {
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   let image_url = img
 
@@ -10,10 +10,10 @@ const RestaurantShow = (props) => {
   }
   // console.log('image url', image_url);
 
-  // console.log('RestaurantShow', props.restaurant);
+  // console.log('NextRestaurantShow', props.restaurant);
   return (
     <div className="col-xs-6" >
-      <h3>Current Restaurant</h3>
+      <h3>Next Restaurant</h3>
       <div className="main-img">
         <img src={image_url} alt="" width="100%"/>
       </div>
@@ -50,4 +50,4 @@ const RestaurantShow = (props) => {
   )
 }
 
-export default RestaurantShow;
+export default NextRestaurantShow;
