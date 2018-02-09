@@ -114,7 +114,7 @@ body {
   margin-top: 10px;
 }
 
-.navbar,
+/* .navbar,
 .navbar-inverse,
 .navbar-header {
   background-color: darkblue;
@@ -122,9 +122,9 @@ body {
   font-family: 'Permanent Marker', cursive;
   /* font-family: 'Boogaloo', cursive; */
   /* font-family: 'Luckiest Guy', cursive; */
-}
+/* } */
 
-/* .navbar,
+.navbar,
 .navbar-inverse,
 .navbar-header {
   background-color: rgb(219, 105, 44);
@@ -132,7 +132,7 @@ body {
   font-family: 'Permanent Marker', cursive;
   /* font-family: 'Boogaloo', cursive; */
   /* font-family: 'Luckiest Guy', cursive; */
-} */
+}
 
 .navbar-brand {
   font-size: 24px;
