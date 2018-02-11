@@ -7,6 +7,7 @@ import Search from './components/Search';
 import api from './services/api'
 import { Route, Switch } from 'react-router-dom';
 import Friends from './components/Friends';
+import Profile from './components/Profile';
 
 
 class AppContainer extends Component {
@@ -14,6 +15,7 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
+      currentUser: [],
       commonRestaurants: [],
       currentFriend: [],
       currentFriendsRestaurants: [],
@@ -66,6 +68,7 @@ class AppContainer extends Component {
     api.data.getUser(userId)
     .then(user => {
       this.setState(prevState => ({
+        currentUser: user,
         user: {
           ...this.state.user,
           id: user.id,
@@ -117,7 +120,7 @@ class AppContainer extends Component {
         yours = this.state.yourRestaurants[i]
         for (var j = 0; j < this.state.currentFriendsRestaurants.length; j++) {
           theirs = this.state.currentFriendsRestaurants[j]
-          yours.yelp_id === theirs.yelp_id ? commonRestaurants.push(yours) : commonRestaurants
+          yours.yelp_id === theirs.yelp_id ? commonRestaurants.push(theirs) : commonRestaurants
         }
       }
 
@@ -298,6 +301,22 @@ class AppContainer extends Component {
                         friendsRestaurants={this.state.currentFriendsRestaurants}
                         commonRestaurants={this.state.commonRestaurants}
                         onChange={this.handleChangeFriend}/>
+                      <RestaurantContainer
+                        handleRemove={this.handleRemove}
+                        handleSelect={this.handleSelect}
+                        restaurant={this.state.currentRestaurant}
+                        displayRestaurant={this.state.displayRestaurant}/>
+                        <YourRestaurantList
+                          yourRestaurants={this.state.yourRestaurants}
+                          handleClickSavedCard={this.handleClickSavedCard}/>
+                    </div>
+                  )}
+                } />
+              <Route path="/profile" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <Profile user={this.state.currentUser}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}

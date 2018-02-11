@@ -1,4 +1,5 @@
 import React from 'react'
+import snake from '../img/profile/snake.png'
 
 const Friends = props => {
   console.log('Friends', props);
@@ -29,9 +30,19 @@ const Friends = props => {
 
   if (props.commonRestaurants.length) {
     commonRestaurants = props.commonRestaurants.map(r => {
+      let img
+      if (!r.user_photo_url) {
+        img = require(`../img/profile/placeholder.png`)
+      } else {
+        img = r.user_photo_url
+      }
+      // if (require(`../img/profile/${r.username}.png`)) {
+      //   img = require(`../img/profile/${r.username}.png`)
+      // }
+
       return (
         <div key={r.id} className="panel">
-          <h5>{r.name}</h5>
+          <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
         </div>
       )
     })

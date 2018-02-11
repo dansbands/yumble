@@ -92,6 +92,14 @@ class Navbar extends React.Component {
             <ul className="nav navbar-nav navbar-right">
               <li>
                 <Link
+                  to="/profile"
+                  className="nav-link">
+                   <span><i className="material-icons">people</i></span> Profile
+                </Link>
+              </li>
+
+              <li>
+                <Link
                   to="/friends"
                   className="nav-link">
                    <span><i className="material-icons">people</i></span> Friends

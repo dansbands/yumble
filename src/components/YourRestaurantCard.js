@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const YourRestaurantCard = (props) => {
-  console.log('YourRestaurantCard', props);
+  // console.log('YourRestaurantCard', props);
   return (
     <Link
       to="/detail"
@@ -12,10 +12,10 @@ const YourRestaurantCard = (props) => {
             <img src={props.restaurant.image_url} alt="" width="50px" style={{height: "50px", overflow: "hidden", borderRadius: "50px"}}/>
         </div>
         <div className="media-body">
+          <i className="glyphicon glyphicon-trash pull-right trash" name="delete" onClick={e => props.handleClickSavedCard(e, props.restaurant)}></i>
           <h5 className="media-heading">{props.restaurant.name}</h5>
           <h5>{props.restaurant.price}</h5>
         </div>
-          <i className="glyphicon glyphicon-trash pull-right trash" name="delete" onClick={e => props.handleClickSavedCard(e, props.restaurant)}></i>
       </div>
     </Link>
   )
