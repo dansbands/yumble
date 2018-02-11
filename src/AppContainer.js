@@ -6,6 +6,7 @@ import YourRestaurantDetail from './components/YourRestaurantDetail';
 import Search from './components/Search';
 import api from './services/api'
 import { Route, Switch } from 'react-router-dom';
+import Friends from './components/Friends';
 
 
 class AppContainer extends Component {
@@ -13,6 +14,10 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
+      commonRestaurants: [],
+      currentFriend: [],
+      currentFriendsRestaurants: [],
+      allUsers: [],
       restaurants: [],
       currentRestaurant: [],
       displayRestaurant: [],
@@ -40,10 +45,6 @@ class AppContainer extends Component {
           },
         }
       },
-      // newUser: {
-      //   username: '',
-      //   password: '',
-      // },
       user: {
         username: '',
         password: '',
@@ -56,20 +57,35 @@ class AppContainer extends Component {
     console.log('AC Props are', this.props);
     console.log('AC nextProps are', nextProps);
     this.getUser(nextProps.currentUser.id)
+    this.getAllUsers()
     // this.getUserRestaurants(nextProps.currentUser.id)
   }
 
-  getUserRestaurants = userId => {
-    api.data.getUserRestaurants(userId)
-    .then(data => {
-      this.setState({
-        restaurants: data.reverse(),
-        currentRestaurant: data[0]
-      })
+  getUser = id => {
+    let userId = id ? id : this.state.user.id
+    api.data.getUser(userId)
+    .then(user => {
+      this.setState(prevState => ({
+        user: {
+          ...this.state.user,
+          id: user.id,
+          username: user.username,
+        }
+      }))
+      if (user.restaurants) {
+        this.setState({
+          restaurants: user.restaurants.reverse(),
+          currentRestaurant: user.restaurants[0],
+        })
+      }
+      if (user.saved_restaurants) {
+        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
+      }
     })
   }
-  // getRestaurants = () => {
-  //   api.data.getRestaurants()
+
+  // getUserRestaurants = userId => {
+  //   api.data.getUserRestaurants(userId)
   //   .then(data => {
   //     this.setState({
   //       restaurants: data.reverse(),
@@ -78,25 +94,51 @@ class AppContainer extends Component {
   //   })
   // }
 
-  getUser = id => {
-    let userId = id ? id : this.state.user.id
-    api.data.getUser(userId)
-    .then(user => {
-      console.log('got user', user);
-      console.log('got users restaurants', user.saved_restaurants);
-      this.setState(prevState => ({
-        restaurants: user.restaurants.reverse(),
-        currentRestaurant: user.restaurants[0],
-        user: {
-          ...this.state.user,
-          id: user.id,
-          username: user.username,
-        }
-      }))
-      if (user.saved_restaurants) {
-        this.setState({ yourRestaurants: user.saved_restaurants.reverse() })
-      }
+  getAllUsers = () => {
+    api.data.getAllUsers()
+    .then(data => {
+      console.log('getAllUsers', data);
+      this.setState({
+        allUsers: data,
+        currentFriend: data[0],
+        currentFriendsRestaurants: data[0].saved_restaurants
+      },() => this.findCommonRestaurants())
     })
+  }
+
+  findCommonRestaurants = () => {
+    console.log('yourRestaurants', this.state.yourRestaurants);
+    console.log('currentFriendsRestaurants', this.state.currentFriendsRestaurants);
+    let commonRestaurants = []
+    let yours
+    let theirs
+    if (this.state.yourRestaurants.length && this.state.currentFriendsRestaurants.length) {
+      for (var i = 0; i < this.state.yourRestaurants.length; i++) {
+        yours = this.state.yourRestaurants[i]
+        for (var j = 0; j < this.state.currentFriendsRestaurants.length; j++) {
+          theirs = this.state.currentFriendsRestaurants[j]
+          yours.yelp_id === theirs.yelp_id ? commonRestaurants.push(yours) : commonRestaurants
+        }
+      }
+
+
+
+      // commonRestaurants = this.state.yourRestaurants.filter(r => {
+      //   let rest
+      //   if (this.state.currentFriendsRestaurants !== []) {
+      //     this.state.currentFriendsRestaurants.map(r => rest = r)
+      //     console.log('mapping restaurants r', r);
+      //     console.log('mapping restaurants rest', rest);
+      //     console.log('mapping restaurants', r.yelp_id === rest.yelp_id);
+      //     return r.yelp_id === rest.yelp_id
+      //   } else {
+      //     return []
+      //   }
+      // })
+
+    }
+    console.log('commonRestaurants', commonRestaurants);
+    this.setState({ commonRestaurants: commonRestaurants })
   }
 
   handleRemove = event => {
@@ -145,6 +187,16 @@ class AppContainer extends Component {
     data.userId = this.state.user.id
     api.data.getFromYelp(this.state.searchVal)
     .then(() => this.getUser())
+  }
+
+  handleChangeFriend = event => {
+    let newFriend = this.state.allUsers.find( u => u.id === parseInt(event.target.value, 10))
+    console.log('handleChangeFriend', newFriend);
+    this.setState({ currentFriend: newFriend, currentFriendsRestaurants: newFriend.saved_restaurants }, () => {
+      console.log('newFriend in State', this.state.currentFriend);
+      console.log('newFriends restaurants in State', this.state.currentFriendsRestaurants);
+      this.findCommonRestaurants()
+    })
   }
 
   render() {
@@ -225,6 +277,27 @@ class AppContainer extends Component {
                   return (
                     <div className="row">
                       <RestaurantList restaurants={this.state.restaurants}/>
+                      <RestaurantContainer
+                        handleRemove={this.handleRemove}
+                        handleSelect={this.handleSelect}
+                        restaurant={this.state.currentRestaurant}
+                        displayRestaurant={this.state.displayRestaurant}/>
+                        <YourRestaurantList
+                          yourRestaurants={this.state.yourRestaurants}
+                          handleClickSavedCard={this.handleClickSavedCard}/>
+                    </div>
+                  )}
+                } />
+              <Route path="/friends" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <Friends
+                        allUsers={this.state.allUsers}
+                        currentFriend={this.state.currentFriend}
+                        friendsRestaurants={this.state.currentFriendsRestaurants}
+                        commonRestaurants={this.state.commonRestaurants}
+                        onChange={this.handleChangeFriend}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}

@@ -57,8 +57,7 @@ class Navbar extends React.Component {
                   to="/signin"
                   onClick={this.handleLogout}
                   className="nav-link">
-                    <span className="glyphicon glyphicon-user"></span>
-                      Sign Out {user}
+                    <span className="glyphicon glyphicon-user"></span> Sign Out {user}
                 </Link>
                   ) : (
                 <Link
@@ -91,14 +90,21 @@ class Navbar extends React.Component {
 
           <div className="col-xs-4">
             <ul className="nav navbar-nav navbar-right">
-              <li><a className="nav-link"><span className="glyphicon glyphicon-comment"></span> Messages</a></li>
+              <li>
+                <Link
+                  to="/friends"
+                  className="nav-link">
+                   <span><i className="material-icons">people</i></span> Friends
+                </Link>
+              </li>
+
               <li>
                 <Link
                   to="/favorites"
-                  className="nav-link">
-                  <span className="glyphicon glyphicon-heart-empty"></span> Favorites
+                  className="nav-link"><span className="glyphicon glyphicon-heart-empty"></span> Favorites
                 </Link>
               </li>
+
             </ul>
           </div>
         </div>
@@ -108,3 +114,5 @@ class Navbar extends React.Component {
 }
 
 export default Navbar;
+
+// <span className="glyphicon glyphicon-comment"></span>

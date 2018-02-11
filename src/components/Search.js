@@ -25,7 +25,7 @@ const Search = ({onChange, value, onSubmit}) => {
         </div>
 
           <div className="form-group">
-            <label htmlFor="price">Saved Locations</label>
+            <label htmlFor="coordinates">Saved Locations</label>
             <select className="rounded form-control"
                    id="coordinates"
                    placeholder="Choose a saved location..."

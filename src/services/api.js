@@ -77,6 +77,10 @@ const getCurrentUser = () => {
   }).then(res => res.json())
 }
 
+const getAllUsers = () => {
+  return fetch('http://localhost:3000/api/v1/users')
+  .then(res => res.json())
+}
 
 
 export default {
@@ -89,6 +93,7 @@ export default {
     deleteRestaurant,
     postSavedRestaurant,
     deleteSavedRestaurant,
+    getAllUsers,
   },
   auth: {
     signIn,
