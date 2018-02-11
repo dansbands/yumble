@@ -22,7 +22,9 @@ class YourRestaurantList extends React.Component {
         <div className="list-heading">
           <h3>Your Restaurants</h3>
         </div>
-        {restaurants}
+        <div className="list-group">
+          {restaurants}
+        </div>
       </div>
     )
   }
