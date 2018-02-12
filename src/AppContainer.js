@@ -59,8 +59,8 @@ class AppContainer extends Component {
   componentWillReceiveProps(nextProps) {
     console.log('AC Props are', this.props);
     console.log('AC nextProps are', nextProps);
-    this.getUser(nextProps.currentUser.id)
     this.getAllUsers()
+    this.getUser(nextProps.currentUser.id)
     // this.getUserRestaurants(nextProps.currentUser.id)
   }
 
@@ -88,15 +88,18 @@ class AppContainer extends Component {
     })
   }
 
-  // getUserRestaurants = userId => {
-  //   api.data.getUserRestaurants(userId)
-  //   .then(data => {
-  //     this.setState({
-  //       restaurants: data.reverse(),
-  //       currentRestaurant: data[0]
-  //     })
-  //   })
-  // }
+  findCurrentFriend = id => {
+    console.log('handleChangeFriend', newFriend);
+    console.log('handleChangeFriend AllUsers', this.state.allUsers);
+    let newFriend = this.state.allUsers.find( u => u.id === id)
+    if (newFriend) {
+      this.setState({ currentFriend: newFriend, currentFriendsRestaurants: newFriend.saved_restaurants }, () => {
+        console.log('newFriend in State', this.state.currentFriend);
+        console.log('newFriends restaurants in State', this.state.currentFriendsRestaurants);
+        this.findCommonRestaurants()
+      })
+    }
+  }
 
   getAllUsers = () => {
     api.data.getAllUsers()
@@ -104,9 +107,10 @@ class AppContainer extends Component {
       console.log('getAllUsers', data);
       this.setState({
         allUsers: data,
-        currentFriend: data[0],
-        currentFriendsRestaurants: data[0].saved_restaurants
-      },() => this.findCommonRestaurants())
+      },() => {
+        this.findCommonRestaurants()
+        this.findCurrentFriend(this.state.currentUser.current_friend)
+      })
     })
   }
 
@@ -124,22 +128,6 @@ class AppContainer extends Component {
           yours.yelp_id === theirs.yelp_id ? commonRestaurants.push(theirs) : commonRestaurants
         }
       }
-
-
-
-      // commonRestaurants = this.state.yourRestaurants.filter(r => {
-      //   let rest
-      //   if (this.state.currentFriendsRestaurants !== []) {
-      //     this.state.currentFriendsRestaurants.map(r => rest = r)
-      //     console.log('mapping restaurants r', r);
-      //     console.log('mapping restaurants rest', rest);
-      //     console.log('mapping restaurants', r.yelp_id === rest.yelp_id);
-      //     return r.yelp_id === rest.yelp_id
-      //   } else {
-      //     return []
-      //   }
-      // })
-
     }
     console.log('commonRestaurants', commonRestaurants);
     this.setState({ commonRestaurants: commonRestaurants })
@@ -194,13 +182,9 @@ class AppContainer extends Component {
   }
 
   handleChangeFriend = id => {
-    let newFriend = this.state.allUsers.find( u => u.id === id)
-    console.log('handleChangeFriend', newFriend);
-    this.setState({ currentFriend: newFriend, currentFriendsRestaurants: newFriend.saved_restaurants }, () => {
-      console.log('newFriend in State', this.state.currentFriend);
-      console.log('newFriends restaurants in State', this.state.currentFriendsRestaurants);
-      this.findCommonRestaurants()
-    })
+    let data = { id: this.state.currentUser.id, current_friend: id }
+    api.data.updateUserInfo(data)
+    this.findCurrentFriend(id)
   }
 
   handleProfileChange = event => {
