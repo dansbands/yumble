@@ -5,9 +5,14 @@ const Friends = props => {
   console.log('Friends', props);
   let friendsRestaurants
   let commonRestaurants
+  let image = require(`../img/profile/placeholder.png`)
 
   const allUsers = props.allUsers.map(f => {
-    return <option key= {f.id} className="form-control" value={f.id}>{f.firstname} {f.lastname}</option>
+    return (
+      <div onClick={() => props.onClick(f.id, "currentFriend")} key= {f.id} className="panel" value={f.id} >
+        {f.firstname} {f.lastname}
+      </div>
+    )
   })
 
   // const findCurrentFriend = props.allUsers.find(u => {
@@ -57,16 +62,17 @@ const Friends = props => {
       <div className="list-heading">
         <h3>Your Friends</h3>
       </div>
-      <div className="form-group">
-        <label htmlFor="pickFriend">Current Friend: {props.currentFriend.firstname} {props.currentFriend.lastname}</label>
-        <select className="rounded form-control"
-               id="pickFriend"
-               placeholder="Choose a friend..."
-               onChange={e => props.onChange(e, "currentFriend")}
-               >
-          <option className="form-control" value="defaultLoc">Choose a friend...</option>
-           {allUsers}
-        </select>
+      <h4>Current Friend:</h4>
+        <div className="list-group-item media">
+          <div className="media-body">
+            <h5>{props.currentFriend.firstname} {props.currentFriend.lastname}</h5>
+          </div>
+          <div className="media-right">
+            <img className="pull-right" src={image} style={{width: "35px", height: "35px", borderRadius: "35px"}}/>
+          </div>
+        </div>
+      <div className="small-list" style={{marginTop: "10px"}}>
+        {allUsers}
       </div>
       <div className="list-heading">
         <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
@@ -85,3 +91,15 @@ const Friends = props => {
 }
 
 export default Friends;
+
+// <div className="form-group">
+//   <label htmlFor="pickFriend">Current Friend: {props.currentFriend.firstname} {props.currentFriend.lastname}</label>
+//   <select className="rounded form-control"
+//          id="pickFriend"
+//          placeholder="Choose a friend..."
+//          onChange={e => props.onChange(e, "currentFriend")}
+//          >
+//     <option className="form-control" value="defaultLoc">Choose a friend...</option>
+//      {allUsers}
+//   </select>
+// </div>

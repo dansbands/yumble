@@ -28,7 +28,7 @@ const RestaurantShow = (props) => {
             <i
               id={props.restaurant.id}
               onClick={props.handleRemove}
-              className="glyphicon glyphicon-remove-sign pull-left red"></i>
+              className="glyphicon glyphicon-remove-sign pull-left fuscia"></i>
           </h1>
         </div>
         <div className="col-xs-3">
@@ -41,7 +41,7 @@ const RestaurantShow = (props) => {
             <i
               id={props.restaurant.id}
               onClick={props.handleSelect}
-              className="glyphicon glyphicon-ok-sign pull-right green"></i>
+              className="glyphicon glyphicon-ok-sign pull-right lightgreen"></i>
           </h1>
         </div>
       </div>

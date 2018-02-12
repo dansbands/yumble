@@ -16,6 +16,7 @@ class AppContainer extends Component {
 
     this.state = {
       currentUser: [],
+      editing: false,
       commonRestaurants: [],
       currentFriend: [],
       currentFriendsRestaurants: [],
@@ -192,13 +193,36 @@ class AppContainer extends Component {
     .then(() => this.getUser())
   }
 
-  handleChangeFriend = event => {
-    let newFriend = this.state.allUsers.find( u => u.id === parseInt(event.target.value, 10))
+  handleChangeFriend = id => {
+    let newFriend = this.state.allUsers.find( u => u.id === id)
     console.log('handleChangeFriend', newFriend);
     this.setState({ currentFriend: newFriend, currentFriendsRestaurants: newFriend.saved_restaurants }, () => {
       console.log('newFriend in State', this.state.currentFriend);
       console.log('newFriends restaurants in State', this.state.currentFriendsRestaurants);
       this.findCommonRestaurants()
+    })
+  }
+
+  handleProfileChange = event => {
+    event.preventDefault()
+    console.log('handleProfileChange', event.target.id, event.target.value);
+    this.setState({
+      currentUser: {
+        ...this.state.currentUser,
+        [event.target.id]: event.target.value
+      }
+    })
+  }
+
+  handleUpdateUser = event => {
+    console.log('handleUpdateUser', this.state.currentUser);
+    api.data.updateUserInfo(this.state.currentUser)
+    .then(this.toggleEdit)
+  }
+
+  toggleEdit = () => {
+    this.setState({
+      editing: !this.state.editing
     })
   }
 
@@ -300,7 +324,7 @@ class AppContainer extends Component {
                         currentFriend={this.state.currentFriend}
                         friendsRestaurants={this.state.currentFriendsRestaurants}
                         commonRestaurants={this.state.commonRestaurants}
-                        onChange={this.handleChangeFriend}/>
+                        onClick={this.handleChangeFriend}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
@@ -316,7 +340,12 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <Profile user={this.state.currentUser}/>
+                      <Profile
+                        user={this.state.currentUser}
+                        editing={this.state.editing}
+                        toggleEdit={this.toggleEdit}
+                        onChange={this.handleProfileChange}
+                        onSubmit={this.handleUpdateUser}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}

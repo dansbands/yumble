@@ -26,6 +26,16 @@ body {
   overflow: hidden;
 }
 
+.fuscia {
+  font-size: 50px;
+  color: rgb(202,5,77);
+}
+
+.lightgreen {
+  font-size: 50px;
+  color: rgb(3,206,164)
+}
+
 .red {
   color: red;
 }

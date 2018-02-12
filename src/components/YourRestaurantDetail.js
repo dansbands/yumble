@@ -31,7 +31,7 @@ const YourRestaurantDetail = (props) => {
   return (
     <div className="col-xs-4 list center panel panel-default card">
       <Link to="/favorites">
-        <i className="glyphicon glyphicon-menu-left"></i>
+        <i className="glyphicon glyphicon-menu-left" style={{marginBottom: "10px", fontSize: "24px"}}></i>
       </Link>
 
       <div className="row">
