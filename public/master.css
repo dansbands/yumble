@@ -2,6 +2,59 @@ body {
  font-family: 'Roboto', sans-serif;
 }
 
+.screen {
+  overflow: hidden;
+  width: 1000px;
+  height: 568px;
+}
+
+.screen-left {
+  background-color: rgba(220,220,220,0.3);
+  position: absolute;
+
+  height: 568px;
+  width: 160px;
+}
+
+.screen-right {
+  background-color: rgba(112,128,144,0.3);
+  position: absolute;
+
+  height: 568px;
+
+  width: 160px;
+  margin-left: 160px;
+}
+
+.slider {
+  position: relative;
+  float:left;
+  height: 568px;
+  width: 1000px;
+  left: 0;
+  margin-left: -320px;
+  -webkit-transition: all 0.5s ease-in-out;
+}
+
+.slider-card {
+  position: relative;
+  float: left;
+  height: 568px;
+  width: 320px;
+}
+
+
+
+.screen:hover .slider {
+  left: 320px;
+}
+.screen-right:active .slider {
+  left: 320px;
+}
+.screen-left:active .slider {
+  left: -320px;
+}
+
 .list {
   height: 500px;
   overflow: scroll;

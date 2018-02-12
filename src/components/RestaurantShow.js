@@ -12,7 +12,7 @@ const RestaurantShow = (props) => {
 
   // console.log('RestaurantShow', props.restaurant);
   return (
-    <div className="col-xs-6" >
+    <div className="slider-card" >
       <h3>Current Restaurant</h3>
       <div className="main-img">
         <img src={image_url} alt="" width="100%"/>
