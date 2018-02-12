@@ -39,7 +39,7 @@ const Friends = props => {
   }
 
   if (props.commonRestaurants.length) {
-    commonRestaurants = props.commonRestaurants.map(r => {
+    commonRestaurants = props.commonRestaurants.map((r, i) => {
       let img
       if (!r.user_photo_url) {
         img = require(`../img/profile/placeholder.png`)
@@ -51,7 +51,7 @@ const Friends = props => {
       // }
 
       return (
-        <div key={r.id} className="panel">
+        <div key={i} className="panel">
           <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
         </div>
       )
