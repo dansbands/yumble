@@ -23,6 +23,11 @@ const Friends = props => {
     console.log('CurrentFriend', props.currentFriend);
   }
 
+  if (props.currentFriend.photo_url) {
+    image = props.currentFriend.photo_url
+    console.log('CurrentFriend', props.currentFriend);
+  }
+
   if (props.friendsRestaurants) {
     friendsRestaurants = props.friendsRestaurants.map(r => {
       return (
