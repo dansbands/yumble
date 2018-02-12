@@ -6,23 +6,16 @@ const RestaurantListCard = (props) => {
 
   return (
     <div>
-      <div className="card item">
-        <div className="image">
-          <img src={props.restaurant.image_url} alt="" width="50px" />
+      <div className="list-group-item media">
+        <div className="media-left">
+          <img src={props.restaurant.image_url} alt="" width="50px" style={{height: "50px", overflow: "hidden", borderRadius: "50px"}}/>
         </div>
-        <div className="content">
-          <a className="header">{props.restaurant.name}</a>
-          <i className="glyphicon glyphicon-share-alt pull-right"></i>
-          <div className="meta">
-            {distance} mi.
-          </div>
-          <div className="description">
-            <p>{props.restaurant.location.address1}<br></br>
+        <div className="media-body">
+          <h5 className="media-heading">{props.restaurant.name}</h5>
+          <h5>{distance} mi.</h5>
+          <h5>{props.restaurant.price}</h5>
+            <p>{props.restaurant.location.address1}
             {props.restaurant.location.city}</p>
-          </div>
-          <div className="extra">
-            {props.restaurant.price}
-          </div>
         </div>
       </div>
     </div>
