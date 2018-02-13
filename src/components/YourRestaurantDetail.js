@@ -7,7 +7,30 @@ const YourRestaurantDetail = (props) => {
 
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   let tel = "tel:" + props.restaurant.phone
+  let otherUsers = []
+  let userPics
 
+  if (props.allUsers) {
+    props.allUsers.map(u => {
+      // return props.restaurant.other_users.includes(u.id)
+      u.saved_restaurants.map(r => {
+        if(r.yelp_id === props.restaurant.yelp_id) {
+          otherUsers.push(u)
+        }
+      })
+    })
+    userPics = otherUsers.map(u => {
+      return (
+        <div className="col-xs-2 text-center">
+          <img src={u.photo_url} key={u.id} alt="" className="lg-other-user"/>
+          <h5>{u.firstname}</h5>
+        </div>
+      )
+    })
+  }
+  console.log('YourRestaurantCard', props);
+  console.log('YourRestaurantCard otherUsers', otherUsers);
+  console.log('YourRestaurantCard userPics', userPics);
   // return<div>under construction</div>
   return (
     <div className="col-xs-4 list center panel panel-default card">
@@ -45,11 +68,21 @@ const YourRestaurantDetail = (props) => {
           <p className="pull-right">Price: {props.restaurant.price}<br/>
           Rating: {props.restaurant.rating}<br/></p>
         </div>
+      </div>
 
+      <div className="row">
+        <div className="col-xs-12 other-user-show">
+        {otherUsers.length > 0 &&
+          <h5>These friends like {props.restaurant.name}</h5> }
+          <div className="row">
+            {userPics}
+          </div>
+        </div>
+      </div>
 
+      <div className="text-center">
 
-
-
+        <a href={tel}><button className="btn btn-default bottom orange">Call {props.restaurant.name}</button></a>
       </div>
     </div>
   )

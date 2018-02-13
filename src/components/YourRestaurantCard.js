@@ -2,12 +2,17 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const YourRestaurantCard = (props) => {
-  let otherUsers
+  let otherUsers = []
   let userPics
 
-  if (props.restaurant.other_users) {
-    otherUsers = props.allUsers.filter(u => {
-      return props.restaurant.other_users.includes(u.id)
+  if (props.allUsers) {
+    props.allUsers.map(u => {
+      // return props.restaurant.other_users.includes(u.id)
+      u.saved_restaurants.map(r => {
+        if(r.yelp_id === props.restaurant.yelp_id) {
+          otherUsers.push(u)
+        }
+      })
     })
     userPics = otherUsers.map(u => {
       return <img src={u.photo_url} key={u.id} alt="" className="other-user"/>

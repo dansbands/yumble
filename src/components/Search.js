@@ -97,7 +97,7 @@ const Search = ({onChange, value, onSubmit}) => {
         <Link
           to="/"
           onClick={onSubmit}>
-          <input className="btn btn-default" type="submit"></input>
+          <input className="btn btn-default call" type="submit"></input>
         </Link>
       </div>
     )

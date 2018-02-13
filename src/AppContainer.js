@@ -273,6 +273,7 @@ class AppContainer extends Component {
                   return (
                     <div className="row">
                       <YourRestaurantDetail
+                        allUsers={this.state.allUsers}
                         restaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
