@@ -2,6 +2,18 @@ body {
  font-family: 'Roboto', sans-serif;
 }
 
+.profile {
+  height: 0px;
+  -webkit-transition: opacity 1s; /* Safari */
+    transition: opacity 1s;
+    color: darkorange;
+    opacity: 0
+}
+
+.visible {
+  opacity: 1
+}
+
 .list {
   height: 700px;
   overflow: scroll;

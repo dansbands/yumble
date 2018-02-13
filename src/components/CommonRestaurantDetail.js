@@ -2,11 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const CommonRestaurantDetail = (props) => {
-  console.log('CommonRestaurantDetail', props);
+  console.log('CommonRestaurantDetail', props.friend.photo_url);
 
 
   let distance
   let tel
+  // let url = `url(${props.friend.photo_url}) -10px 1px / 120px no-repeat` //for background image for circle divs
 
   if (props.restaurant) {
     distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
@@ -27,20 +28,26 @@ const CommonRestaurantDetail = (props) => {
           <h2 className="match large">It's a Match!</h2>
           <h4>You and {props.friend.firstname} both like this restaurant!</h4>
           <div className="row">
+
             <div className="col-xs-6">
-              <div style={{borderRadius: "100px", height: "100px", overflow: "hidden"}}>
-                <img style={{borderRadius: "100px", width: "100px"}} src={props.you.photo_url}></img>
-              </div>
+
+                <img className="img-circle" style={{maxWidth: "100px"}} src={props.you.photo_url}></img>
+
             </div>
+
             <div className="col-xs-6">
-              <div style={{borderRadius: "100px", height: "100px", width: "100px", overflow: "hidden"}}>
-                <img style={{borderRadius: "100px", width: "100px"}} src={props.friend.photo_url}></img>
+              <div className="img-circle" style={{overflow: "hidden", height: "100px", width: "100px"}}>
+                <img style={{minWidth: "100px", minHeight: "100px", maxWidth: "120px", maxHeight: "120px"}} src={props.friend.photo_url}></img>
               </div>
+
             </div>
+
           </div>
 
-          <div style={{marginTop: "50px"}}>
-            <img style={{borderRadius: "200px", width: "200px"}} src={props.restaurant.image_url} alt="" width="100%"/>
+          <div className="text-center" style={{marginTop: "50px", marginLeft: "25%"}}>
+            <div style={{borderRadius: "200px", height: "200px", width: "200px", overflow: "hidden"}}>
+              <img style={{borderRadius: "200px", minWidth: "200px", minHeight: "200px"}} src={props.restaurant.image_url} alt="" width="100%"/>
+            </div>
           </div>
           <div className="col-xs-9">
             <h4 className="pull-left">{props.restaurant.name}</h4>
@@ -81,7 +88,7 @@ const CommonRestaurantDetail = (props) => {
 }
 
 export default CommonRestaurantDetail;
-
+// <img style={{ maxWidth: "160px", maxHeight: "160px" }} src={props.friend.photo_url}></img>
 // restaurant
 // :
 // categories

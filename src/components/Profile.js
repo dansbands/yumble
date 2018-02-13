@@ -5,6 +5,9 @@ import { Link } from 'react-router-dom'
 const Profile = props => {
   console.log("Profile Props", props);
   let img = image
+  let divClass
+
+  props.editing ? divClass = "profile visible": divClass = "profile"
 
   if (props.user.photo_url) {
     console.log('User has a photo');
@@ -16,18 +19,19 @@ const Profile = props => {
       <div className="list-heading">
         <h3>User Profile<span className="glyphicon glyphicon-pencil pull-right" onClick={() => props.toggleEdit()}></span></h3>
       </div>
-
-        <div className="col-xs-6">
-          <h4>{props.user.firstname} {props.user.lastname}</h4>
-          <h5>{props.user.location}</h5><br></br>
-          <h5>Username: <b>{props.user.username}</b></h5>
+        <div className="row">
+          <div className="col-xs-6">
+            <h4>{props.user.firstname} {props.user.lastname}</h4>
+            <h5>{props.user.location}</h5><br></br>
+            <h5>Username: <b>{props.user.username}</b></h5>
+          </div>
+          <div className="col-xs-6">
+            <img className="pull-right" src={img} alt="" width="100%"/>
+          </div>
         </div>
-        <div className="col-xs-6">
-          <img className="pull-right" src={img} alt="" width="100%"/>
-        </div>
 
-        {props.editing &&
-          <div onChange={props.onChange}>
+
+          <div className={divClass} onChange={props.onChange}>
             <div className="form-group">
               <label htmlFor="firstname">First Name</label>
               <input
@@ -74,12 +78,11 @@ const Profile = props => {
               </input>
             </div>
 
-            <button
-              onClick={props.onSubmit}>
-              <input className="btn btn-default" type="submit"></input>
-            </button>
+
+              <input className="btn btn-default" type="submit" onClick={props.onSubmit}></input>
+
           </div>
-        }
+
 
 
 
