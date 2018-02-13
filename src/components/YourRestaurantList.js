@@ -12,7 +12,8 @@ class YourRestaurantList extends React.Component {
           <YourRestaurantCard
             key={i}
             restaurant={restaurant}
-            handleClickSavedCard={this.props.handleClickSavedCard} />
+            handleClickSavedCard={this.props.handleClickSavedCard}
+            allUsers={this.props.allUsers} />
         )
       })
     }

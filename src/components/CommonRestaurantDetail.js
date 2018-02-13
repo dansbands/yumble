@@ -26,17 +26,17 @@ const CommonRestaurantDetail = (props) => {
 
         <div className="row text-center">
           <h2 className="match large">It's a Match!</h2>
-          <h4>You and {props.friend.firstname} both like this restaurant!</h4>
+          <h4 style={{marginBottom: "20px"}}>You and {props.friend.firstname} both like this restaurant!</h4>
           <div className="row">
 
             <div className="col-xs-6">
 
-                <img className="img-circle" style={{maxWidth: "100px"}} src={props.you.photo_url}></img>
+                <img className="img-circle match-pic" style={{maxWidth: "100px"}} src={props.you.photo_url}></img>
 
             </div>
 
-            <div className="col-xs-6">
-              <div className="img-circle" style={{overflow: "hidden", height: "100px", width: "100px"}}>
+            <div className="col-xs-5">
+              <div className="img-circle match-pic pull-right" style={{overflow: "hidden", height: "100px", width: "100px"}}>
                 <img style={{minWidth: "100px", minHeight: "100px", maxWidth: "120px", maxHeight: "120px"}} src={props.friend.photo_url}></img>
               </div>
 
@@ -46,7 +46,7 @@ const CommonRestaurantDetail = (props) => {
 
           <div className="text-center" style={{marginTop: "50px", marginLeft: "25%"}}>
             <div style={{borderRadius: "200px", height: "200px", width: "200px", overflow: "hidden"}}>
-              <img style={{borderRadius: "200px", minWidth: "200px", minHeight: "200px"}} src={props.restaurant.image_url} alt="" width="100%"/>
+              <img className="match-pic" style={{borderRadius: "200px", minWidth: "200px", minHeight: "200px"}} src={props.restaurant.image_url} alt="" width="100%"/>
             </div>
           </div>
           <div className="col-xs-9">

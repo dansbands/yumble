@@ -2,7 +2,21 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const YourRestaurantCard = (props) => {
-  // console.log('YourRestaurantCard', props);
+  let otherUsers
+  let userPics
+
+  if (props.restaurant.other_users) {
+    otherUsers = props.allUsers.filter(u => {
+      return props.restaurant.other_users.includes(u.id)
+    })
+    userPics = otherUsers.map(u => {
+      return <img src={u.photo_url} key={u.id} alt="" className="other-user"/>
+    })
+  }
+  console.log('YourRestaurantCard', props);
+  console.log('YourRestaurantCard otherUsers', otherUsers);
+  console.log('YourRestaurantCard userPics', userPics);
+
   return (
     <Link
       to="/detail"
@@ -13,8 +27,11 @@ const YourRestaurantCard = (props) => {
         </div>
         <div className="media-body">
           <i className="glyphicon glyphicon-trash pull-right trash" name="delete" onClick={e => props.handleClickSavedCard(e, props.restaurant)}></i>
-          <h5 className="media-heading">{props.restaurant.name}</h5>
-          <h5>{props.restaurant.price}</h5>
+          <h5 className="media-heading">{props.restaurant.name} <text> - {props.restaurant.price}</text></h5>
+          <div className="other-user-container">
+
+            {userPics}
+          </div>
         </div>
       </div>
     </Link>

@@ -263,7 +263,8 @@ class AppContainer extends Component {
                         displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}/>
+                        handleClickSavedCard={this.handleClickSavedCard}
+                        allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -275,7 +276,8 @@ class AppContainer extends Component {
                         restaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}/>
+                        handleClickSavedCard={this.handleClickSavedCard}
+                        allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -294,7 +296,8 @@ class AppContainer extends Component {
                         displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}/>
+                        handleClickSavedCard={this.handleClickSavedCard}
+                        allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -310,7 +313,8 @@ class AppContainer extends Component {
                         displayRestaurant={this.state.displayRestaurant}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}/>
+                          handleClickSavedCard={this.handleClickSavedCard}
+                          allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -333,7 +337,8 @@ class AppContainer extends Component {
                         displayRestaurant={this.state.displayRestaurant}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}/>
+                          handleClickSavedCard={this.handleClickSavedCard}
+                          allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -354,7 +359,8 @@ class AppContainer extends Component {
                         displayRestaurant={this.state.displayRestaurant}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}/>
+                          handleClickSavedCard={this.handleClickSavedCard}
+                          allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -376,7 +382,8 @@ class AppContainer extends Component {
                         you={this.state.currentUser}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}/>
+                          handleClickSavedCard={this.handleClickSavedCard}
+                          allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
