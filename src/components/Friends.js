@@ -1,5 +1,6 @@
 import React from 'react'
 import snake from '../img/profile/snake.png'
+import { Link } from 'react-router-dom'
 
 const Friends = props => {
   console.log('Friends', props);
@@ -51,9 +52,15 @@ const Friends = props => {
       // }
 
       return (
-        <div key={i} className="panel">
-          <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
-        </div>
+        <Link
+          className="link"
+          to="/common"
+          key={i}
+          onClick={e => props.handleClickCommonCard(e, r)}>
+          <div className="panel" >
+            <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
+          </div>
+        </Link>
       )
     })
   } else {

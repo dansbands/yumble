@@ -71,6 +71,7 @@ body {
 
 .link {
   color: grey;
+  text-decoration: none;
 }
 
 .link:hover {
@@ -127,6 +128,14 @@ body {
 
 .nav-container {
   margin-top: 10px;
+}
+
+.match {
+  font-family: 'Great Vibes', cursive;
+}
+
+.large {
+  font-size: 50px;
 }
 
 /* .navbar,

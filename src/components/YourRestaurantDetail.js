@@ -4,25 +4,6 @@ import { Link } from 'react-router-dom';
 const YourRestaurantDetail = (props) => {
   console.log('YourRestaurantDetail', props);
 
-  // const categories = props.restaurant.categories.map( (c, i) => {
-  //   return <li key={i}>{c.title}</li>
-  // })
-
-  // const transactions = props.restaurant.transactions.map( (t, i) => {
-  //   return <li key={i}>{t}</li>
-  // })
-
-// Transactions:
-//   <ul>
-//     {transactions}
-//   </ul>
-// <p>Categories:</p>
-//   <ul>
-//     {categories}
-//   </ul>
-
-// Distance: {distance} miles<br/>
-
 
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   let tel = "tel:" + props.restaurant.phone

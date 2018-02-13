@@ -8,6 +8,7 @@ import api from './services/api'
 import { Route, Switch } from 'react-router-dom';
 import Friends from './components/Friends';
 import Profile from './components/Profile';
+import CommonRestaurantDetail from './components/CommonRestaurantDetail';
 
 
 class AppContainer extends Component {
@@ -18,6 +19,7 @@ class AppContainer extends Component {
       currentUser: [],
       editing: false,
       commonRestaurants: [],
+      currentCommonRestaurant: [],
       currentFriend: [],
       currentFriendsRestaurants: [],
       allUsers: [],
@@ -130,7 +132,9 @@ class AppContainer extends Component {
       }
     }
     console.log('commonRestaurants', commonRestaurants);
-    this.setState({ commonRestaurants: commonRestaurants })
+    this.setState({
+      commonRestaurants: commonRestaurants,
+     })
   }
 
   handleRemove = event => {
@@ -166,6 +170,17 @@ class AppContainer extends Component {
     } else {
       console.log('clicked saved card', event.currentTarget.id, restaurant );
       this.setState({ displayRestaurant: restaurant })
+    }
+  }
+
+  handleClickCommonCard = (event, restaurant) => {
+    if (event.target.className.includes("trash")) {
+      console.log('delete', restaurant);
+      api.data.deleteSavedRestaurant(restaurant.id)
+      .then(() => this.getUser())
+    } else {
+      console.log('clicked saved card', event.currentTarget.id, restaurant );
+      this.setState({ currentCommonRestaurant: restaurant })
     }
   }
 
@@ -308,7 +323,9 @@ class AppContainer extends Component {
                         currentFriend={this.state.currentFriend}
                         friendsRestaurants={this.state.currentFriendsRestaurants}
                         commonRestaurants={this.state.commonRestaurants}
-                        onClick={this.handleChangeFriend}/>
+                        currentCommonRestaurant={this.state.currentCommonRestaurant}
+                        onClick={this.handleChangeFriend}
+                        handleClickCommonCard={this.handleClickCommonCard}/>
                       <RestaurantContainer
                         handleRemove={this.handleRemove}
                         handleSelect={this.handleSelect}
@@ -335,6 +352,28 @@ class AppContainer extends Component {
                         handleSelect={this.handleSelect}
                         restaurant={this.state.currentRestaurant}
                         displayRestaurant={this.state.displayRestaurant}/>
+                        <YourRestaurantList
+                          yourRestaurants={this.state.yourRestaurants}
+                          handleClickSavedCard={this.handleClickSavedCard}/>
+                    </div>
+                  )}
+                } />
+              <Route path="/common" render={
+                routerProps => {
+                  return (
+                    <div className="row">
+                      <Friends
+                        allUsers={this.state.allUsers}
+                        currentFriend={this.state.currentFriend}
+                        friendsRestaurants={this.state.currentFriendsRestaurants}
+                        commonRestaurants={this.state.commonRestaurants}
+                        currentCommonRestaurant={this.state.currentCommonRestaurant}
+                        onClick={this.handleChangeFriend}
+                        handleClickCommonCard={this.handleClickCommonCard}/>
+                      <CommonRestaurantDetail
+                        restaurant={this.state.currentCommonRestaurant}
+                        friend={this.state.currentFriend}
+                        you={this.state.currentUser}/>
                         <YourRestaurantList
                           yourRestaurants={this.state.yourRestaurants}
                           handleClickSavedCard={this.handleClickSavedCard}/>

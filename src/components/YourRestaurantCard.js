@@ -5,7 +5,7 @@ const YourRestaurantCard = (props) => {
   // console.log('YourRestaurantCard', props);
   return (
     <Link
-      to="/detail"
+      to="/common"
       className="link">
       <div id={props.restaurant.id} className="list-group-item media" onClick={e => props.handleClickSavedCard(e, props.restaurant)}>
         <div className="media-left">
