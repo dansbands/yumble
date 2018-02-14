@@ -43,7 +43,7 @@ const YourRestaurantDetail = (props) => {
       </Link>
 
       <div className="row">
-        <div>
+        <div style={{maxHeight: "300px", overflow: "hidden"}}>
           <img src={props.restaurant.image_url} alt="" width="100%"/>
         </div>
         <div className="col-xs-9">

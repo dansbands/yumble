@@ -148,11 +148,15 @@ class AppContainer extends Component {
     let newRestaurant = this.state.restaurants.find( r => {
       return r.id === eventId
     })
+    let commonRestaurant = this.state.currentFriendsRestaurants.find(r => r.yelp_id === newRestaurant.yelp_id)
     newRestaurant.user_id = this.state.user.id
     console.log('newRestaurant', newRestaurant);
+    console.log('commonRestaurant', commonRestaurant);
     console.log('newRestaurantUser', this.state.user.id);
 
-    this.setState({ currentCommonRestaurant: newRestaurant})
+    if (commonRestaurant) {
+      this.setState({ currentCommonRestaurant: newRestaurant})
+    }
     api.data.postSavedRestaurant(newRestaurant)
       .then(() => {
         //deleteRestaurant from list of all
@@ -237,6 +241,13 @@ class AppContainer extends Component {
     return (
       <div>
         {localStorage.getItem('token') &&
+          <div>
+            <CommonRestaurantDetail
+              close={this.handleClickCommonCard}
+              restaurant={this.state.currentCommonRestaurant}
+              friend={this.state.currentFriend}
+              you={this.state.currentUser}/>
+
           <Switch>
             <Route
               path="/"
@@ -404,6 +415,7 @@ class AppContainer extends Component {
                   )}
                 } />
           </Switch>
+          </div>
         }
         </div>
 
