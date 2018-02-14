@@ -171,6 +171,7 @@ body {
 
 .wide {
   margin-left: 10%;
+  margin-top: 20px;
 }
 
 .button-group {
@@ -185,6 +186,13 @@ body {
 
 } */
 
+.orange-btn {
+  border-radius: 25px;
+  color: rgb(241,89,70);
+  background-color: white;
+  border: 1px solid rgb(241,89,70);
+}
+
 .orange-text {
   color: rgb(241,89,70);
 }
@@ -197,20 +205,26 @@ body {
   width: 80%;
 }
 
-.orange-btn {
+.orange-wide {
   border-radius: 25px;
   color: rgb(241,89,70);
   background-color: white;
   border: 1px solid rgb(241,89,70);
+  width: 80%;
 }
 
+
 .orange a,
+.orange-wide a,
 .orange-btn a {
   color: rgb(241,89,70);
 }
 
+.orange-wide:hover a,
+.orange-btn:hover a,
 .orange:hover a {
   color: white;
+  text-decoration: none;
 }
 
 /* .orange:hover {
@@ -220,7 +234,8 @@ body {
   border: 1px solid rgb(241,89,70);
   width: 80%;
 } */
-
+.orange-wide:hover,
+.orange-btn:hover,
 .orange:hover {
   border-radius: 25px;
   background-color: rgba(241,89,70,0.8);

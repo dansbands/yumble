@@ -32,6 +32,7 @@ class CommonRestaurantDetail extends React.Component {
    let restTel
    let friendTel
    let friendText
+   let friendEmail
    // let url = `url(${this.props.friend.photo_url}) -10px 1px / 120px no-repeat` //for background image for circle divs
 
    if (this.props.restaurant) {
@@ -45,6 +46,7 @@ class CommonRestaurantDetail extends React.Component {
    } else {
      friendTel= "tel:1-973-486-4884"
      friendText= "iMessage:1-973-486-4884"
+     friendEmail= "mailto:daniel.odea@flatironschool.com?Subject=Check%20Out%20This%20Restaurant%20I%20Found%20On%20Yumble!"
    }
    // return<div>under construction</div>
    if (!this.props.restaurant) {
@@ -110,9 +112,13 @@ class CommonRestaurantDetail extends React.Component {
 
           </div>
         </div>
+
+        <button className="btn btn-default orange-wide wide">
+          <a href={restTel}>Call {this.props.restaurant.name}</a>
+        </button>
         <div className="btn-group wide" style={{width: "90%"}}>
           <button className="btn btn-default button-group orange-btn">
-            <a href={restTel}>Call {this.props.restaurant.name}</a>
+            <a href={friendEmail}>Email {this.props.friend.firstname}</a>
           </button>
           <button className="btn btn-default button-group orange-btn">
             <a href={friendTel}>Call {this.props.friend.firstname}</a>
