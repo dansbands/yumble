@@ -173,8 +173,11 @@ class AppContainer extends Component {
     }
   }
 
-  handleClickCommonCard = (event, restaurant) => {
-      // console.log('clicked saved card', event.currentTarget.id, restaurant );
+  handleClickCommonCard = (event, user, restaurant) => {
+      console.log('clicked common card', restaurant, user );
+      if (user) {
+        this.setState({ currentFriend: user })
+      }
       this.setState({ currentCommonRestaurant: restaurant })
   }
 
@@ -211,6 +214,12 @@ class AppContainer extends Component {
     console.log('handleUpdateUser', this.state.currentUser);
     api.data.updateUserInfo(this.state.currentUser)
     .then(this.toggleEdit)
+  }
+
+  handleClickUser = (event, user, restaurant) => {
+    console.log('clicked user', user);
+    console.log('clicked user restaurant', restaurant);
+    this.handleClickCommonCard(event, user, restaurant)
   }
 
   toggleEdit = () => {
@@ -272,12 +281,18 @@ class AppContainer extends Component {
                   return (
                     <div className="row">
                       <YourRestaurantDetail
+                        handleClickUser={this.handleClickUser}
                         allUsers={this.state.allUsers}
                         restaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
                         handleClickSavedCard={this.handleClickSavedCard}
                         allUsers={this.state.allUsers}/>
+                      <CommonRestaurantDetail
+                        close={this.handleClickCommonCard}
+                        restaurant={this.state.currentCommonRestaurant}
+                        friend={this.state.currentFriend}
+                        you={this.state.currentUser}/>
                     </div>
                   )}
                 } />

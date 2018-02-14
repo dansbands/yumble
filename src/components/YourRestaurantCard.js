@@ -22,10 +22,10 @@ const YourRestaurantCard = (props) => {
       return <img src={u.photo_url} key={u.id} alt="" className="other-user"/>
     })
   }
-  console.log('YourRestaurantCard', props);
-  console.log('YourRestaurantCard notYou', notYou);
-  console.log('YourRestaurantCard otherUsers', otherUsers);
-  console.log('YourRestaurantCard userPics', userPics);
+  // console.log('YourRestaurantCard', props);
+  // console.log('YourRestaurantCard notYou', notYou);
+  // console.log('YourRestaurantCard otherUsers', otherUsers);
+  // console.log('YourRestaurantCard userPics', userPics);
 
   return (
     <Link

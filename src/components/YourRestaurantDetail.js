@@ -25,7 +25,7 @@ const YourRestaurantDetail = (props) => {
     })
     userPics = otherUsers.map(u => {
       return (
-        <div className="col-xs-2 text-center">
+        <div className="col-xs-2 text-center" onClick={(e) => props.handleClickUser(e,u, props.restaurant)}>
           <img src={u.photo_url} key={u.id} alt="" className="lg-other-user"/>
           <h5>{u.firstname}</h5>
         </div>

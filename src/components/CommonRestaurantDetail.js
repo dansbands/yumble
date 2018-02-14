@@ -72,16 +72,13 @@ class CommonRestaurantDetail extends React.Component {
            <div className="row">
              <div className="col-xs-1"></div>
              <div className="col-xs-6">
-
                <img className="img-circle match-pic" style={{maxWidth: "100px"}} src={this.props.you.photo_url}></img>
-
              </div>
 
              <div className="col-xs-4">
                <div className="img-circle match-pic" style={{overflow: "hidden", height: "100px", width: "100px"}}>
                  <img style={{minWidth: "100px", minHeight: "100px", maxWidth: "120px", maxHeight: "120px"}} src={this.props.friend.photo_url}></img>
                </div>
-
              </div>
 
            </div>
