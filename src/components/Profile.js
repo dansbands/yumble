@@ -23,7 +23,10 @@ const Profile = props => {
           <div className="col-xs-6">
             <h4>{props.user.firstname} {props.user.lastname}</h4>
             <h5>{props.user.location}</h5><br></br>
-            <h5>Username: <b>{props.user.username}</b></h5>
+            {props.user.username && <h5>Username: <b>{props.user.username}</b></h5>}
+            {props.user.email && <h5>Email: <b>{props.user.email}</b></h5>}
+            {props.user.phone && <h5>Phone Number:<br></br> <b>{props.user.phone}</b></h5>}
+            {props.user.bio && <h5>Bio: <b>{props.user.bio}</b></h5>}
           </div>
           <div className="col-xs-6">
             <img className="pull-right" src={img} alt="" width="100%"/>
@@ -33,7 +36,7 @@ const Profile = props => {
 
           <div className={divClass} onChange={props.onChange}>
             <div className="form-group">
-              <label htmlFor="firstname">First Name</label>
+              <label htmlFor="firstname">First Name:</label>
               <input
                 type="text"
                 className="form-control"
@@ -42,7 +45,7 @@ const Profile = props => {
               </input>
             </div>
             <div className="form-group">
-              <label htmlFor="lastname">Last Name</label>
+              <label htmlFor="lastname">Last Name:</label>
               <input
                 type="text"
                 className="form-control"
@@ -51,7 +54,7 @@ const Profile = props => {
               </input>
             </div>
             <div className="form-group">
-              <label htmlFor="username">User Name</label>
+              <label htmlFor="username">User Name:</label>
               <input
                 type="text"
                 className="form-control"
@@ -69,12 +72,39 @@ const Profile = props => {
               </input>
             </div>
             <div className="form-group">
-              <label htmlFor="photo_url">Profile Picture</label>
+              <label htmlFor="photo_url">Profile Picture:</label>
               <input
                 type="text"
                 className="form-control"
                 id="photo_url"
                 value={props.user.photo_url}>
+              </input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="email"
+                value={props.user.email}>
+              </input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="phone">Phone Number:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="phone"
+                value={props.user.phone}>
+              </input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="bio">Bio:</label>
+              <input
+                type="text"
+                className="form-control"
+                id="bio"
+                value={props.user.bio}>
               </input>
             </div>
 
