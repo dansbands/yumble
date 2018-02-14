@@ -174,14 +174,8 @@ class AppContainer extends Component {
   }
 
   handleClickCommonCard = (event, restaurant) => {
-    if (event.target.className.includes("trash")) {
-      console.log('delete', restaurant);
-      api.data.deleteSavedRestaurant(restaurant.id)
-      .then(() => this.getUser())
-    } else {
-      console.log('clicked saved card', event.currentTarget.id, restaurant );
+      // console.log('clicked saved card', event.currentTarget.id, restaurant );
       this.setState({ currentCommonRestaurant: restaurant })
-    }
   }
 
   handleFormChange = (newVal, formName) => {
@@ -378,6 +372,7 @@ class AppContainer extends Component {
                         onClick={this.handleChangeFriend}
                         handleClickCommonCard={this.handleClickCommonCard}/>
                       <CommonRestaurantDetail
+                        close={this.handleClickCommonCard}
                         restaurant={this.state.currentCommonRestaurant}
                         friend={this.state.currentFriend}
                         you={this.state.currentUser}/>
