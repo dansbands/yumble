@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Search = ({onChange, value, onSubmit}) => {
+const Search = ({onChange, value, onSubmit, getLocation, usingLocation}) => {
   const onFormValueChange = (key, newVal) => {
     onChange({
       ...value,
@@ -37,9 +37,11 @@ const Search = ({onChange, value, onSubmit}) => {
                  </select>
           </div>
 
-
+          <div onClick={() => getLocation()}>
+            <i className="material-icons pull-right">near_me</i>
+            <p className="pull-right">{usingLocation}</p>
+          </div>
         <div className="form-group">
-          <i className="material-icons pull-right">near_me</i>
           <label htmlFor="location">Location</label>
           <input
             className="form-control"

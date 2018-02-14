@@ -16,6 +16,7 @@ class AppContainer extends Component {
     super(props);
 
     this.state = {
+      usingLocationServices: "Use Location Services",
       currentUser: [],
       editing: false,
       commonRestaurants: [],
@@ -186,6 +187,10 @@ class AppContainer extends Component {
   }
 
   handleFormChange = (newVal, formName) => {
+    if (newVal.latitude !== this.state.searchVal.latitude) {
+      console.log('Latitude', newVal);
+      this.setState({ usingLocationServices: "Use Location Services" })
+    }
     this.setState({ [formName]: newVal})
     console.log("Handle Form Change", newVal, formName);
   }
@@ -230,6 +235,24 @@ class AppContainer extends Component {
     this.setState({
       editing: !this.state.editing
     })
+  }
+
+  handleGetLocation = event => {
+    console.log('getting location', event);
+    if ("geolocation" in navigator) {
+    	navigator.geolocation.getCurrentPosition(p => {
+        console.log("geolocation is available", p.coords.latitude, p.coords.longitude)
+        this.setState({
+          usingLocationServices: "Using Your Current Location",
+          searchVal: {
+            ...this.state.searchVal,
+            latitude: p.coords.latitude,
+            longitude: p.coords.longitude,
+            currentLocation: "Using Your Current Location",
+          }
+        })
+      })
+    }
   }
 
   render() {
@@ -312,6 +335,8 @@ class AppContainer extends Component {
                   return (
                     <div className="row">
                       <Search
+                        usingLocation={this.state.usingLocationServices}
+                        getLocation={this.handleGetLocation}
                         value={this.state.searchVal}
                         onChange={this.handleFormChange}
                         onSubmit={this.handleSubmitSearch}/>
