@@ -7,11 +7,15 @@ const YourRestaurantDetail = (props) => {
 
   let distance = Math.round(props.restaurant.distance * 0.00621371192)/ 10
   let tel = "tel:" + props.restaurant.phone
+  let notYou
   let otherUsers = []
   let userPics
 
   if (props.allUsers) {
-    props.allUsers.map(u => {
+    notYou = props.allUsers.filter(u => {
+      return u.id !== props.restaurant.user_id
+    })
+    notYou.map(u => {
       // return props.restaurant.other_users.includes(u.id)
       u.saved_restaurants.map(r => {
         if(r.yelp_id === props.restaurant.yelp_id) {

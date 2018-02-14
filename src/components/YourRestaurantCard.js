@@ -2,11 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const YourRestaurantCard = (props) => {
+  let notYou
   let otherUsers = []
   let userPics
 
   if (props.allUsers) {
-    props.allUsers.map(u => {
+    notYou = props.allUsers.filter(u => {
+      return u.id !== props.restaurant.user_id
+    })
+    notYou.map(u => {
       // return props.restaurant.other_users.includes(u.id)
       u.saved_restaurants.map(r => {
         if(r.yelp_id === props.restaurant.yelp_id) {
@@ -19,6 +23,7 @@ const YourRestaurantCard = (props) => {
     })
   }
   console.log('YourRestaurantCard', props);
+  console.log('YourRestaurantCard notYou', notYou);
   console.log('YourRestaurantCard otherUsers', otherUsers);
   console.log('YourRestaurantCard userPics', userPics);
 
