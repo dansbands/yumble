@@ -313,15 +313,6 @@ class AppContainer extends Component {
                         handleClickUser={this.handleClickUser}
                         allUsers={this.state.allUsers}
                         restaurant={this.state.displayRestaurant}/>
-                      <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}
-                        allUsers={this.state.allUsers}/>
-                      <CommonRestaurantDetail
-                        close={this.handleClickCommonCard}
-                        restaurant={this.state.currentCommonRestaurant}
-                        friend={this.state.currentFriend}
-                        you={this.state.currentUser}/>
                     </div>
                   )}
                 } />
@@ -366,6 +357,7 @@ class AppContainer extends Component {
                         commonRestaurants={this.state.commonRestaurants}
                         currentCommonRestaurant={this.state.currentCommonRestaurant}
                         onClick={this.handleChangeFriend}
+                        handleClickUser={this.handleClickUser}
                         handleClickCommonCard={this.handleClickCommonCard}/>
                     </div>
                   )}

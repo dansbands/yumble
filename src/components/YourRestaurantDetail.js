@@ -37,13 +37,13 @@ const YourRestaurantDetail = (props) => {
   console.log('YourRestaurantCard userPics', userPics);
   // return<div>under construction</div>
   return (
-    <div className="col-xs-4 list center panel panel-default card">
+    <div className="main-content">
       <Link to="/favorites">
         <i className="glyphicon glyphicon-menu-left" style={{marginBottom: "10px", fontSize: "24px"}}></i>
       </Link>
 
       <div className="row">
-        <div style={{maxHeight: "300px", overflow: "hidden"}}>
+        <div className="detail-image">
           <img src={props.restaurant.image_url} alt="" width="100%"/>
         </div>
         <div className="col-xs-9">
@@ -61,7 +61,7 @@ const YourRestaurantDetail = (props) => {
             {props.restaurant.display_address_1}<br/>
             {props.restaurant.display_address_2}</p>
             <p>
-          <a href={tel}>{props.restaurant.display_phone}</a><br/>
+
           {props.restaurant.is_closed &&
             <h5>Permanently Closed</h5>
           }

@@ -20,20 +20,23 @@ class YourRestaurantList extends React.Component {
     }
 
     return (
-      <div className="col-xs-3 list right">
-        <div className="btn-group">
-          <Link
-            to="/favorites"
-            className="btn btn-default">Favorites</Link>
-          <Link
-            to="/friends"
-            className="btn btn-default">Friends</Link>
+      <div className="supporting-content right">
+        <div className="fixed-heading">
+          <div className="btn-group">
+            <Link
+              to="/favorites"
+              className="btn btn-default">Favorites</Link>
+            <Link
+              to="/friends"
+              className="btn btn-default">Friends</Link>
+          </div>
+
+          <div className="list-heading">
+            <h3>Your Restaurants</h3>
+          </div>
         </div>
 
-        <div className="list-heading">
-          <h3>Your Restaurants</h3>
-        </div>
-        <div className="list-group">
+        <div className="list list-group">
           {restaurants}
         </div>
       </div>

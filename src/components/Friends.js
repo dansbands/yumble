@@ -52,15 +52,11 @@ const Friends = props => {
       // }
 
       return (
-        <Link
-          className="link"
-          to="/common"
-          key={i}
-          onClick={e => props.handleClickCommonCard(e, r)}>
-          <div className="panel" >
+
+          <div key={i} className="panel" onClick={e => props.handleClickUser(e, props.currentFriend, r)}>
             <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
           </div>
-        </Link>
+
       )
     })
   } else {
@@ -70,7 +66,7 @@ const Friends = props => {
   // return <div>Your Friends</div>
 
   return (
-    <div className="col-xs-3 right">
+    <div className="supporting-content right">
       <div className="btn-group">
         <Link
           to="/favorites"
@@ -97,17 +93,18 @@ const Friends = props => {
         {allUsers}
       </div>
       <div className="list-heading">
-        <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
-      </div>
-      <div className="small-list">
-        {friendsRestaurants}
-      </div>
-      <div className="list-heading">
         <h3>Your Common Restaurants ({commonRestaurants.length})</h3>
       </div>
       <div className="small-list">
         {commonRestaurants}
       </div>
+      <div className="list-heading">
+        <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
+      </div>
+      <div className="small-list">
+        {friendsRestaurants}
+      </div>
+
     </div>
   )
 }

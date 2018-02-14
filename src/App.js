@@ -72,18 +72,35 @@ class App extends React.Component {
                   )
                 }
               } />
-            <Route
-              path="/"
-              render={
-                routerProps => {
-                  return (
-                    <AppContainer
-                      {...routerProps}
-                      handleLogout={this.handleLogout}
-                      currentUser={this.state.auth.currentUser}/>
-                  )
-                }
-              } />
+            {localStorage.getItem('token') ? (
+              <Route
+                path="/"
+                render={
+                  routerProps => {
+                    return (
+                      <AppContainer
+                        {...routerProps}
+                        handleLogout={this.handleLogout}
+                        currentUser={this.state.auth.currentUser}/>
+                    )
+                  }
+                } />
+
+            ) : (
+              <Route
+                path="/"
+
+                render={
+                  routerProps => {
+                    return (
+                        <div className="row">
+                          <SignIn {...routerProps}
+                            handleLogin={this.handleLogin} />
+                        </div>
+                    )
+                  }
+                } />
+            )}
           </Switch>
         </div>
       </div>

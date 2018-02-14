@@ -61,9 +61,7 @@ class CommonRestaurantDetail extends React.Component {
            show={this.props.restaurant.id}
            onHide={this.handleClose}>
            <Modal.Header closeButton>
-             <Link to="/favorites">
-               <i className="glyphicon glyphicon-menu-left orange-text" style={{marginBottom: "10px", fontSize: "24px"}}></i>
-             </Link>
+
            </Modal.Header>
            <Modal.Body>
 
@@ -72,12 +70,11 @@ class CommonRestaurantDetail extends React.Component {
            <h2 className="match large">It's a Match!</h2>
            <h4 style={{marginBottom: "20px"}}>You and {this.props.friend.firstname} both like this restaurant!</h4>
            <div className="row">
-             <div className="col-xs-1"></div>
-             <div className="col-xs-6">
+             <div className="match-pic-left">
                <img className="img-circle match-pic" style={{maxWidth: "100px"}} src={this.props.you.photo_url}></img>
              </div>
 
-             <div className="col-xs-4">
+             <div className="match-pic-right">
                <div className="img-circle match-pic" style={{overflow: "hidden", height: "100px", width: "100px"}}>
                  <img style={{minWidth: "100px", minHeight: "100px", maxWidth: "120px", maxHeight: "120px"}} src={this.props.friend.photo_url}></img>
                </div>
@@ -85,33 +82,24 @@ class CommonRestaurantDetail extends React.Component {
 
            </div>
 
-           <div className="text-center" style={{marginTop: "50px", marginLeft: "33%"}}>
-             <div style={{borderRadius: "200px", height: "200px", width: "200px", overflow: "hidden"}}>
-               <img className="match-pic" style={{borderRadius: "200px", minWidth: "200px", minHeight: "200px"}} src={this.props.restaurant.image_url} alt="" width="100%"/>
+           <div className="text-center match-pic-center">
+             <div className="img-circle match-pic-center-frame">
+               <img className="match-restaurant-pic match-pic" src={this.props.restaurant.image_url} alt="" width="100%"/>
              </div>
            </div>
          </div>
-         <div className="col-xs-2"></div>
-         <div className="col-xs-6">
+
+         <div className="match-text-left">
            <h4>{this.props.restaurant.name}</h4>
            <p>
              {this.props.restaurant.display_address_1}<br/>
            {this.props.restaurant.display_address_2}</p>
          </div>
-         <div className="col-xs-3">
+         <div className="match-text-right">
            <h4>{distance} mi.</h4>
              <p>Price: {this.props.restaurant.price}<br/>
              Rating: {this.props.restaurant.rating}<br/></p>
          </div>
-         <div className="row">
-           <div className="col-xs-7">
-
-           </div>
-
-           <div className="col-xs-5">
-
-          </div>
-        </div>
 
         <button className="btn btn-default orange-wide wide">
           <a href={restTel}>Call {this.props.restaurant.name}</a>

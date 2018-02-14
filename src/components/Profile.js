@@ -15,7 +15,7 @@ const Profile = props => {
   }
 
   return (
-    <div className="col-xs-3 right">
+    <div className="supporting-content right">
       <div className="btn-group">
         <Link
           to="/settings"
@@ -27,6 +27,8 @@ const Profile = props => {
       <div className="list-heading">
         <h3>User Profile<span className="glyphicon glyphicon-pencil pull-right" onClick={() => props.toggleEdit()}></span></h3>
       </div>
+      <div className="list">
+
         <div className="row">
           <div className="col-xs-6">
             <h4>{props.user.firstname} {props.user.lastname}</h4>
@@ -128,7 +130,7 @@ const Profile = props => {
               <input className="btn btn-default" type="submit" onClick={props.onSubmit}></input>
 
           </div>
-
+        </div>
 
 
 

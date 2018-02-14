@@ -19,7 +19,7 @@ const Search = ({onChange, value, onSubmit, getLocation, usingLocation}) => {
   }
 
     return (
-      <div className="col-xs-3 right">
+      <div className="supporting-content right">
         <div className="btn-group">
           <Link
             to="/settings"

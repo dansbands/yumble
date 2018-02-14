@@ -16,33 +16,36 @@ const RestaurantShow = (props) => {
       <div className="main-img">
         <img src={image_url} alt="" width="100%"/>
       </div>
-      <div className="col-xs-9">
-        <h4>{props.restaurant.name}</h4>
-      </div>
-      <div className="col-xs-3">
-        <h4 className="pull-right">{distance} mi.</h4>
-      </div>
-      <div className="row">
-        <div className="col-xs-5">
-          <h1>
-            <i
-              id={props.restaurant.id}
-              onClick={props.handleRemove}
-              className="glyphicon glyphicon-remove-sign pull-left fuscia"></i>
-          </h1>
+
+      <div className="fixed-footer">
+        <div className="col-xs-9">
+          <h4>{props.restaurant.name}</h4>
         </div>
         <div className="col-xs-3">
-          <h2>
-            <i className="glyphicon glyphicon-info-sign grey"></i>
-          </h2>
+          <h4 className="pull-right">{distance} mi.</h4>
         </div>
-        <div className="col-xs-4">
-          <h1>
-            <i
-              id={props.restaurant.id}
-              onClick={props.handleSelect}
-              className="glyphicon glyphicon-ok-sign pull-right lightgreen"></i>
-          </h1>
+        <div className="row">
+          <div className="col-xs-5">
+            <h1>
+              <i
+                id={props.restaurant.id}
+                onClick={props.handleRemove}
+                className="glyphicon glyphicon-remove-sign pull-left fuscia"></i>
+            </h1>
+          </div>
+          <div className="col-xs-3">
+            <h2>
+              <i className="glyphicon glyphicon-info-sign grey"></i>
+            </h2>
+          </div>
+          <div className="col-xs-4">
+            <h1>
+              <i
+                id={props.restaurant.id}
+                onClick={props.handleSelect}
+                className="glyphicon glyphicon-ok-sign pull-right lightgreen"></i>
+            </h1>
+          </div>
         </div>
       </div>
     </div>

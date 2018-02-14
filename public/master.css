@@ -15,6 +15,10 @@ body {
     opacity: 0
 }
 
+.fixed-footer {
+
+}
+
 .other-user {
   border: 2px solid #1ac639;
   width: 20px;
@@ -58,6 +62,24 @@ body {
   border: 4px solid rgb(241,89,70);
 }
 
+.match-restaurant-pic {
+  border-radius: 200px;
+  min-width: 200px;
+  min-height: 200px
+}
+
+.match-pic-center {
+  margin-top: 50px;
+  margin-left: 33%;
+}
+
+.match-pic-center-frame {
+  border-radius: 200px;
+  height: 200px;
+  width: 200px;
+  overflow: hidden;
+}
+
 .visible {
   opacity: 1
 }
@@ -85,6 +107,29 @@ body {
   height: 480px;
   overflow: hidden;
 }
+
+/* content for media queries */
+
+.main-content {
+  width: 60%;
+}
+
+.supporting-content {
+  width: 30%;
+  margin-right: 20px;
+}
+
+.desktop {
+
+}
+
+.detail-image {
+  max-height: 300px;
+  overflow: hidden;
+}
+/* ------- end content for media queries */
+
+
 
 .fuscia {
   font-size: 50px;
@@ -309,7 +354,6 @@ body {
 
 .match {
   font-family: 'Great Vibes', cursive;
-
 }
 
 .large {
@@ -388,4 +432,93 @@ body {
 
 .trash {
   font-size: 24px;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .main-content {
+    width: 90%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .main {
+    margin-top: 100px;
+  }
+
+  .supporting-content {
+    width: 90%;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  .list {
+    height: 480px;
+    overflow: scroll;
+  }
+
+  .desktop {
+    display: none;
+  }
+
+  .detail-image {
+    max-height: 200px;
+    overflow: hidden;
+  }
+
+  .match-pic-left {
+    margin-left: 10%;
+    width: 40%;
+    float: left;
+  }
+
+  .match-pic-right {
+    width: 40%;
+    float: right;
+  }
+
+  .match-pic-center {
+    margin-top: 10px;
+    margin-left: 30%;
+  }
+
+  .match-pic-center-frame {
+    border-radius: 150px;
+    height: 150px;
+    width: 150px;
+    overflow: hidden;
+  }
+
+  .match-restaurant-pic {
+    border-radius: 150px;
+    min-width: 150px;
+    min-height: 150px
+  }
+
+  .match-text-left {
+    margin-left: 10%;
+    width: 40%;
+    float: left;
+  }
+
+  .match-text-right {
+    margin-left: 15%;
+    width: 35%;
+    float: right;
+  }
+
+  .small-list {
+    height: 140px;
+  }
+
+  .list {
+    height: 400px;
+  }
+
+  .fixed-footer {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    right: 20px;
+  }
 }

@@ -43,38 +43,34 @@ class Navbar extends React.Component {
       <div>
         <nav className="navbar navbar-fixed-top">
           <div className="container-fluid nav-container">
-            <div className="col-xs-5">
+            <div className="col-xs-3">
               <ul className="nav navbar-nav navbar-left">
                 <li>
                   <Link
                     to="/settings"
-                    className="nav-link">
-                    <span className="glyphicon glyphicon-cog"></span> Settings
+                    className="nav-link"
+                    style={{ width: "10px"}}>
+                    <i style={{ fontSize: "35px"}} class="material-icons">settings</i>
                   </Link>
                 </li>
                 <li>
-                  {loggedIn ? (
-                  <Link
-                    to="/signin"
-                    onClick={this.handleLogout}
-                    className="nav-link">
-                      <span className="glyphicon glyphicon-user"></span> Sign Out {user}
-                  </Link>
+                  {!loggedIn ? (
+                    <Link
+                      to="/signin"
+                      onClick={this.handleLogout}
+                      className="nav-link">
+                        <span className="glyphicon glyphicon-user"></span>
+                        Sign In
+                    </Link>
                     ) : (
-                  <Link
-                    to="/signin"
-                    onClick={this.handleLogout}
-                    className="nav-link">
-                      <span className="glyphicon glyphicon-user"></span>
-                      Sign In
-                  </Link>
+                      null
                     )}
                 </li>
 
               </ul>
             </div>
 
-            <div className="col-xs-3">
+            <div className="col-xs-6">
               <div className="center-block">
 
                 <Link to="/" className="navbar-brand ">
@@ -83,16 +79,18 @@ class Navbar extends React.Component {
               </div>
             </div>
 
-            <div className="col-xs-4">
+            <div className="col-xs-3">
               <ul className="nav navbar-nav navbar-right">
 
 
-                
+
 
                 <li>
                   <Link
                     to="/favorites"
-                    className="nav-link"><span className="glyphicon glyphicon-heart-empty"></span> Favorites
+                    style={{ width: "10px"}}
+                    className="nav-link pull-right">
+                    <i style={{ fontSize: "35px"}} className="material-icons pull-right">people</i>
                   </Link>
                 </li>
 
@@ -101,7 +99,7 @@ class Navbar extends React.Component {
           </div>
         </nav>
 
-        <nav className="navbar navbar-fixed-bottom">
+        <nav className="navbar navbar-fixed-bottom desktop">
           <div className="container-fluid nav-container">
             <div className="col-xs-5">
               <ul className="nav navbar-nav navbar-left">

@@ -9,7 +9,7 @@ class RestaurantContainer extends React.Component {
   render() {
     // console.log('RestaurantContainer', this.props);
     return (
-      <div className="col-md-4 list center">
+      <div className="main-content">
         {this.props.restaurant ? (
           <RestaurantShow
             handleRemove={this.props.handleRemove}
