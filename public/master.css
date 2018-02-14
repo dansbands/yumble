@@ -277,6 +277,14 @@ body {
   height: 50px;
 }
 
+.big {
+  left: 10%;
+  right: 10%;
+  height: 50px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
 .right {
   position: fixed;
   right: 0;

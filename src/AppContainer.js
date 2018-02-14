@@ -298,11 +298,6 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
-                      <RestaurantContainer
-                        handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
                       <YourRestaurantList
                         yourRestaurants={this.state.yourRestaurants}
                         handleClickSavedCard={this.handleClickSavedCard}
@@ -340,15 +335,6 @@ class AppContainer extends Component {
                         value={this.state.searchVal}
                         onChange={this.handleFormChange}
                         onSubmit={this.handleSubmitSearch}/>
-                      <RestaurantContainer
-                        handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
-                      <YourRestaurantList
-                        yourRestaurants={this.state.yourRestaurants}
-                        handleClickSavedCard={this.handleClickSavedCard}
-                        allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -381,15 +367,6 @@ class AppContainer extends Component {
                         currentCommonRestaurant={this.state.currentCommonRestaurant}
                         onClick={this.handleChangeFriend}
                         handleClickCommonCard={this.handleClickCommonCard}/>
-                      <RestaurantContainer
-                        handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
-                        <YourRestaurantList
-                          yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}
-                          allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />
@@ -398,20 +375,12 @@ class AppContainer extends Component {
                   return (
                     <div className="row">
                       <Profile
+                        handleLogout={this.props.handleLogout}
                         user={this.state.currentUser}
                         editing={this.state.editing}
                         toggleEdit={this.toggleEdit}
                         onChange={this.handleProfileChange}
                         onSubmit={this.handleUpdateUser}/>
-                      <RestaurantContainer
-                        handleRemove={this.handleRemove}
-                        handleSelect={this.handleSelect}
-                        restaurant={this.state.currentRestaurant}
-                        displayRestaurant={this.state.displayRestaurant}/>
-                        <YourRestaurantList
-                          yourRestaurants={this.state.yourRestaurants}
-                          handleClickSavedCard={this.handleClickSavedCard}
-                          allUsers={this.state.allUsers}/>
                     </div>
                   )}
                 } />

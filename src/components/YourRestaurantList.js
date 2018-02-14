@@ -1,5 +1,6 @@
 import React from 'react';
-import YourRestaurantCard from './YourRestaurantCard'
+import YourRestaurantCard from './YourRestaurantCard';
+import { Link } from 'react-router-dom';
 
 class YourRestaurantList extends React.Component {
 
@@ -20,6 +21,15 @@ class YourRestaurantList extends React.Component {
 
     return (
       <div className="col-xs-3 list right">
+        <div className="btn-group">
+          <Link
+            to="/favorites"
+            className="btn btn-default">Favorites</Link>
+          <Link
+            to="/friends"
+            className="btn btn-default">Friends</Link>
+        </div>
+
         <div className="list-heading">
           <h3>Your Restaurants</h3>
         </div>

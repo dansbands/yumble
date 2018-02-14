@@ -30,6 +30,7 @@ class App extends React.Component {
   }
 
   handleLogout = () => {
+    console.log('handling logout');
     localStorage.removeItem('token');
     this.setState({ auth: { currentUser: {} } });
   }
@@ -78,6 +79,7 @@ class App extends React.Component {
                   return (
                     <AppContainer
                       {...routerProps}
+                      handleLogout={this.handleLogout}
                       currentUser={this.state.auth.currentUser}/>
                   )
                 }

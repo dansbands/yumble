@@ -70,7 +70,17 @@ const Friends = props => {
   // return <div>Your Friends</div>
 
   return (
-    <div className="col-xs-3 left">
+    <div className="col-xs-3 right">
+      <div className="btn-group">
+        <Link
+          to="/favorites"
+          className="btn btn-default">Favorites</Link>
+        <Link
+          to="/friends"
+          className="btn btn-default">Friends</Link>
+      </div>
+
+
       <div className="list-heading">
         <h3>Your Friends</h3>
       </div>

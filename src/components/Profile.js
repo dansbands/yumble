@@ -15,7 +15,15 @@ const Profile = props => {
   }
 
   return (
-    <div className="col-xs-3 left">
+    <div className="col-xs-3 right">
+      <div className="btn-group">
+        <Link
+          to="/settings"
+          className="btn btn-default">Settings</Link>
+        <Link
+          to="/profile"
+          className="btn btn-default">Profile</Link>
+      </div>
       <div className="list-heading">
         <h3>User Profile<span className="glyphicon glyphicon-pencil pull-right" onClick={() => props.toggleEdit()}></span></h3>
       </div>
@@ -31,6 +39,14 @@ const Profile = props => {
           <div className="col-xs-6">
             <img className="pull-right" src={img} alt="" width="100%"/>
           </div>
+        </div>
+        <div className="text-center">
+          <Link
+            to="/signin"
+            onClick={props.handleLogout}
+            >
+              <button className="btn btn-default orange big">Sign Out {props.user.firstname}</button>
+          </Link>
         </div>
 
 
