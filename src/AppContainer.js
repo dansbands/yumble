@@ -152,7 +152,7 @@ class AppContainer extends Component {
     console.log('newRestaurant', newRestaurant);
     console.log('newRestaurantUser', this.state.user.id);
 
-
+    this.setState({ currentCommonRestaurant: newRestaurant})
     api.data.postSavedRestaurant(newRestaurant)
       .then(() => {
         //deleteRestaurant from list of all
@@ -236,6 +236,11 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                       <div className="row">
+                        <CommonRestaurantDetail
+                          close={this.handleClickCommonCard}
+                          restaurant={this.state.currentCommonRestaurant}
+                          friend={this.state.currentFriend}
+                          you={this.state.currentUser}/>
                         <RestaurantContainer
                           handleRemove={this.handleRemove}
                           handleSelect={this.handleSelect}

@@ -169,6 +169,13 @@ body {
   background-color: white;
 }
 
+.wide {
+  margin-left: 10%;
+}
+
+.button-group {
+  width: 30%;
+}
 /* .btn-primary {
   border-radius: 25px;
   color: rgb(241,89,70);
@@ -178,6 +185,10 @@ body {
 
 } */
 
+.orange-text {
+  color: rgb(241,89,70);
+}
+
 .orange {
   border-radius: 25px;
   color: rgb(241,89,70);
@@ -186,7 +197,15 @@ body {
   width: 80%;
 }
 
-.orange a {
+.orange-btn {
+  border-radius: 25px;
+  color: rgb(241,89,70);
+  background-color: white;
+  border: 1px solid rgb(241,89,70);
+}
+
+.orange a,
+.orange-btn a {
   color: rgb(241,89,70);
 }
 

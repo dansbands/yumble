@@ -29,33 +29,42 @@ class CommonRestaurantDetail extends React.Component {
 
 
    let distance
-   let tel
+   let restTel
+   let friendTel
+   let friendText
    // let url = `url(${this.props.friend.photo_url}) -10px 1px / 120px no-repeat` //for background image for circle divs
 
    if (this.props.restaurant) {
      distance = Math.round(this.props.restaurant.distance * 0.00621371192)/ 10
-     tel = "tel:" + this.props.restaurant.phone
+     restTel = "tel:" + this.props.restaurant.phone
+   }
+
+   if (this.props.friend.tel) {
+     friendTel= "tel:" + this.props.friend.tel
+     friendText= "iMessage:" + this.props.friend.tel
+   } else {
+     friendTel= "tel:1-973-486-4884"
+     friendText= "iMessage:1-973-486-4884"
    }
    // return<div>under construction</div>
    if (!this.props.restaurant) {
-     return <div>No restaurant</div>
+     return <div></div>
    } else {
      return (
 
 
-       <div className="col-xs-4 list center panel panel-default card">
+       <div>
          <Modal
            bsSize="medium"
            show={this.props.restaurant.id}
            onHide={this.handleClose}>
            <Modal.Header closeButton>
-             <Modal.Title>Modal heading</Modal.Title>
+             <Link to="/favorites">
+               <i className="glyphicon glyphicon-menu-left orange-text" style={{marginBottom: "10px", fontSize: "24px"}}></i>
+             </Link>
            </Modal.Header>
            <Modal.Body>
 
-         <Link to="/favorites">
-           <i className="glyphicon glyphicon-menu-left" style={{marginBottom: "10px", fontSize: "24px"}}></i>
-         </Link>
 
          <div className="row text-center">
            <h2 className="match large">It's a Match!</h2>
@@ -82,33 +91,40 @@ class CommonRestaurantDetail extends React.Component {
                <img className="match-pic" style={{borderRadius: "200px", minWidth: "200px", minHeight: "200px"}} src={this.props.restaurant.image_url} alt="" width="100%"/>
              </div>
            </div>
-           <div className="col-xs-9">
-             <h4 className="pull-left">{this.props.restaurant.name}</h4>
-           </div>
-           <div className="col-xs-3">
-             <h4 className="pull-right">{distance} mi.</h4>
-           </div>
-
          </div>
-
+         <div className="col-xs-2"></div>
+         <div className="col-xs-6">
+           <h4>{this.props.restaurant.name}</h4>
+           <p>
+             {this.props.restaurant.display_address_1}<br/>
+           {this.props.restaurant.display_address_2}</p>
+         </div>
+         <div className="col-xs-3">
+           <h4>{distance} mi.</h4>
+             <p>Price: {this.props.restaurant.price}<br/>
+             Rating: {this.props.restaurant.rating}<br/></p>
+         </div>
          <div className="row">
            <div className="col-xs-7">
-             <p>
-               {this.props.restaurant.display_address_1}<br/>
-             {this.props.restaurant.display_address_2}</p>
-           <p>
-             <a href={tel}>{this.props.restaurant.display_phone}</a><br/>
-             {this.props.restaurant.is_closed &&
-               <h5>Permanently Closed</h5>
-             }
-           </p>
-         </div>
 
-         <div className="col-xs-5">
-           <p className="pull-right">Price: {this.props.restaurant.price}<br/>
-           Rating: {this.props.restaurant.rating}<br/></p>
-       </div>
-     </div>
+           </div>
+
+           <div className="col-xs-5">
+
+          </div>
+        </div>
+        <div className="btn-group wide" style={{width: "90%"}}>
+          <button className="btn btn-default button-group orange-btn">
+            <a href={restTel}>Call {this.props.restaurant.name}</a>
+          </button>
+          <button className="btn btn-default button-group orange-btn">
+            <a href={friendTel}>Call {this.props.friend.firstname}</a>
+          </button>
+          <button className="btn btn-default button-group orange-btn">
+            <a href={friendText}>Text {this.props.friend.firstname}</a>
+          </button>
+        </div>
+
 
        </Modal.Body>
        <Modal.Footer>
