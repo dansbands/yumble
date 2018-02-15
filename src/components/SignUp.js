@@ -41,7 +41,7 @@ class SignUp extends React.Component {
         this.setState({ error: true });
       } else {
         this.props.handleLogin(data);
-        this.props.history.push('/settings')
+        this.props.history.push('/friends')
       }
     });
   }

@@ -78,11 +78,34 @@ body {
   margin-left: 33%;
 }
 
+.match-pic-left {
+  margin-left: 10%;
+  width: 40%;
+  float: left;
+}
+
+.match-pic-right {
+  width: 40%;
+  float: right;
+}
+
 .match-pic-center-frame {
   border-radius: 200px;
   height: 200px;
   width: 200px;
   overflow: hidden;
+}
+
+.match-text-left {
+  margin-left: 10%;
+  width: 40%;
+  float: left;
+}
+
+.match-text-right {
+  margin-left: 15%;
+  width: 35%;
+  float: right;
 }
 
 .visible {
@@ -343,7 +366,7 @@ body {
 
 .right {
   position: fixed;
-  right: 0;
+  right: 20px;
 }
 
 .left {
@@ -571,5 +594,10 @@ body {
     bottom: 20px;
     left: 20px;
     right: 20px;
+  }
+
+  .right {
+    position: fixed;
+    right: 0;
   }
 }
