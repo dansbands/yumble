@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import api from '../services/api'
 
 class SignIn extends React.Component {
   constructor(props) {
@@ -25,14 +26,8 @@ class SignIn extends React.Component {
   handleSubmit = e => {
     // e.preventDefault()
     // console.log('submit signin');
-    fetch('http://localhost:3000/api/v1/auth', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json',
-      },
-      body: JSON.stringify(this.state.fields)
-    }).then(resp => resp.json())
+    api.auth.signIn(this.state.fields)
+
     .then(data => {
       console.log('Sign In response is', data);
       if (data.error) {

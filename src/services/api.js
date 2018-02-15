@@ -1,5 +1,5 @@
-const API_ROOT = `https://floating-fortress-46957.herokuapp.com/api/v1`
-// const API_ROOT = `http://192.168.3.57:3000/api/v1`
+// const API_ROOT = `https://floating-fortress-46957.herokuapp.com/api/v1`
+const API_ROOT = `http://192.168.3.57:3000/api/v1`
 // const API_ROOT = `http://localhost:3000/api/v1`
 
 const token = localStorage.getItem('token')
@@ -70,6 +70,15 @@ const signIn = fields => {
     body: JSON.stringify(fields)
   }).then(resp => resp.json())
 }
+
+// fetch('http://localhost:3000/api/v1/auth', {
+//   method: 'POST',
+//   headers: {
+//     'Content-Type': 'application/json',
+//     'Accept': 'application/json',
+//   },
+//   body: JSON.stringify(this.state.fields)
+// }).then(resp => resp.json())
 
 const getCurrentUser = () => {
   return fetch(`${API_ROOT}/current_user`, {
