@@ -34,9 +34,7 @@ const YourRestaurantCard = (props) => {
   // console.log('YourRestaurantCard userPics', userPics);
 
   return (
-    <Link
-      to="/detail"
-      className="link">
+
       <div id={props.restaurant.id} className="list-group-item media" onClick={e => props.handleClickSavedCard(e, props.restaurant)}>
         <div className="media-left">
             <img src={props.restaurant.image_url} alt="" width="50px" style={{height: "50px", overflow: "hidden", borderRadius: "50px"}}/>
@@ -50,7 +48,7 @@ const YourRestaurantCard = (props) => {
           </div>
         </div>
       </div>
-    </Link>
+
   )
 }
 

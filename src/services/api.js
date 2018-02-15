@@ -31,7 +31,7 @@ const getSavedRestaurants = () => {
 }
 
 const deleteRestaurant = id => {
-  return fetch(`http://localhost:3000/api/v1/restaurants/${id}`, {
+  return fetch(`${API_ROOT}/restaurants/${id}`, {
     method: 'DELETE',
   }).then(resp => resp.json())
 }

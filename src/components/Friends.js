@@ -7,6 +7,7 @@ const Friends = props => {
   let friendsRestaurants
   let commonRestaurants
   let image = require(`../img/profile/placeholder.png`)
+  let currentFriendName = <h5>Please select a friend to dine with.</h5>
 
   const allUsers = props.allUsers.map(f => {
     return (
@@ -20,8 +21,9 @@ const Friends = props => {
   //   return u.id === props.currentFriend
   // })
 
-  if (props.currentFriend) {
-    console.log('CurrentFriend', props.currentFriend);
+  if (props.currentFriend.firstname) {
+    console.log('CurrentFriend Name', props.currentFriend.firstname);
+      currentFriendName = <h5>{props.currentFriend.firstname} {props.currentFriend.lastname}</h5>
   }
 
   if (props.currentFriend.photo_url) {
@@ -84,7 +86,7 @@ const Friends = props => {
       <h4>Current Friend:</h4>
         <div className="list-group-item media">
           <div className="media-body">
-            <h5>{props.currentFriend.firstname} {props.currentFriend.lastname}</h5>
+            {currentFriendName}
           </div>
           <div className="media-right">
             <img className="pull-right" src={image} style={{width: "35px", height: "35px", borderRadius: "35px"}}/>
