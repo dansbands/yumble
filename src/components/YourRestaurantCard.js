@@ -1,13 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import image from '../img/profile/placeholder.png';
-
 
 const YourRestaurantCard = (props) => {
   let notYou
   let otherUsers = []
   let userPics
-  let img = image
 
   if (props.allUsers) {
     notYou = props.allUsers.filter(u => {
@@ -22,10 +19,7 @@ const YourRestaurantCard = (props) => {
       })
     })
     userPics = otherUsers.map(u => {
-      if (u.photo_url) {
-        img = u.photo_url
-      }
-      return <img src={img} key={u.id} alt="" className="other-user"/>
+      return <img src={u.photo_url} key={u.id} alt="" className="other-user"/>
     })
   }
   // console.log('YourRestaurantCard', props);
@@ -34,13 +28,20 @@ const YourRestaurantCard = (props) => {
   // console.log('YourRestaurantCard userPics', userPics);
 
   return (
-
+    <Link
+      to="/detail"
+      className="link">
       <div id={props.restaurant.id} className="list-group-item media" onClick={e => props.handleClickSavedCard(e, props.restaurant)}>
         <div className="media-left">
             <img src={props.restaurant.image_url} alt="" width="50px" style={{height: "50px", overflow: "hidden", borderRadius: "50px"}}/>
         </div>
         <div className="media-body">
+          <Link
+            to="/favorites"
+            className="link">
           <i className="glyphicon glyphicon-trash pull-right trash" name="delete" onClick={e => props.handleClickSavedCard(e, props.restaurant)}></i>
+          </Link>
+
           <h5 className="media-heading">{props.restaurant.name} <text> - {props.restaurant.price}</text></h5>
           <div className="other-user-container">
 
@@ -48,7 +49,7 @@ const YourRestaurantCard = (props) => {
           </div>
         </div>
       </div>
-
+    </Link>
   )
 }
 
