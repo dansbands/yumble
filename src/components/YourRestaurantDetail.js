@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import image from '../img/profile/placeholder.png';
 
 const YourRestaurantDetail = (props) => {
   console.log('YourRestaurantDetail', props);
@@ -10,6 +11,8 @@ const YourRestaurantDetail = (props) => {
   let notYou
   let otherUsers = []
   let userPics
+  let img = image
+
 
   if (props.allUsers) {
     notYou = props.allUsers.filter(u => {
@@ -23,10 +26,14 @@ const YourRestaurantDetail = (props) => {
         }
       })
     })
+
     userPics = otherUsers.map(u => {
+      if (u.photo_url) {
+        img = u.photo_url
+      }
       return (
         <div className="col-xs-2 text-center" onClick={(e) => props.handleClickUser(e,u, props.restaurant)}>
-          <img src={u.photo_url} key={u.id} alt="" className="lg-other-user"/>
+          <img src={img} key={u.id} alt="" className="lg-other-user"/>
           <h5>{u.firstname}</h5>
         </div>
       )

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { Popover, Tooltip, Button, Modal, OverlayTrigger } from 'react-bootstrap';
+import image from '../img/profile/placeholder.png';
+
 
 class CommonRestaurantDetail extends React.Component {
   constructor(props, context) {
@@ -33,6 +35,8 @@ class CommonRestaurantDetail extends React.Component {
    let friendTel
    let friendText
    let friendEmail
+   let friendImg = image
+   let yourImg = image
    // let url = `url(${this.props.friend.photo_url}) -10px 1px / 120px no-repeat` //for background image for circle divs
 
    if (this.props.restaurant) {
@@ -47,6 +51,14 @@ class CommonRestaurantDetail extends React.Component {
      friendTel= "tel:1-973-486-4884"
      friendText= "iMessage:1-973-486-4884"
      friendEmail= "mailto:daniel.odea@flatironschool.com?Subject=Check%20Out%20This%20Restaurant%20I%20Found%20On%20Yumble!"
+   }
+
+   if (this.props.friend.photo_url) {
+     friendImg = this.props.friend.photo_url
+   }
+
+   if (this.props.you.photo_url) {
+     yourImg = this.props.you.photo_url
    }
    // return<div>under construction</div>
    if (!this.props.restaurant) {
@@ -71,12 +83,12 @@ class CommonRestaurantDetail extends React.Component {
            <h4 style={{marginBottom: "20px"}}>You and {this.props.friend.firstname} both like this restaurant!</h4>
            <div className="row">
              <div className="match-pic-left">
-               <img className="img-circle match-pic" style={{maxWidth: "100px"}} src={this.props.you.photo_url}></img>
+               <img className="img-circle match-pic" style={{maxWidth: "100px"}} src={yourImg}></img>
              </div>
 
              <div className="match-pic-right">
                <div className="img-circle match-pic" style={{overflow: "hidden", height: "100px", width: "100px"}}>
-                 <img style={{minWidth: "100px", minHeight: "100px", maxWidth: "120px", maxHeight: "120px"}} src={this.props.friend.photo_url}></img>
+                 <img style={{minWidth: "100px", minHeight: "100px", maxWidth: "120px", maxHeight: "120px"}} src={friendImg}></img>
                </div>
              </div>
 

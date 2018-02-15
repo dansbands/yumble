@@ -1,10 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import image from '../img/profile/placeholder.png';
+
 
 const YourRestaurantCard = (props) => {
   let notYou
   let otherUsers = []
   let userPics
+  let img = image
 
   if (props.allUsers) {
     notYou = props.allUsers.filter(u => {
@@ -19,7 +22,10 @@ const YourRestaurantCard = (props) => {
       })
     })
     userPics = otherUsers.map(u => {
-      return <img src={u.photo_url} key={u.id} alt="" className="other-user"/>
+      if (u.photo_url) {
+        img = u.photo_url
+      }
+      return <img src={img} key={u.id} alt="" className="other-user"/>
     })
   }
   // console.log('YourRestaurantCard', props);
