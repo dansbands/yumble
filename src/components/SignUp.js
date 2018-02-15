@@ -48,9 +48,10 @@ class SignUp extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-4 center-block">
-        {this.state.error ? <h1>Try Again</h1> : null}
-        <h3>Sign Up</h3>
+      <div className="background">
+        <div className="supporting-content center-block signin">
+          {this.state.error ? <h1>Try Again</h1> : null}
+          <h3>Sign Up</h3>
           <div className="form-group">
             <label htmlFor="firstname">Firstname</label>
             <input
@@ -100,7 +101,9 @@ class SignUp extends React.Component {
             className="pull-right">
             Already a user? Sign In instead.
           </Link>
+        </div>
       </div>
+
     )
   }
 }

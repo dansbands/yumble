@@ -302,6 +302,13 @@ class AppContainer extends Component {
                         yourRestaurants={this.state.yourRestaurants}
                         handleClickSavedCard={this.handleClickSavedCard}
                         allUsers={this.state.allUsers}/>
+                      <div className="desktop">
+                        <RestaurantContainer
+                          handleRemove={this.handleRemove}
+                          handleSelect={this.handleSelect}
+                          restaurant={this.state.currentRestaurant}
+                          displayRestaurant={this.state.displayRestaurant}/>
+                      </div>
                     </div>
                   )}
                 } />
@@ -309,6 +316,12 @@ class AppContainer extends Component {
                 routerProps => {
                   return (
                     <div className="row">
+                      <div className="desktop">
+                        <YourRestaurantList
+                          yourRestaurants={this.state.yourRestaurants}
+                          handleClickSavedCard={this.handleClickSavedCard}
+                          allUsers={this.state.allUsers}/>
+                      </div>
                       <YourRestaurantDetail
                         handleClickUser={this.handleClickUser}
                         allUsers={this.state.allUsers}
@@ -326,6 +339,13 @@ class AppContainer extends Component {
                         value={this.state.searchVal}
                         onChange={this.handleFormChange}
                         onSubmit={this.handleSubmitSearch}/>
+                      <div className="desktop">
+                        <RestaurantContainer
+                          handleRemove={this.handleRemove}
+                          handleSelect={this.handleSelect}
+                          restaurant={this.state.currentRestaurant}
+                          displayRestaurant={this.state.displayRestaurant}/>
+                      </div>
                     </div>
                   )}
                 } />
@@ -359,6 +379,13 @@ class AppContainer extends Component {
                         onClick={this.handleChangeFriend}
                         handleClickUser={this.handleClickUser}
                         handleClickCommonCard={this.handleClickCommonCard}/>
+                      <div className="desktop">
+                        <RestaurantContainer
+                          handleRemove={this.handleRemove}
+                          handleSelect={this.handleSelect}
+                          restaurant={this.state.currentRestaurant}
+                          displayRestaurant={this.state.displayRestaurant}/>
+                      </div>
                     </div>
                   )}
                 } />
@@ -373,6 +400,13 @@ class AppContainer extends Component {
                         toggleEdit={this.toggleEdit}
                         onChange={this.handleProfileChange}
                         onSubmit={this.handleUpdateUser}/>
+                      <div className="desktop">
+                        <RestaurantContainer
+                          handleRemove={this.handleRemove}
+                          handleSelect={this.handleSelect}
+                          restaurant={this.state.currentRestaurant}
+                          displayRestaurant={this.state.displayRestaurant}/>
+                      </div>
                     </div>
                   )}
                 } />

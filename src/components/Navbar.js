@@ -50,22 +50,10 @@ class Navbar extends React.Component {
                     to="/settings"
                     className="nav-link"
                     style={{ width: "10px"}}>
-                    <i style={{ fontSize: "35px"}} class="material-icons">settings</i>
+                    <i style={{ fontSize: "35px"}} className="material-icons">settings</i>
                   </Link>
                 </li>
-                <li>
-                  {!loggedIn ? (
-                    <Link
-                      to="/signin"
-                      onClick={this.handleLogout}
-                      className="nav-link">
-                        <span className="glyphicon glyphicon-user"></span>
-                        Sign In
-                    </Link>
-                    ) : (
-                      null
-                    )}
-                </li>
+
 
               </ul>
             </div>

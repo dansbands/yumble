@@ -46,41 +46,47 @@ class SignIn extends React.Component {
 
   render() {
     return (
-      <div className="col-xs-4 center-block">
-        {this.state.error ? <h1>Try Again</h1> : null}
-        <h3>Sign In</h3>
-          <div className="form-group">
-            <label htmlFor="username">Username</label>
-            <input
-              className="form-control"
-              name="username"
-              placeholder="Username"
-              value={this.state.fields.username}
-              onChange={e => this.handleChange(e)}></input>
-          </div>
-          <div className="form-group">
-            <label htmlFor="password">Password</label>
-            <input
-              className="form-control"
-              name="password"
-              placeholder="Password"
-              value={this.state.fields.password}
-              onChange={e => this.handleChange(e)}></input>
-          </div>
+      <div>
+        <div className="background">
+
+          <div className="supporting-content center-block signin">
+            {this.state.error ? <h1>Try Again</h1> : null}
+            <h3>Sign In</h3>
+            <div className="form-group">
+              <label htmlFor="username">Username</label>
+              <input
+                className="form-control"
+                name="username"
+                placeholder="Username"
+                value={this.state.fields.username}
+                onChange={e => this.handleChange(e)}></input>
+            </div>
+            <div className="form-group">
+              <label htmlFor="password">Password</label>
+              <input
+                className="form-control"
+                name="password"
+                placeholder="Password"
+                value={this.state.fields.password}
+                onChange={e => this.handleChange(e)}></input>
+            </div>
 
 
-          <Link
-            to="/settings"
-            onClick={this.handleSubmit}
-            >
-            <input className="btn btn-default" type="submit"></input>
-          </Link>
-          <br></br>
-          <Link
-            to="/signup"
-            className="pull-right">
-            Not a user? Sign Up instead.
-          </Link>
+            <Link
+              to="/settings"
+              onClick={this.handleSubmit}
+              >
+              <input className="btn btn-default" type="submit"></input>
+            </Link>
+            <br></br>
+            <Link
+              to="/signup"
+              className="pull-right">
+              Not a user? Sign Up instead.
+            </Link>
+          </div>
+        </div>
+
       </div>
     )
   }
