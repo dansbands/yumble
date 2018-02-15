@@ -37,7 +37,7 @@ const deleteRestaurant = id => {
 }
 
 const postSavedRestaurant = newRestaurant => {
-  return fetch('http://localhost:3000/api/v1/saved_restaurants', {
+  return fetch(`${API_ROOT}/saved_restaurants`, {
     method: 'POST',
     headers: {
       'Content-Type': 'Application/json',
@@ -48,7 +48,7 @@ const postSavedRestaurant = newRestaurant => {
 }
 
 const deleteSavedRestaurant = id => {
-  return fetch(`http://localhost:3000/api/v1/saved_restaurants/${id}`, {
+  return fetch(`${API_ROOT}/saved_restaurants/${id}`, {
     method: 'DELETE',
   }).then(resp => resp.json())
 }
@@ -59,7 +59,7 @@ const getUser = id => {
 }
 
 const signIn = fields => {
-  return fetch('http://localhost:3000/api/v1/auth', {
+  return fetch(`${API_ROOT}/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -70,7 +70,7 @@ const signIn = fields => {
 }
 
 const getCurrentUser = () => {
-  return fetch('http://localhost:3000/api/v1/current_user', {
+  return fetch(`${API_ROOT}/current_user`, {
     headers: {
       Authorization: token
     }
@@ -78,7 +78,7 @@ const getCurrentUser = () => {
 }
 
 const getAllUsers = () => {
-  return fetch('http://localhost:3000/api/v1/users')
+  return fetch(`${API_ROOT}/users`)
   .then(res => res.json())
 }
 
