@@ -67,14 +67,15 @@ const Friends = props => {
 
   return (
     <div className="supporting-content right">
-      <div className="btn-group">
-        <Link
-          to="/favorites"
-          className="btn btn-default">Favorites</Link>
-        <Link
-          to="/friends"
-          className="btn btn-default">Friends</Link>
-      </div>
+        <div className="btn-group pull-right">
+          <Link
+            to="/favorites"
+            className="btn btn-default">Favorites</Link>
+          <Link
+            to="/friends"
+            className="btn btn-default">Friends</Link>
+        </div>
+
 
 
       <div className="list-heading">
@@ -93,16 +94,18 @@ const Friends = props => {
         {allUsers}
       </div>
       <div className="list-heading">
-        <h3>Your Common Restaurants ({commonRestaurants.length})</h3>
+        <h3>{props.currentFriend.firstname}'s Matched Restaurants ({commonRestaurants.length})</h3>
       </div>
       <div className="small-list">
         {commonRestaurants}
       </div>
-      <div className="list-heading">
-        <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
-      </div>
-      <div className="small-list">
-        {friendsRestaurants}
+      <div style={{display: "none"}}>
+        <div className="list-heading">
+          <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
+        </div>
+        <div className="small-list">
+          {friendsRestaurants}
+        </div>
       </div>
 
     </div>

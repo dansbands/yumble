@@ -7,7 +7,7 @@ body {
 }
 
 .profile {
-  height: 300px;
+  height: 225px;
   overflow: scroll;
   -webkit-transition: opacity 1s; /* Safari */
     transition: opacity 1s;
@@ -85,7 +85,7 @@ body {
 }
 
 .list {
-  height: 700px;
+  height: 600px;
   overflow: scroll;
 }
 
@@ -112,6 +112,9 @@ body {
 
 .main-content {
   width: 60%;
+  position: relative;
+  overflow: scroll;
+  height: 700px;
 }
 
 .supporting-content {
@@ -123,8 +126,10 @@ body {
 
 }
 
+
+
 .detail-image {
-  max-height: 300px;
+  max-height: 400px;
   overflow: hidden;
 }
 /* ------- end content for media queries */
@@ -315,10 +320,11 @@ body {
 }
 
 .bottom {
-  position: absolute;
-  bottom: 20px;
-  left: 10%;
-  right: 10%;
+  /* position: absolute; */
+  /* bottom: 20px; */
+  /* left: 10%; */
+  /* right: 10%; */
+  margin-top: 20px;
   height: 50px;
 }
 
@@ -434,6 +440,11 @@ body {
   font-size: 24px;
 }
 
+@media only screen and (min-width: 501px) {
+  .mobile {
+    display: none;
+  }
+}
 
 @media only screen and (max-width: 500px) {
   .main-content {
@@ -445,6 +456,12 @@ body {
   .main {
     margin-top: 100px;
   }
+
+  .main-img {
+    max-height: 400px;
+    overflow: hidden;
+  }
+
 
   .supporting-content {
     width: 90%;

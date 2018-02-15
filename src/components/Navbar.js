@@ -41,7 +41,7 @@ class Navbar extends React.Component {
     const loggedIn = !!this.props.currentUser.id;
     return (
       <div>
-        <nav className="navbar navbar-fixed-top">
+        <nav className="navbar navbar-fixed-top mobile">
           <div className="container-fluid nav-container">
             <div className="col-xs-3">
               <ul className="nav navbar-nav navbar-left">
@@ -99,17 +99,57 @@ class Navbar extends React.Component {
           </div>
         </nav>
 
-        <nav className="navbar navbar-fixed-bottom desktop">
+        <nav className="navbar navbar-fixed-top desktop">
           <div className="container-fluid nav-container">
-            <div className="col-xs-5">
+
+
+            <div className="col-xs-2">
+              <Link to="/" className="navbar-brand pull-right">
+                Yumble
+              </Link>
+            </div>
+
+            <div className="col-xs-8">
               <ul className="nav navbar-nav navbar-left">
+
+                <li>
+                  <Link
+                    to="/favorites"
+                    className="nav-link"> Favorites
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/friends"
+                    className="nav-link">
+                    Friends
+                  </Link>
+                </li>
+
+
                 <li>
                   <Link
                     to="/settings"
                     className="nav-link">
-                    <span className="glyphicon glyphicon-cog"></span> Settings
+                    Settings
                   </Link>
                 </li>
+                <li>
+                  <Link
+                    to="/profile"
+                    className="nav-link">
+                    Profile
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+
+
+
+
+            <div className="col-xs-2">
+              <ul className="nav navbar-nav">
                 <li>
                   {loggedIn ? (
                   <Link
@@ -127,49 +167,6 @@ class Navbar extends React.Component {
                       Sign In
                   </Link>
                     )}
-                </li>
-                <li>
-                  <Link
-                    to="/restaurants"
-                    className="nav-link">
-                    <span className="glyphicon glyphicon-cutlery"></span> All the Food
-                  </Link>
-                </li>
-              </ul>
-            </div>
-
-            <div className="col-xs-3">
-              <div className="center-block">
-
-                <Link to="/" className="navbar-brand ">
-                  Yumble
-                </Link>
-              </div>
-            </div>
-
-            <div className="col-xs-4">
-              <ul className="nav navbar-nav navbar-right">
-                <li>
-                  <Link
-                    to="/profile"
-                    className="nav-link">
-                     <span><i className="material-icons">people</i></span> Profile
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/friends"
-                    className="nav-link">
-                     <span><i className="material-icons">people</i></span> Friends
-                  </Link>
-                </li>
-
-                <li>
-                  <Link
-                    to="/favorites"
-                    className="nav-link"><span className="glyphicon glyphicon-heart-empty"></span> Favorites
-                  </Link>
                 </li>
 
               </ul>

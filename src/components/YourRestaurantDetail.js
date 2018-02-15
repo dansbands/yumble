@@ -78,15 +78,17 @@ const YourRestaurantDetail = (props) => {
         <div className="col-xs-12 other-user-show">
         {otherUsers.length > 0 &&
           <h5>These friends like {props.restaurant.name}</h5> }
-          <div className="row">
+          <div style={{paddingLeft: "10px", paddingRight: "10px"}} className="row">
             {userPics}
           </div>
         </div>
       </div>
+      <div className="row">
 
-      <div className="text-center">
+        <div className="text-center">
 
-        <a href={tel}><button className="btn btn-default bottom orange">Call {props.restaurant.name}</button></a>
+          <a href={tel}><button className="btn btn-default bottom orange">Call {props.restaurant.name}</button></a>
+        </div>
       </div>
     </div>
   )

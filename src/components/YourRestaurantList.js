@@ -21,15 +21,15 @@ class YourRestaurantList extends React.Component {
 
     return (
       <div className="supporting-content right">
+        <div className="btn-group pull-right">
+          <Link
+            to="/favorites"
+            className="btn btn-default">Favorites</Link>
+          <Link
+            to="/friends"
+            className="btn btn-default">Friends</Link>
+        </div>
         <div className="fixed-heading">
-          <div className="btn-group">
-            <Link
-              to="/favorites"
-              className="btn btn-default">Favorites</Link>
-            <Link
-              to="/friends"
-              className="btn btn-default">Friends</Link>
-          </div>
 
           <div className="list-heading">
             <h3>Your Restaurants</h3>
