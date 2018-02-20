@@ -1,5 +1,6 @@
 // const API_ROOT = `https://floating-fortress-46957.herokuapp.com/api/v1`
-const API_ROOT = `http://192.168.3.57:3000/api/v1`
+// const API_ROOT = `http://192.168.3.57:3000/api/v1`
+const API_ROOT = `http://10.0.0.156:3000/api/v1`
 // const API_ROOT = `http://localhost:3000/api/v1`
 
 const token = localStorage.getItem('token')
@@ -22,10 +23,6 @@ const getUserRestaurants = userId => {
           .then(resp => resp.json())
 }
 
-// const getRestaurants = () => {
-//   return fetch(`${API_ROOT}/restaurants`)
-//           .then(resp => resp.json())
-// }
 
 const getSavedRestaurants = () => {
   return fetch(`${API_ROOT}/saved_restaurants`)
@@ -71,14 +68,16 @@ const signIn = fields => {
   }).then(resp => resp.json())
 }
 
-// fetch('http://localhost:3000/api/v1/auth', {
-//   method: 'POST',
-//   headers: {
-//     'Content-Type': 'application/json',
-//     'Accept': 'application/json',
-//   },
-//   body: JSON.stringify(this.state.fields)
-// }).then(resp => resp.json())
+const signUp = fields => {
+  return fetch(`${API_ROOT}/users`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+    },
+    body: JSON.stringify(fields)
+  }).then(resp => resp.json())
+}
 
 const getCurrentUser = () => {
   return fetch(`${API_ROOT}/current_user`, {
@@ -118,6 +117,7 @@ export default {
   },
   auth: {
     signIn,
+    signUp,
     getCurrentUser,
   }
 }
