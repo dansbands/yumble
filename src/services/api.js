@@ -1,6 +1,6 @@
-// const API_ROOT = `https://floating-fortress-46957.herokuapp.com/api/v1`
+const API_ROOT = `https://floating-fortress-46957.herokuapp.com/api/v1`
 // const API_ROOT = `http://192.168.3.57:3000/api/v1`
-const API_ROOT = `http://10.0.0.156:3000/api/v1`
+// const API_ROOT = `http://10.0.0.156:3000/api/v1`
 // const API_ROOT = `http://localhost:3000/api/v1`
 
 const token = localStorage.getItem('token')
