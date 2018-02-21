@@ -27,7 +27,7 @@ class CommonRestaurantDetail extends React.Component {
 
 
  render() {
-   console.log('CommonRestaurantDetail', this.props.friend.photo_url);
+   console.log('CommonRestaurantDetail', this.props.friend);
 
 
    let distance
@@ -44,13 +44,18 @@ class CommonRestaurantDetail extends React.Component {
      restTel = "tel:" + this.props.restaurant.phone
    }
 
-   if (this.props.friend.tel) {
-     friendTel= "tel:" + this.props.friend.tel
-     friendText= "iMessage:" + this.props.friend.tel
+   if (this.props.friend.phone) {
+     friendTel = "tel:" + this.props.friend.phone
+     friendText = "sms:" + this.props.friend.phone
    } else {
-     friendTel= "tel:1-973-486-4884"
-     friendText= "iMessage:1-973-486-4884"
-     friendEmail= "mailto:daniel.odea@flatironschool.com?Subject=Check%20Out%20This%20Restaurant%20I%20Found%20On%20Yumble!"
+     friendTel = "tel:1-973-486-4884"
+     friendText = "iMessage:1-973-486-4884"
+   }
+
+   if (this.props.friend.email) {
+     friendEmail = "mailto:" + this.props.friend.email
+   } else {
+     friendEmail = "mailto:daniel.odea@flatironschool.com?Subject=Check%20Out%20This%20Restaurant%20I%20Found%20On%20Yumble!"
    }
 
    if (this.props.friend.photo_url) {
