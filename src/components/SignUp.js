@@ -78,6 +78,7 @@ class SignUp extends React.Component {
             <label htmlFor="password">Password</label>
             <input
               className="form-control"
+              type="password"
               name="password"
               placeholder="Password"
               value={this.state.fields.password}

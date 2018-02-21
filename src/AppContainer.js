@@ -67,6 +67,10 @@ class AppContainer extends Component {
     // this.getUserRestaurants(nextProps.currentUser.id)
   }
 
+  componentDidMount() {
+    this.getAllUsers()
+  }
+
   getUser = id => {
     let userId = id ? id : this.state.user.id
     api.data.getUser(userId)

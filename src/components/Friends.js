@@ -2,73 +2,81 @@ import React from 'react'
 import snake from '../img/profile/snake.png'
 import { Link } from 'react-router-dom'
 
-const Friends = props => {
-  console.log('Friends', props);
-  let friendsRestaurants
-  let commonRestaurants
-  let image = require(`../img/profile/placeholder.png`)
-  let currentFriendName = <h5>Please select a friend to dine with.</h5>
+class Friends extends React.Component {
+  render() {
+    console.log('Friends', this.props);
+    let friendsRestaurants
+    let commonRestaurants
+    let image = require(`../img/profile/placeholder.png`)
+    let currentFriendName = <h5>Please select a friend to dine with.</h5>
 
-  const allUsers = props.allUsers.map(f => {
-    return (
-      <div onClick={() => props.onClick(f.id, "currentFriend")} key= {f.id} className="panel" value={f.id} >
-        {f.firstname} {f.lastname}
-      </div>
-    )
-  })
-
-  // const findCurrentFriend = props.allUsers.find(u => {
-  //   return u.id === props.currentFriend
-  // })
-
-  if (props.currentFriend.firstname) {
-    console.log('CurrentFriend Name', props.currentFriend.firstname);
-      currentFriendName = <h5>{props.currentFriend.firstname} {props.currentFriend.lastname}</h5>
-  }
-
-  if (props.currentFriend.photo_url) {
-    image = props.currentFriend.photo_url
-    console.log('CurrentFriend', props.currentFriend);
-  }
-
-  if (props.friendsRestaurants) {
-    friendsRestaurants = props.friendsRestaurants.map(r => {
+    const allUsers = this.props.allUsers.map(f => {
       return (
-        <div key={r.id} className="panel">
-          <h5>{r.name}</h5>
+        <div onClick={() => this.props.onClick(f.id, "currentFriend")} key= {f.id} className="panel" value={f.id} >
+          {f.firstname} {f.lastname}
         </div>
       )
     })
-  }
 
-  if (props.commonRestaurants.length) {
-    commonRestaurants = props.commonRestaurants.map((r, i) => {
-      let img
-      if (!r.user_photo_url) {
-        img = require(`../img/profile/placeholder.png`)
-      } else {
-        img = r.user_photo_url
-      }
-      // if (require(`../img/profile/${r.username}.png`)) {
-      //   img = require(`../img/profile/${r.username}.png`)
-      // }
+    // const findCurrentFriend = this.props.allUsers.find(u => {
+    //   return u.id === this.props.currentFriend
+    // })
 
-      return (
+    if (this.props.currentFriend.firstname) {
+      console.log('CurrentFriend Name', this.props.currentFriend.firstname);
+        currentFriendName = <h5>{this.props.currentFriend.firstname} {this.props.currentFriend.lastname}</h5>
+    }
 
-          <div key={i} className="panel" onClick={e => props.handleClickUser(e, props.currentFriend, r)}>
-            <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
+    if (this.props.currentFriend.photo_url) {
+      image = this.props.currentFriend.photo_url
+      console.log('CurrentFriend', this.props.currentFriend);
+    }
+
+    if (this.props.friendsRestaurants) {
+      friendsRestaurants = this.props.friendsRestaurants.map(r => {
+        return (
+          <div key={r.id} className="panel">
+            <h5>{r.name}</h5>
           </div>
+        )
+      })
+    }
 
-      )
-    })
-  } else {
-    commonRestaurants = <div>You Have No Restaurants in Common</div>
-  }
+    if (this.props.commonRestaurants.length) {
+      commonRestaurants = this.props.commonRestaurants.map((r, i) => {
+        let img
+        if (!r.user_photo_url) {
+          img = require(`../img/profile/placeholder.png`)
+        } else {
+          img = r.user_photo_url
+        }
+        // if (require(`../img/profile/${r.username}.png`)) {
+        //   img = require(`../img/profile/${r.username}.png`)
+        // }
+
+        return (
+
+            <div key={i} className="panel" onClick={e => this.props.handleClickUser(e, this.props.currentFriend, r)}>
+              <h5>{r.name}<span className="pull-right"><img src={img} style={{width: "35px", height: "35px", borderRadius: "35px"}}/></span></h5>
+            </div>
+
+        )
+      })
+    } else {
+      commonRestaurants = <div>You Have No Restaurants in Common</div>
+    }
 
   // return <div>Your Friends</div>
 
-  return (
-    <div className="supporting-content right">
+
+
+
+
+
+
+
+    return (
+      <div className="supporting-content right">
         <div className="btn-group pull-right">
           <Link
             to="/favorites"
@@ -80,10 +88,10 @@ const Friends = props => {
 
 
 
-      <div className="list-heading">
-        <h3>Your Friends</h3>
-      </div>
-      <h4>Current Friend:</h4>
+        <div className="list-heading">
+          <h3>Your Friends</h3>
+        </div>
+        <h4>Current Friend:</h4>
         <div className="list-group-item media">
           <div className="media-body">
             {currentFriendName}
@@ -92,26 +100,27 @@ const Friends = props => {
             <img className="pull-right" src={image} style={{width: "35px", height: "35px", borderRadius: "35px"}}/>
           </div>
         </div>
-      <div className="small-list" style={{marginTop: "10px"}}>
-        {allUsers}
-      </div>
-      <div className="list-heading">
-        <h3>{props.currentFriend.firstname}'s Matched Restaurants ({commonRestaurants.length})</h3>
-      </div>
-      <div className="small-list">
-        {commonRestaurants}
-      </div>
-      <div style={{display: "none"}}>
+        <div className="small-list" style={{marginTop: "10px"}}>
+          {allUsers}
+        </div>
         <div className="list-heading">
-          <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
+          <h3>{this.props.currentFriend.firstname}'s Matched Restaurants ({commonRestaurants.length})</h3>
         </div>
         <div className="small-list">
-          {friendsRestaurants}
+          {commonRestaurants}
         </div>
-      </div>
+        <div style={{display: "none"}}>
+          <div className="list-heading">
+            <h3>Your Friend's Restaurants ({friendsRestaurants.length})</h3>
+          </div>
+          <div className="small-list">
+            {friendsRestaurants}
+          </div>
+        </div>
 
-    </div>
-  )
+      </div>
+    )
+  }
 }
 
 export default Friends;
