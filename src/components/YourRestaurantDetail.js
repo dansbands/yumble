@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import image from '../img/profile/placeholder.png';
+import restImg from '../img/food_placeholder.jpg';
+
 
 const YourRestaurantDetail = (props) => {
   console.log('YourRestaurantDetail', props);
@@ -12,6 +14,7 @@ const YourRestaurantDetail = (props) => {
   let otherUsers = []
   let userPics
   let img = image
+  let restaurantPic = restImg
 
 
   if (props.allUsers) {
@@ -39,6 +42,9 @@ const YourRestaurantDetail = (props) => {
       )
     })
   }
+
+  props.restaurant.image_url ? restaurantPic = props.restaurant.image_url : restaurantPic
+
   console.log('YourRestaurantCard', props);
   console.log('YourRestaurantCard otherUsers', otherUsers);
   console.log('YourRestaurantCard userPics', userPics);
@@ -51,7 +57,7 @@ const YourRestaurantDetail = (props) => {
 
       <div className="row">
         <div className="detail-image">
-          <img src={props.restaurant.image_url} alt="" width="100%"/>
+          <img src={restaurantPic} alt="" width="100%"/>
         </div>
         <div className="col-xs-9">
           <h4>{props.restaurant.name}</h4>
