@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import img from '../img/food_placeholder.jpg';
 
 const YourRestaurantCard = (props) => {
   let notYou
   let otherUsers = []
   let userPics
+  let restaurantPic = img
 
   if (props.allUsers) {
     notYou = props.allUsers.filter(u => {
@@ -22,6 +24,8 @@ const YourRestaurantCard = (props) => {
       return <img src={u.photo_url} key={u.id} alt="" className="other-user"/>
     })
   }
+
+  props.restaurant.image_url ? restaurantPic = props.restaurant.image_url : restaurantPic
   // console.log('YourRestaurantCard', props);
   // console.log('YourRestaurantCard notYou', notYou);
   // console.log('YourRestaurantCard otherUsers', otherUsers);
@@ -33,7 +37,7 @@ const YourRestaurantCard = (props) => {
       className="link">
       <div id={props.restaurant.id} className="list-group-item media" onClick={e => props.handleClickSavedCard(e, props.restaurant)}>
         <div className="media-left">
-            <img src={props.restaurant.image_url} alt="" width="50px" style={{height: "50px", overflow: "hidden", borderRadius: "50px"}}/>
+            <img src={restaurantPic} alt="" width="50px" style={{height: "50px", overflow: "hidden", borderRadius: "50px"}}/>
         </div>
         <div className="media-body">
           <Link
