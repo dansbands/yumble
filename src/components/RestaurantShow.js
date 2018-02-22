@@ -60,12 +60,16 @@ class RestaurantShow extends React.Component {
 
   swipedLeft = (e, deltaX, deltaY, isFlick, velocity) => {
     console.log("You Swiped Left...", e, deltaX, deltaY, isFlick, velocity)
-    this.handleRemove(this.props.restaurant.id)
+    if (deltaX > 120) {
+      this.handleRemove(this.props.restaurant.id)
+    }
   }
 
   swipedRight = (e, deltaX, deltaY, isFlick, velocity) => {
     console.log("You Swiped Right...", e, deltaX, deltaY, isFlick, velocity)
-    this.handleSelect(this.props.restaurant.id)
+    if (deltaX < -120) {
+      this.handleSelect(this.props.restaurant.id)
+    }
   }
 
   swipedUp = (e, deltaY, isFlick) => {
