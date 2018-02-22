@@ -60,8 +60,6 @@ class AppContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('AC Props are', this.props);
-    console.log('AC nextProps are', nextProps);
     this.getAllUsers()
     this.getUser(nextProps.currentUser.id)
     // this.getUserRestaurants(nextProps.currentUser.id)
@@ -96,13 +94,9 @@ class AppContainer extends Component {
   }
 
   findCurrentFriend = id => {
-    console.log('handleChangeFriend', newFriend);
-    console.log('handleChangeFriend AllUsers', this.state.allUsers);
     let newFriend = this.state.allUsers.find( u => u.id === id)
     if (newFriend) {
       this.setState({ currentFriend: newFriend, currentFriendsRestaurants: newFriend.saved_restaurants }, () => {
-        console.log('newFriend in State', this.state.currentFriend);
-        console.log('newFriends restaurants in State', this.state.currentFriendsRestaurants);
         this.findCommonRestaurants()
       })
     }
@@ -111,7 +105,6 @@ class AppContainer extends Component {
   getAllUsers = () => {
     api.data.getAllUsers()
     .then(data => {
-      console.log('getAllUsers', data);
       this.setState({
         allUsers: data,
       },() => {
@@ -122,8 +115,6 @@ class AppContainer extends Component {
   }
 
   findCommonRestaurants = () => {
-    console.log('yourRestaurants', this.state.yourRestaurants);
-    console.log('currentFriendsRestaurants', this.state.currentFriendsRestaurants);
     let commonRestaurants = []
     let yours
     let theirs
@@ -136,28 +127,23 @@ class AppContainer extends Component {
         }
       }
     }
-    console.log('commonRestaurants', commonRestaurants);
     this.setState({
       commonRestaurants: commonRestaurants,
      })
   }
 
-  handleRemove = event => {
-    api.data.deleteRestaurant(event.target.id)
+  handleRemove = id => {
+    api.data.deleteRestaurant(id)
       .then(() => this.getUser())
   }
 
-  handleSelect = event => {
-    console.log('handleSelect', event.target.id);
-    let eventId = parseInt(event.target.id, 10)
+  handleSelect = id => {
+    // let eventId = parseInt(event.target.id, 10)
     let newRestaurant = this.state.restaurants.find( r => {
-      return r.id === eventId
+      return r.id === id
     })
     let commonRestaurant = this.state.currentFriendsRestaurants.find(r => r.yelp_id === newRestaurant.yelp_id)
     newRestaurant.user_id = this.state.user.id
-    console.log('newRestaurant', newRestaurant);
-    console.log('commonRestaurant', commonRestaurant);
-    console.log('newRestaurantUser', this.state.user.id);
 
     if (commonRestaurant) {
       this.setState({ currentCommonRestaurant: newRestaurant})
@@ -165,7 +151,7 @@ class AppContainer extends Component {
     api.data.postSavedRestaurant(newRestaurant)
       .then(() => {
         //deleteRestaurant from list of all
-        api.data.deleteRestaurant(eventId)
+        api.data.deleteRestaurant(id)
           .then(() => this.getUser())
       })
       .then(() => this.getUser())
@@ -173,17 +159,14 @@ class AppContainer extends Component {
 
   handleClickSavedCard = (event, restaurant) => {
     if (event.target.className.includes("trash")) {
-      console.log('delete', restaurant);
       api.data.deleteSavedRestaurant(restaurant.id)
       .then(() => this.getUser())
     } else {
-      console.log('clicked saved card', event.currentTarget.id, restaurant );
       this.setState({ displayRestaurant: restaurant })
     }
   }
 
   handleClickCommonCard = (event, user, restaurant) => {
-      console.log('clicked common card', restaurant, user );
       if (user) {
         this.setState({ currentFriend: user })
       }
@@ -192,11 +175,9 @@ class AppContainer extends Component {
 
   handleFormChange = (newVal, formName) => {
     if (newVal.latitude !== this.state.searchVal.latitude) {
-      console.log('Latitude', newVal);
       this.setState({ usingLocationServices: "Use Location Services" })
     }
     this.setState({ [formName]: newVal})
-    console.log("Handle Form Change", newVal, formName);
   }
 
   handleSubmitSearch = event => {
@@ -214,7 +195,6 @@ class AppContainer extends Component {
 
   handleProfileChange = event => {
     event.preventDefault()
-    console.log('handleProfileChange', event.target.id, event.target.value);
     this.setState({
       currentUser: {
         ...this.state.currentUser,
@@ -224,14 +204,11 @@ class AppContainer extends Component {
   }
 
   handleUpdateUser = event => {
-    console.log('handleUpdateUser', this.state.currentUser);
     api.data.updateUserInfo(this.state.currentUser)
     .then(this.toggleEdit)
   }
 
   handleClickUser = (event, user, restaurant) => {
-    console.log('clicked user', user);
-    console.log('clicked user restaurant', restaurant);
     this.handleClickCommonCard(event, user, restaurant)
   }
 
@@ -242,10 +219,8 @@ class AppContainer extends Component {
   }
 
   handleGetLocation = event => {
-    console.log('getting location', event);
     if ("geolocation" in navigator) {
     	navigator.geolocation.getCurrentPosition(p => {
-        console.log("geolocation is available", p.coords.latitude, p.coords.longitude)
         this.setState({
           usingLocationServices: "Using Your Current Location",
           searchVal: {
@@ -262,8 +237,8 @@ class AppContainer extends Component {
   render() {
     // console.log('newRestaurants in state', this.state.restaurants);
     // console.log('yourRestaurants in state', this.state.yourRestaurants);
-    console.log('AppContainer state', this.state);
-    console.log('AppContainer props', this.props);
+    // console.log('AppContainer state', this.state);
+    // console.log('AppContainer props', this.props);
 
     return (
       <div>

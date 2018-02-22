@@ -5,16 +5,16 @@ import { Link } from 'react-router-dom';
 let swipe = "swipe"
 
 class RestaurantContainer extends React.Component {
-  handleRemove = e => {
+  handleRemove = id => {
     swipe = "right"
-    console.log('container handleRemove', e.target.id);
-    this.props.handleRemove(e)
+    // console.log('container handleRemove', e.target.id);
+    this.props.handleRemove(id)
   }
 
-  handleSelect = e => {
+  handleSelect = id => {
     swipe = "right"
-    console.log('container handleSelect', e.target.id);
-    this.props.handleSelect(e)
+    // console.log('container handleSelect', e.target.id);
+    this.props.handleSelect(id)
   }
 
 

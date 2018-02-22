@@ -27,7 +27,7 @@ class CommonRestaurantDetail extends React.Component {
 
 
  render() {
-   console.log('CommonRestaurantDetail', this.props.friend);
+   // console.log('CommonRestaurantDetail', this.props.friend);
 
 
    let distance

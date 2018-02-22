@@ -36,7 +36,7 @@ class App extends React.Component {
   }
 
   render() {
-    console.log('App State', this.state);
+    // console.log('App State', this.state);
     return (
       <div className="App">
         <div className="container main">
