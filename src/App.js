@@ -78,10 +78,12 @@ class App extends React.Component {
                 render={
                   routerProps => {
                     return (
-                      <AppContainer
-                        {...routerProps}
-                        handleLogout={this.handleLogout}
-                        currentUser={this.state.auth.currentUser}/>
+                      <div className="row">
+                        <AppContainer
+                          {...routerProps}
+                          handleLogout={this.handleLogout}
+                          currentUser={this.state.auth.currentUser}/>
+                      </div>
                     )
                   }
                 } />
