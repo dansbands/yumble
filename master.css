@@ -431,9 +431,9 @@ body {
 
 .navbar {
   box-shadow: 0px 8px rgba(0,0,0,0.05);
-  /* border-bottom: 2px solid white; */
-  border-bottom: 3px solid green;
-  
+  border-bottom: 2px solid white;
+  /* border-bottom: 3px solid green; */
+
   height: 85px;
 }
 
@@ -524,6 +524,7 @@ body {
     margin-left: 20px;
     margin-right: 20px;
     position: absolute;
+    padding-bottom: 20px;
   }
 
   .list {
