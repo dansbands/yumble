@@ -6,7 +6,7 @@ let swipeClass = "swipe"
 class RestaurantShow extends React.Component {
   state = { swipe: "swipe" }
 
-  componentWillReceiveProps(nextProps) {
+  componentWillUpdate(nextProps) {
     console.log('RestaurantShow props', this.props.restaurant);
     console.log('RestaurantShow nextProps', nextProps.restaurant);
     if (this.props.restaurant !== nextProps.restaurant) {
@@ -29,7 +29,7 @@ class RestaurantShow extends React.Component {
       setTimeout(() => {
         this.props.handleRemove(e)
         // swipeClass = "swipe"
-      }, 10)
+      }, 25)
     })
   }
 
@@ -41,7 +41,7 @@ class RestaurantShow extends React.Component {
       setTimeout(() => {
         this.props.handleSelect(e)
         // swipeClass = "swipe"
-      }, 10)
+      }, 25)
     })
   }
 
