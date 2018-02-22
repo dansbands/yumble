@@ -129,6 +129,7 @@ body {
 
 .main {
   margin-top: 120px;
+  overflow: scroll;
 }
 
 .main-img {
@@ -149,12 +150,6 @@ body {
   width: 30%;
   margin-right: 20px;
 }
-
-.desktop {
-
-}
-
-
 
 .detail-image {
   max-height: 400px;
@@ -508,6 +503,8 @@ body {
     width: 90%;
     margin-left: 20px;
     margin-right: 20px;
+    height: 360px;
+    overflow: scroll;
   }
 
   .main {
@@ -524,6 +521,7 @@ body {
     width: 90%;
     margin-left: 20px;
     margin-right: 20px;
+    position: absolute;
   }
 
   .list {
@@ -597,7 +595,7 @@ body {
   }
 
   .right {
-    position: fixed;
+    /* position: fixed; */
     right: 0;
   }
 }
