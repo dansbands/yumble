@@ -25,7 +25,7 @@ const YourRestaurantCard = (props) => {
     })
   }
 
-  props.restaurant.image_url ? restaurantPic = props.restaurant.image_url : restaurantPic 
+  props.restaurant.image_url ? restaurantPic = props.restaurant.image_url : restaurantPic
   // console.log('YourRestaurantCard', props);
   // console.log('YourRestaurantCard notYou', notYou);
   // console.log('YourRestaurantCard otherUsers', otherUsers);
