@@ -49,7 +49,7 @@ class CommonRestaurantDetail extends React.Component {
      friendText = "sms:" + this.props.friend.phone
    } else {
      friendTel = "tel:1-973-486-4884"
-     friendText = "sms:1-973-486-4884"
+     friendText = "iMessage:1-973-486-4884"
    }
 
    if (this.props.friend.email) {
